@@ -1,0 +1,191 @@
+.collection-list {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.collection-list-title {
+  margin: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .collection-list:not(.slider) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .section-collection-list .page-width {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .section-collection-list .collection-list:not(.slider) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.collection-list__item:only-child {
+  max-width: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 749px) {
+  .slider.collection-list--1-items {
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .slider.collection-list--1-items,
+  .slider.collection-list--2-items,
+  .slider.collection-list--3-items,
+  .slider.collection-list--4-items {
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collection-list__item a:hover {
+    box-shadow: none;
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .collection-list.slider .collection-list__item {
+    max-width: 100%;
+  }
+}
+
+.collection-list-view-all {
+  margin-top: 2rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Collection list cards: split title / arrow + modern polish */
+/* -------------------------------------------------------------------------- */
+
+.collection-list .collection-card-wrapper {
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media screen and (min-width: 750px) {
+  .collection-list .collection-card-wrapper:hover {
+    transform: translateY(-0.3rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collection-list .collection-card-wrapper {
+    transition: none;
+  }
+
+  .collection-list .collection-card-wrapper:hover {
+    transform: none;
+  }
+}
+
+.collection-list .collection-card-wrapper .card--standard .card__inner .card__media {
+  border-radius: min(0.75rem, var(--border-radius));
+}
+
+.collection-list .collection-card-wrapper .card__content {
+  padding: 0;
+}
+
+.collection-list .collection-card-wrapper .card__information {
+  padding: 1rem 0 0;
+}
+
+.collection-list .collection-card-wrapper .card__heading {
+  width: 100%;
+}
+
+.collection-list .collection-card-wrapper .card-collection__link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  width: 100%;
+  min-height: 2.75rem;
+}
+
+.collection-list .collection-card-wrapper .card-collection__title {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.8vw, 1.5rem);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-align: left;
+}
+
+.collection-list .collection-card-wrapper .card-collection__link .card-collection__icon {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  margin-left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: rgba(var(--color-foreground), 0.08);
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.collection-list .collection-card-wrapper .card-collection__link .card-collection__icon .icon-arrow {
+  width: 1.15rem;
+}
+
+.collection-list .collection-card-wrapper:hover .card-collection__link .card-collection__icon {
+  background-color: rgba(var(--color-foreground), 0.14);
+}
+
+.collection-list .collection-card-wrapper:hover .card-collection__link .card-collection__icon .icon-arrow path {
+  transform: translateX(0.15rem);
+}
+
+.collection-list .collection-card-wrapper .card-collection__caption {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.collection-list .collection-card-wrapper .card-collection__caption-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 1.3rem;
+  line-height: 1.45;
+  color: rgba(var(--color-foreground), 0.72);
+}
+
+.collection-list .collection-card-wrapper .card-collection__caption .card-collection__icon {
+  flex: 0 0 auto;
+  margin-left: 0;
+  margin-top: 0.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: rgba(var(--color-foreground), 0.08);
+}
+
+.collection-list .collection-card-wrapper:hover .card-collection__caption .card-collection__icon {
+  background-color: rgba(var(--color-foreground), 0.14);
+}

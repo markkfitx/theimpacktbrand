@@ -1,0 +1,271 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_hero_4hRntY": {
+      "type": "custom-hero",
+      "name": "Custom Hero",
+      "settings": {
+        "section_height": 100,
+        "color_scheme": "",
+        "background_image": "shopify://shop_images/IMG_2004.png",
+        "image_overlay_opacity": 30,
+        "image_position": "center",
+        "title": "THE IMPACKT BRAND",
+        "title_alignment": "center",
+        "subtext": "",
+        "button_label_1": "SHOP ALL",
+        "button_link_1": "shopify://collections/all-products",
+        "button_style_secondary_1": false,
+        "button_label_2": "New ARRIVALS",
+        "button_link_2": "shopify://collections/best-sellers",
+        "button_style_secondary_2": false
+      }
+    },
+    "promo_banner_8G4dge": {
+      "type": "promo-banner",
+      "blocks": {
+        "promo_p693XU": {
+          "type": "promo",
+          "settings": {
+            "heading": "EXCLUSIVE MEMBERS COMMUNITY",
+            "link_label": "Join Now",
+            "link": "#"
+          }
+        },
+        "promo_ThgGJC": {
+          "type": "promo",
+          "settings": {
+            "heading": "FREE GIFT WHEN YOU SPEND $85",
+            "link_label": "CLAIM FREE GIFT",
+            "link": "shopify://collections/all-products"
+          }
+        },
+        "promo_w7bLLP": {
+          "type": "promo",
+          "settings": {
+            "heading": "FREE SHIPPING ON $150+",
+            "link_label": "Shop Now",
+            "link": "shopify://collections/all-products"
+          }
+        },
+        "promo_3Ymt63": {
+          "type": "promo",
+          "disabled": true,
+          "settings": {
+            "heading": "EARN FREE PRODUCTS",
+            "link_label": "Join Now",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "promo_p693XU",
+        "promo_ThgGJC",
+        "promo_w7bLLP",
+        "promo_3Ymt63"
+      ],
+      "custom_css": [],
+      "name": "Promo Banner",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "background_color": "#131313",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "collection_list_Knqk6V": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_3aJAGV": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "camo-drop"
+          }
+        },
+        "featured_collection_aB9K9B": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "no-excuses-pre-workout"
+          }
+        },
+        "featured_collection_A9DD4h": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "the-pack"
+          }
+        },
+        "featured_collection_zVzwdC": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "the-pack-only"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_3aJAGV",
+        "featured_collection_aB9K9B",
+        "featured_collection_A9DD4h",
+        "featured_collection_zVzwdC"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "portrait",
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "display_boxes_yYhzQG": {
+      "type": "display-boxes",
+      "disabled": true,
+      "custom_css": [
+        "h3 {color: #fff !important;}"
+      ],
+      "name": "Image grid",
+      "settings": {
+        "columns_mobile": "1",
+        "aspect_ratio_desktop": "1 / 1",
+        "aspect_ratio_mobile": "3 / 4",
+        "image_saturation": 20,
+        "overlay_opacity": 40,
+        "content_padding": 25,
+        "heading_size": 28,
+        "heading_letter_spacing": 1,
+        "heading_link_gap": 0,
+        "link_size": 12,
+        "link_text": "SHOP NOW",
+        "text_color": "#ffffff",
+        "link_color": "#ffffff",
+        "link_hover_color": "#cccccc",
+        "image_desktop_1": "shopify://shop_images/5F231BDE-8B73-4F57-B88D-8A740E4DD4AE.jpg",
+        "image_mobile_1": "shopify://shop_images/5F231BDE-8B73-4F57-B88D-8A740E4DD4AE.jpg",
+        "heading_1": "UP TO 15% OFF",
+        "link_1": "shopify://collections/new-arrivals-10-off",
+        "image_desktop_2": "shopify://shop_images/IMG_2493_3850fd4b-b896-4b91-962a-7459a56d873b.jpg",
+        "image_mobile_2": "shopify://shop_images/IMG_2493_3850fd4b-b896-4b91-962a-7459a56d873b.jpg",
+        "heading_2": "20% - 30% OFF",
+        "link_2": "shopify://collections/all-20-30-off",
+        "image_desktop_3": "shopify://shop_images/6F5CB97E-152A-490E-8D33-AC9FDDC63802.jpg",
+        "image_mobile_3": "shopify://shop_images/6F5CB97E-152A-490E-8D33-AC9FDDC63802.jpg",
+        "heading_3": "35% - 50% OFF",
+        "link_3": "shopify://collections/all-40-50-off",
+        "image_desktop_4": "shopify://shop_images/Photoroom_20250808_122823.jpg",
+        "image_mobile_4": "shopify://shop_images/Photoroom_20250808_122823.jpg",
+        "heading_4": "LIMITED TIME DEALS",
+        "link_4": "shopify://collections/clearance"
+      }
+    },
+    "display_boxes_pqAFMV": {
+      "type": "display-boxes",
+      "custom_css": [
+        "h3 {color: #fff !important;}"
+      ],
+      "name": "Image grid",
+      "settings": {
+        "columns_mobile": "2",
+        "aspect_ratio_desktop": "1 / 1",
+        "aspect_ratio_mobile": "3 / 4",
+        "image_saturation": 100,
+        "overlay_opacity": 40,
+        "content_padding": 25,
+        "heading_size": 28,
+        "heading_letter_spacing": 1,
+        "heading_link_gap": 0,
+        "link_size": 12,
+        "link_text": "SHOP NOW",
+        "text_color": "#ffffff",
+        "link_color": "#ffffff",
+        "link_hover_color": "#cccccc",
+        "image_desktop_1": "shopify://shop_images/5F231BDE-8B73-4F57-B88D-8A740E4DD4AE.jpg",
+        "image_mobile_1": "shopify://shop_images/5F231BDE-8B73-4F57-B88D-8A740E4DD4AE.jpg",
+        "heading_1": "MEN'S",
+        "link_1": "shopify://collections/mens-clothing",
+        "image_desktop_2": "shopify://shop_images/IMG_1874_6909a178-fe17-4fb6-9c27-f102a4c2fa54.jpg",
+        "image_mobile_2": "shopify://shop_images/IMG_1874_6909a178-fe17-4fb6-9c27-f102a4c2fa54.jpg",
+        "heading_2": "WOMEN'S",
+        "link_2": "shopify://collections/womens-clothing",
+        "image_desktop_3": "shopify://shop_images/IMG_1830.jpg",
+        "image_mobile_3": "shopify://shop_images/IMG_1830.jpg",
+        "heading_3": "NEW DROPS",
+        "link_3": "shopify://collections/new-arrivals",
+        "image_desktop_4": "shopify://shop_images/IMG_1297.jpg",
+        "image_mobile_4": "shopify://shop_images/IMG_1297.jpg",
+        "heading_4": "ACCESSORIES",
+        "link_4": "shopify://collections/accessories-1"
+      }
+    },
+    "image_hero_hfpjH8": {
+      "type": "image-hero",
+      "disabled": true,
+      "custom_css": [],
+      "name": "Image Hero",
+      "settings": {
+        "color_scheme": "scheme-8bfa54e6-155d-488e-adc8-0f78cd65f6e1",
+        "background_color": "#000000",
+        "background_image": "shopify://shop_images/7AA92C1E-43A2-4661-A64F-689C80E93341.jpg",
+        "background_image_desktop": "shopify://shop_images/7AA92C1E-43A2-4661-A64F-689C80E93341.png",
+        "image_overlay_opacity": 25,
+        "image_position": "top",
+        "section_height": 35,
+        "title": "NEWEST DROPS",
+        "text": "New Colors. New Styles.<br>We don’t miss. 🔐",
+        "link_label": "SHOP NOW",
+        "link": "shopify://collections/new-arrivals",
+        "link_style": "text",
+        "button_style_secondary": false,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "image_hero_gF7Wf4": {
+      "type": "image-hero",
+      "name": "Image Hero",
+      "settings": {
+        "color_scheme": "scheme-8bfa54e6-155d-488e-adc8-0f78cd65f6e1",
+        "background_color": "#000000",
+        "background_image": "shopify://shop_images/AY8I4757.png",
+        "background_image_desktop": "shopify://shop_images/AY8I4757.png",
+        "image_overlay_opacity": 25,
+        "image_position": "top",
+        "section_height": 35,
+        "title": "JOIN THE COMMUNITY",
+        "text": "Built on discipline. Backed by support. No obligations.",
+        "link_label": "Learn More",
+        "link": "https://affiliates.theimpacktbrand.com/",
+        "link_style": "text",
+        "button_style_secondary": false,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "custom_hero_4hRntY",
+    "promo_banner_8G4dge",
+    "collection_list_Knqk6V",
+    "display_boxes_yYhzQG",
+    "display_boxes_pqAFMV",
+    "image_hero_hfpjH8",
+    "image_hero_gF7Wf4"
+  ]
+}

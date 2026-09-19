@@ -1,0 +1,231 @@
+{{ 'section-custom-hero.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #CustomHero-{{ section.id }} {
+    min-height: {{ section.settings.section_height }}vh;
+  }
+  
+  {%- if section.settings.background_image != blank -%}
+    #CustomHero-{{ section.id }} .custom-hero__background {
+      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+<div
+  id="CustomHero-{{ section.id }}"
+  class="custom-hero color-{{ section.settings.color_scheme }} gradient{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+>
+  {%- if section.settings.background_image != blank -%}
+    <div class="custom-hero__background">
+      <img
+        src="{{ section.settings.background_image | image_url: width: 3840 }}"
+        alt="{{ section.settings.background_image.alt | escape }}"
+        class="custom-hero__background-image"
+        style="object-position: {{ section.settings.image_position | default: 'center' }};"
+        loading="lazy"
+        width="{{ section.settings.background_image.width }}"
+        height="{{ section.settings.background_image.height }}"
+      >
+    </div>
+  {%- endif -%}
+
+  <div class="custom-hero__overlay"></div>
+
+  <div class="custom-hero__content page-width">
+    <div class="custom-hero__text-wrapper" style="text-align: {{ section.settings.title_alignment | default: 'center' }};">
+      {%- if section.settings.title != blank -%}
+        <h1 class="custom-hero__title">
+          {{ section.settings.title }}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.subtext != blank -%}
+        <div class="custom-hero__subtext">
+          {{ section.settings.subtext | escape | newline_to_br }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label_1 != blank or section.settings.button_label_2 != blank -%}
+        <div class="custom-hero__buttons">
+          {%- if section.settings.button_label_1 != blank -%}
+            <a
+              href="{{ section.settings.button_link_1 | default: '#' }}"
+              class="button custom-hero__button{% if section.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+            >
+              {{ section.settings.button_label_1 | escape }}
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.button_label_2 != blank -%}
+            <a
+              href="{{ section.settings.button_link_2 | default: '#' }}"
+              class="button custom-hero__button{% if section.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+            >
+              {{ section.settings.button_label_2 | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Section Height",
+      "default": 80
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Overlay Opacity",
+      "default": 30,
+      "info": "Adds a dark overlay over the background image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Background Image Position",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "STAR WARS - DARK SIDE FOREVER"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Supporting copy for your hero headline.",
+      "info": "Optional text shown below the title. Delete this text to hide the subtext."
+    },
+    {
+      "type": "header",
+      "content": "Button 1"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Button Label",
+      "default": "SHOP MENS"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary_1",
+      "label": "Use secondary button style (outlined)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Button 2"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Button Label",
+      "default": "SHOP SHE"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary_2",
+      "label": "Use secondary button style (outlined)",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero"
+    }
+  ]
+}
+{% endschema %}
+

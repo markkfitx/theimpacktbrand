@@ -1,0 +1,109 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "email_signup_banner_WpJpye": {
+      "type": "email-signup-banner",
+      "blocks": {
+        "heading_mWLDRm": {
+          "type": "heading",
+          "settings": {
+            "heading": "JOIN OUR COMMUNITY",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_dhRdmX": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Members get rewards and exclusive perks.</p>",
+            "text_style": "body"
+          }
+        },
+        "email_form_zh9rKn": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_mWLDRm",
+        "paragraph_dhRdmX",
+        "email_form_zh9rKn"
+      ],
+      "name": "Email Signup Banner",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image": "shopify://shop_images/IMG_8932.png",
+        "image_position": "right",
+        "image_aspect_ratio": "square",
+        "custom_aspect_ratio": 100,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "1764695280bf8cd8c3": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "text_TaxDEz": {
+          "type": "text",
+          "settings": {
+            "heading": "THE IMPACKT BRAND",
+            "subtext": "<p>\"A competition to be the best will make everyone around you do better.\"</p>"
+          }
+        },
+        "link_list_X8pnex": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "sidebar-submenu"
+          }
+        },
+        "link_list_PLnDdg": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Our Policies",
+            "menu": "our-policies"
+          }
+        }
+      },
+      "block_order": [
+        "text_TaxDEz",
+        "link_list_X8pnex",
+        "link_list_PLnDdg"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "email_signup_banner_WpJpye",
+    "1764695280bf8cd8c3",
+    "footer"
+  ]
+}

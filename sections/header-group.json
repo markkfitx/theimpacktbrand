@@ -1,0 +1,160 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "FREE DOMESTIC SHIPPING ON ORDERS $150+",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0"
+      ],
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-1",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "mega_menu_image_a6wVnp": {
+          "type": "mega_menu_image",
+          "settings": {
+            "menu_handle": "",
+            "collection": "sets",
+            "image": "shopify://shop_images/IMG_1863.png",
+            "label": "Bundles & Sets",
+            "link": "shopify://collections/sets",
+            "aspect_ratio": "portrait"
+          }
+        },
+        "mega_menu_image_3LfWci": {
+          "type": "mega_menu_image",
+          "settings": {
+            "menu_handle": "",
+            "collection": "graphic-tees",
+            "image": "shopify://shop_images/5F231BDE-8B73-4F57-B88D-8A740E4DD4AE.jpg",
+            "label": "Graphic Tees",
+            "link": "",
+            "aspect_ratio": "portrait"
+          }
+        },
+        "mega_menu_image_kxtCtU": {
+          "type": "mega_menu_image",
+          "settings": {
+            "menu_handle": "",
+            "collection": "",
+            "image": "shopify://shop_images/FC3F6D56-C693-4DF2-B0AE-F5893A5532E0.jpg",
+            "label": "Hats",
+            "link": "shopify://collections/hats-beanies",
+            "aspect_ratio": "portrait"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_image_a6wVnp",
+        "mega_menu_image_3LfWci",
+        "mega_menu_image_kxtCtU"
+      ],
+      "custom_css": [
+        ".search-modal__content {gap: 1rem;}"
+      ],
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "custom_hero_9wNQ8W": {
+      "type": "custom-hero",
+      "disabled": true,
+      "custom_css": [
+        ".custom-hero {border-bottom: 0.15px solid rgba(255, 255, 255, 0.2);}"
+      ],
+      "name": "Custom Hero",
+      "settings": {
+        "section_height": 100,
+        "color_scheme": "",
+        "background_image": "shopify://shop_images/IMG-5200.jpg",
+        "image_overlay_opacity": 30,
+        "image_position": "center",
+        "title": "THE IMPACKT BRAND",
+        "title_alignment": "center",
+        "subtext": "Supporting copy for your hero headline.",
+        "button_label_1": "SHOP ALL",
+        "button_link_1": "",
+        "button_style_secondary_1": true,
+        "button_label_2": "SHOP BLACK FRIDAY",
+        "button_link_2": "",
+        "button_style_secondary_2": false
+      }
+    },
+    "image_hero_qn7qLD": {
+      "type": "image-hero",
+      "disabled": true,
+      "custom_css": [
+        "* {text-align: left;}",
+        ".image-hero__content {justify-content: flex-start;}",
+        "@media screen and (min-width: 750px) {.page-width {padding: 0 5rem !important; }}",
+        ".page-width {max-width: 100vw; margin: 0; padding: 0 3.6rem;}"
+      ],
+      "name": "Image Hero",
+      "settings": {
+        "color_scheme": "",
+        "background_color": "",
+        "background_image": "shopify://shop_images/AF492862-E823-439B-AA87-A30CA5550C8D.jpg",
+        "image_overlay_opacity": 30,
+        "image_position": "center",
+        "section_height": 30,
+        "title": "",
+        "text": "\"A competition to be the best will make everyone around you do better.\"\n- Barry Panick",
+        "link_label": "Join Today",
+        "link": "",
+        "link_style": "text",
+        "button_style_secondary": false,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "custom_hero_9wNQ8W",
+    "image_hero_qn7qLD"
+  ]
+}

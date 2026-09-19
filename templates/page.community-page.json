@@ -1,0 +1,294 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_banner_aABACJ": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_neqprq": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "text_DN8z3t": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_RJnAyL": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_neqprq",
+        "text_DN8z3t",
+        "buttons_RJnAyL"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "membership_benefits_qExTai": {
+      "type": "membership-benefits",
+      "blocks": {
+        "how_it_works_step_UpJNwn": {
+          "type": "how_it_works_step",
+          "settings": {
+            "step_number": "",
+            "title": "SIGN UP",
+            "description": "Create an account and earn 25 points."
+          }
+        },
+        "how_it_works_step_FTyqYr": {
+          "type": "how_it_works_step",
+          "settings": {
+            "step_number": "",
+            "title": "EARN POINTS",
+            "description": "Earn points every time you shop."
+          }
+        },
+        "how_it_works_step_DQAn3a": {
+          "type": "how_it_works_step",
+          "settings": {
+            "step_number": "",
+            "title": "REDEEM POINTS",
+            "description": "Redeem points for exclusive rewards."
+          }
+        },
+        "earn_method_TPXFJP": {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "dollar",
+            "icon": "",
+            "title": "EARN WHILE YOU SHOP",
+            "description": "1 point for every $1 spent"
+          }
+        },
+        "earn_method_HqP7UW": {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "user",
+            "icon": "",
+            "title": "25 POINTS",
+            "description": "Create Your Account"
+          }
+        },
+        "earn_method_jMwjAC": {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "birthday",
+            "icon": "",
+            "title": "HAPPY BIRTHDAY",
+            "description": "300 Points"
+          }
+        },
+        "earn_method_RiEChG": {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "chat",
+            "icon": "",
+            "title": "STAY CONNECTED",
+            "description": "50 Points"
+          }
+        },
+        "earn_method_6yaBaJ": {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "star",
+            "icon": "",
+            "title": "LEAVE A REVIEW",
+            "description": "10 Points"
+          }
+        },
+        "earn_method_G78Emn": {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "photo",
+            "icon": "",
+            "title": "ADD A PHOTO REVIEW",
+            "description": "20 Points"
+          }
+        },
+        "earn_method_NQWMmM": {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "heart",
+            "icon": "",
+            "title": "MAKE A DONATION",
+            "description": "10 Points Per Dollar Donated"
+          }
+        },
+        "earn_method_hQkAUX": {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "instagram",
+            "icon": "",
+            "title": "INSTAGRAM",
+            "description": "50 Points"
+          }
+        },
+        "reward_48YVkB": {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$5 OFF",
+            "points_required": "150 points"
+          }
+        },
+        "reward_j9PH9c": {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$10 OFF",
+            "points_required": "300 points"
+          }
+        },
+        "reward_kVwNh7": {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$15 OFF",
+            "points_required": "400 points"
+          }
+        },
+        "reward_cFdnCV": {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$20 OFF",
+            "points_required": "500 points"
+          }
+        },
+        "reward_KjNWrF": {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$25 OFF",
+            "points_required": "600 points"
+          }
+        },
+        "reward_bRtkqn": {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$50 OFF",
+            "points_required": "750 points"
+          }
+        },
+        "reward_8GhGLj": {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$75 OFF",
+            "points_required": "1000 points"
+          }
+        },
+        "reward_CE3Bqg": {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$100 OFF",
+            "points_required": "1500 points"
+          }
+        },
+        "membership_tier_VDwfcP": {
+          "type": "membership_tier",
+          "settings": {
+            "tier_name": "CASUAL",
+            "requirement": "Get Started",
+            "benefits": "1 Point per $1 Spent|300 Birthday Points"
+          }
+        },
+        "membership_tier_KRnQnC": {
+          "type": "membership_tier",
+          "settings": {
+            "tier_name": "ACTIVE",
+            "requirement": "Spend $750",
+            "benefits": "1.25x Points per $1 Spent|400 Birthday Points"
+          }
+        },
+        "membership_tier_yy9Ahz": {
+          "type": "membership_tier",
+          "settings": {
+            "tier_name": "LEAD TEAM",
+            "requirement": "Spend $1,500",
+            "benefits": "1.5x Points per $1 Spent|500 Birthday Points|Access To Exclusive Products|VIP Experiences To Events"
+          }
+        }
+      },
+      "block_order": [
+        "how_it_works_step_UpJNwn",
+        "how_it_works_step_FTyqYr",
+        "how_it_works_step_DQAn3a",
+        "earn_method_TPXFJP",
+        "earn_method_HqP7UW",
+        "earn_method_jMwjAC",
+        "earn_method_RiEChG",
+        "earn_method_6yaBaJ",
+        "earn_method_G78Emn",
+        "earn_method_NQWMmM",
+        "earn_method_hQkAUX",
+        "reward_48YVkB",
+        "reward_j9PH9c",
+        "reward_kVwNh7",
+        "reward_cFdnCV",
+        "reward_KjNWrF",
+        "reward_bRtkqn",
+        "reward_8GhGLj",
+        "reward_CE3Bqg",
+        "membership_tier_VDwfcP",
+        "membership_tier_KRnQnC",
+        "membership_tier_yy9Ahz"
+      ],
+      "name": "Membership Benefits",
+      "settings": {
+        "color_scheme": "",
+        "show_how_it_works": true,
+        "how_it_works_title": "HOW IT WORKS",
+        "show_ways_to_earn": true,
+        "ways_to_earn_title": "WAYS TO EARN",
+        "show_how_to_use_points": true,
+        "how_to_use_points_title": "HOW TO USE YOUR POINTS",
+        "how_to_use_points_subtitle": "Redeeming your points is easy! Just log in, and choose an eligible reward at checkout.",
+        "show_member_status": true,
+        "member_status_title": "MEMBER STATUS",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_aABACJ",
+    "membership_benefits_qExTai"
+  ]
+}

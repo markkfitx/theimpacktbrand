@@ -1,0 +1,58 @@
+/**
+ * Alphalete-inspired UI polish — works with Inter/Oswald in theme.liquid.
+ * Keeps changes readable and scoped to common storefront surfaces.
+ */
+
+/* Primary nav */
+.header__menu-item,
+.menu-drawer__menu-item--main {
+  letter-spacing: 0.04em;
+}
+
+/* Collection page hero */
+.collection-hero__title {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+}
+
+/* Product cards (collection, search, recommendations) */
+.card__heading {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Retail-style price emphasis */
+.price,
+.price--large .price-item {
+  font-weight: 600;
+}
+
+/* Section headings */
+.related-products__heading,
+.section-header .title {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Variant option buttons (pill picker) — snappier feedback */
+.product-form__input--pill input[type='radio'] + label {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.product-form__input--pill input[type='radio']:checked + label {
+  box-shadow: 0 0 0 0.1rem rgb(var(--color-foreground));
+}
+
+/* Cart */
+.cart-item__name {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Search results */
+.template-search .card__heading {
+  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+}

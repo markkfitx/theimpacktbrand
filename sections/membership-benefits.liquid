@@ -1,0 +1,582 @@
+{{ 'section-membership-benefits.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="membership-benefits color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    
+    <!-- HOW IT WORKS Section -->
+    {%- if section.settings.show_how_it_works -%}
+      <div class="membership-section membership-how-it-works">
+        <h2 class="membership-section__title">{{ section.settings.how_it_works_title | default: 'HOW IT WORKS' }}</h2>
+        <div class="membership-steps">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'how_it_works_step' -%}
+              <div class="membership-step" {{ block.shopify_attributes }}>
+                <div class="membership-step__number">{{ block.settings.step_number | default: forloop.index | prepend: '0' }}</div>
+                <div class="membership-step__content">
+                  <h3 class="membership-step__title">{{ block.settings.title }}</h3>
+                  <p class="membership-step__description">{{ block.settings.description }}</p>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- WAYS TO EARN Section -->
+    {%- if section.settings.show_ways_to_earn -%}
+      <div class="membership-section membership-ways-to-earn">
+        <h2 class="membership-section__title">{{ section.settings.ways_to_earn_title | default: 'WAYS TO EARN' }}</h2>
+        <div class="membership-earn-cards">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'earn_method' -%}
+              <div class="membership-earn-card" {{ block.shopify_attributes }}>
+                <div class="membership-earn-card__icon">
+                  {%- if block.settings.icon_type == 'custom' and block.settings.icon != blank -%}
+                    {{ block.settings.icon }}
+                  {%- elsif block.settings.icon_type == 'dollar' -%}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                      <path d="M12 6V18M9 9C9 8.5 9.5 8 10 8C10.5 8 11 8.5 11 9C11 9.5 10.5 10 10 10H9M15 15C15 14.5 14.5 14 14 14C13.5 14 13 14.5 13 15C13 15.5 13.5 16 14 16H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  {%- elsif block.settings.icon_type == 'user' -%}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                      <circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="2"/>
+                      <path d="M6 20C6 16 8.5 14 12 14C15.5 14 18 16 18 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  {%- elsif block.settings.icon_type == 'birthday' -%}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                      <rect x="8" y="10" width="8" height="6" rx="1" stroke="currentColor" stroke-width="2"/>
+                      <line x1="10" y1="8" x2="10" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <line x1="14" y1="8" x2="14" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  {%- elsif block.settings.icon_type == 'chat' -%}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                      <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                      <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                      <path d="M9 14C9 14 10 16 12 16C14 16 15 14 15 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  {%- elsif block.settings.icon_type == 'star' -%}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                      <path d="M12 6L13.5 10.5L18 12L13.5 13.5L12 18L10.5 13.5L6 12L10.5 10.5L12 6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                  {%- elsif block.settings.icon_type == 'photo' -%}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                      <rect x="7" y="8" width="10" height="8" rx="1" stroke="currentColor" stroke-width="2"/>
+                      <circle cx="10" cy="11" r="1.5" fill="currentColor"/>
+                      <path d="M7 15L9 13L11 15L13 13L17 17H7V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {%- elsif block.settings.icon_type == 'heart' -%}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                      <path d="M12 8C10 6 7.5 6.5 7.5 9C7.5 11.5 12 15 12 15C12 15 16.5 11.5 16.5 9C16.5 6.5 14 6 12 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {%- elsif block.settings.icon_type == 'instagram' -%}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                      <rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+                      <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+                      <circle cx="16" cy="8" r="1" fill="currentColor"/>
+                    </svg>
+                  {%- else -%}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  {%- endif -%}
+                </div>
+                <h3 class="membership-earn-card__title">{{ block.settings.title }}</h3>
+                <p class="membership-earn-card__description">{{ block.settings.description }}</p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- HOW TO USE YOUR POINTS Section -->
+    {%- if section.settings.show_how_to_use_points -%}
+      <div class="membership-section membership-how-to-use-points">
+        <h2 class="membership-section__title">{{ section.settings.how_to_use_points_title | default: 'HOW TO USE YOUR POINTS' }}</h2>
+        <p class="membership-section__subtitle">{{ section.settings.how_to_use_points_subtitle | default: 'Redeeming your points is easy! Just log in, and choose an eligible reward at checkout.' }}</p>
+        <div class="membership-rewards">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'reward' -%}
+              <div class="membership-reward" {{ block.shopify_attributes }}>
+                <div class="membership-reward__amount">{{ block.settings.reward_amount }}</div>
+                <div class="membership-reward__points">{{ block.settings.points_required }} points</div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- MEMBER STATUS Section -->
+    {%- if section.settings.show_member_status -%}
+      <div class="membership-section membership-status">
+        <h2 class="membership-section__title">{{ section.settings.member_status_title | default: 'MEMBER STATUS' }}</h2>
+        <div class="membership-tiers">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'membership_tier' -%}
+              <div class="membership-tier" {{ block.shopify_attributes }}>
+                <h3 class="membership-tier__name">{{ block.settings.tier_name }}</h3>
+                <p class="membership-tier__requirement">{{ block.settings.requirement }}</p>
+                <ul class="membership-tier__benefits">
+                  {%- assign benefits = block.settings.benefits | split: '|' -%}
+                  {%- for benefit in benefits -%}
+                    <li class="membership-tier__benefit">
+                      <svg class="membership-tier__checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.5 4L6 11.5L2.5 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      {{ benefit | strip }}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Membership Benefits",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "How It Works Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_how_it_works",
+      "label": "Show How It Works section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "how_it_works_title",
+      "label": "How It Works Title",
+      "default": "HOW IT WORKS"
+    },
+    {
+      "type": "header",
+      "content": "Ways to Earn Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ways_to_earn",
+      "label": "Show Ways to Earn section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "ways_to_earn_title",
+      "label": "Ways to Earn Title",
+      "default": "WAYS TO EARN"
+    },
+    {
+      "type": "header",
+      "content": "How to Use Points Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_how_to_use_points",
+      "label": "Show How to Use Points section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "how_to_use_points_title",
+      "label": "How to Use Points Title",
+      "default": "HOW TO USE YOUR POINTS"
+    },
+    {
+      "type": "text",
+      "id": "how_to_use_points_subtitle",
+      "label": "How to Use Points Subtitle",
+      "default": "Redeeming your points is easy! Just log in, and choose an eligible reward at checkout."
+    },
+    {
+      "type": "header",
+      "content": "Member Status Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_member_status",
+      "label": "Show Member Status section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "member_status_title",
+      "label": "Member Status Title",
+      "default": "MEMBER STATUS"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "how_it_works_step",
+      "name": "How It Works Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step Number",
+          "info": "Leave blank to auto-number"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "SIGN UP"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Create an account and earn 25 points."
+        }
+      ]
+    },
+    {
+      "type": "earn_method",
+      "name": "Earn Method",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "dollar",
+              "label": "Dollar Sign"
+            },
+            {
+              "value": "user",
+              "label": "User/Account"
+            },
+            {
+              "value": "birthday",
+              "label": "Birthday Cake"
+            },
+            {
+              "value": "chat",
+              "label": "Chat/Connect"
+            },
+            {
+              "value": "star",
+              "label": "Star/Review"
+            },
+            {
+              "value": "photo",
+              "label": "Photo"
+            },
+            {
+              "value": "heart",
+              "label": "Heart/Donation"
+            },
+            {
+              "value": "instagram",
+              "label": "Instagram"
+            },
+            {
+              "value": "custom",
+              "label": "Custom SVG"
+            }
+          ],
+          "default": "dollar"
+        },
+        {
+          "type": "html",
+          "id": "icon",
+          "label": "Custom Icon (SVG HTML)",
+          "info": "Only used if 'Custom SVG' is selected above"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "EARN WHILE YOU SHOP"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "1 point for every $1 spent"
+        }
+      ]
+    },
+    {
+      "type": "reward",
+      "name": "Reward",
+      "settings": [
+        {
+          "type": "text",
+          "id": "reward_amount",
+          "label": "Reward Amount",
+          "default": "$5 OFF"
+        },
+        {
+          "type": "text",
+          "id": "points_required",
+          "label": "Points Required",
+          "default": "150 points"
+        }
+      ]
+    },
+    {
+      "type": "membership_tier",
+      "name": "Membership Tier",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tier_name",
+          "label": "Tier Name",
+          "default": "SILVER"
+        },
+        {
+          "type": "text",
+          "id": "requirement",
+          "label": "Requirement",
+          "default": "Get Started"
+        },
+        {
+          "type": "textarea",
+          "id": "benefits",
+          "label": "Benefits",
+          "info": "Separate each benefit with a pipe (|)",
+          "default": "1 Point per $1 Spent|300 Birthday Points"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Membership Benefits",
+      "blocks": [
+        {
+          "type": "how_it_works_step",
+          "settings": {
+            "title": "SIGN UP",
+            "description": "Create an account and earn 25 points."
+          }
+        },
+        {
+          "type": "how_it_works_step",
+          "settings": {
+            "title": "EARN POINTS",
+            "description": "Earn points every time you shop."
+          }
+        },
+        {
+          "type": "how_it_works_step",
+          "settings": {
+            "title": "REDEEM POINTS",
+            "description": "Redeem points for exclusive rewards."
+          }
+        },
+        {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "dollar",
+            "title": "EARN WHILE YOU SHOP",
+            "description": "1 point for every $1 spent"
+          }
+        },
+        {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "user",
+            "title": "25 POINTS",
+            "description": "Create Your Account"
+          }
+        },
+        {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "birthday",
+            "title": "HAPPY BIRTHDAY",
+            "description": "300 Points"
+          }
+        },
+        {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "chat",
+            "title": "STAY CONNECTED",
+            "description": "50 Points"
+          }
+        },
+        {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "star",
+            "title": "LEAVE A REVIEW",
+            "description": "10 Points"
+          }
+        },
+        {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "photo",
+            "title": "ADD A PHOTO REVIEW",
+            "description": "20 Points"
+          }
+        },
+        {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "heart",
+            "title": "MAKE A DONATION",
+            "description": "10 Points Per Dollar Donated"
+          }
+        },
+        {
+          "type": "earn_method",
+          "settings": {
+            "icon_type": "instagram",
+            "title": "INSTAGRAM",
+            "description": "50 Points"
+          }
+        },
+        {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$5 OFF",
+            "points_required": "150 points"
+          }
+        },
+        {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$10 OFF",
+            "points_required": "300 points"
+          }
+        },
+        {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$15 OFF",
+            "points_required": "400 points"
+          }
+        },
+        {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$20 OFF",
+            "points_required": "500 points"
+          }
+        },
+        {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$25 OFF",
+            "points_required": "600 points"
+          }
+        },
+        {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$50 OFF",
+            "points_required": "750 points"
+          }
+        },
+        {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$75 OFF",
+            "points_required": "1000 points"
+          }
+        },
+        {
+          "type": "reward",
+          "settings": {
+            "reward_amount": "$100 OFF",
+            "points_required": "1500 points"
+          }
+        },
+        {
+          "type": "membership_tier",
+          "settings": {
+            "tier_name": "SILVER",
+            "requirement": "Get Started",
+            "benefits": "1 Point per $1 Spent|300 Birthday Points"
+          }
+        },
+        {
+          "type": "membership_tier",
+          "settings": {
+            "tier_name": "GOLD",
+            "requirement": "Spend $750",
+            "benefits": "1.25x Points per $1 Spent|400 Birthday Points"
+          }
+        },
+        {
+          "type": "membership_tier",
+          "settings": {
+            "tier_name": "PLATINUM",
+            "requirement": "Spend $1,500",
+            "benefits": "1.5x Points per $1 Spent|500 Birthday Points|Access To Exclusive Products|VIP Experiences To Events"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

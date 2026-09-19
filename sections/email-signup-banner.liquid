@@ -1,0 +1,294 @@
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
+{{ 'section-email-signup-banner.css' | asset_url | stylesheet_tag }}
+
+<script async src="https://www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  {%- if section.settings.image != blank -%}
+    #EmailSignupBanner-{{ section.id }} .email-signup-banner__image-wrapper {
+      {%- if section.settings.image_aspect_ratio == 'custom' -%}
+        padding-bottom: {{ section.settings.custom_aspect_ratio }}%;
+      {%- elsif section.settings.image_aspect_ratio == 'adapt' -%}
+        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+      {%- elsif section.settings.image_aspect_ratio == 'square' -%}
+        padding-bottom: 100%;
+      {%- elsif section.settings.image_aspect_ratio == 'portrait' -%}
+        padding-bottom: 125%;
+      {%- elsif section.settings.image_aspect_ratio == 'landscape' -%}
+        padding-bottom: 66.66%;
+      {%- endif -%}
+    }
+    
+    @media screen and (max-width: 749px) {
+      #EmailSignupBanner-{{ section.id }} .email-signup-banner__container::before {
+        background-image: url('{{ section.settings.image | image_url: width: 1500 }}');
+      }
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+<div id="EmailSignupBanner-{{ section.id }}" class="email-signup-banner section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div class="email-signup-banner__container page-width">
+    <div class="email-signup-banner__grid grid grid--gapless grid--1-col grid--2-col-tablet{% if section.settings.image_position == 'left' %} email-signup-banner__grid--reverse{% endif %}">
+      
+      <!-- Email Signup Content -->
+      <div class="email-signup-banner__content-wrapper grid__item">
+        <div class="email-signup-banner__content color-{{ section.settings.color_scheme }} gradient">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'heading' -%}
+                <h2 class="email-signup-banner__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                  {{ block.settings.heading }}
+                </h2>
+              {%- when 'paragraph' -%}
+                <div class="email-signup-banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+                  {{ block.settings.text }}
+                </div>
+              {%- when 'email_form' -%}
+                <div class="email-signup-banner__form-wrapper" {{ block.shopify_attributes }}>
+                  <div class="klaviyo-form-VPWZRa"></div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- Image -->
+      {%- if section.settings.image != blank -%}
+        <div class="email-signup-banner__image-item grid__item">
+          <div class="email-signup-banner__image-wrapper">
+            <img
+              src="{{ section.settings.image | image_url: width: 2000 }}"
+              srcset="
+                {%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+                {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+                {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                {%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+                {{ section.settings.image | image_url }} {{ section.settings.image.width }}w
+              "
+              sizes="(min-width: 750px) 50vw, 100vw"
+              alt="{{ section.settings.image.alt | escape }}"
+              loading="lazy"
+              width="{{ section.settings.image.width }}"
+              height="{{ section.settings.image.height }}"
+            >
+          </div>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Email Signup Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        }
+      ],
+      "default": "right",
+      "info": "Choose which side the image appears on"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "square",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait (4:5)"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape (3:2)"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "adapt",
+      "info": "Controls the height of the image relative to its width"
+    },
+    {
+      "type": "range",
+      "id": "custom_aspect_ratio",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "unit": "%",
+      "label": "Custom Aspect Ratio",
+      "default": 100,
+      "info": "Percentage height relative to width. 100% = square. Only applies when Aspect Ratio is set to Custom."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "JOIN OUR COMMUNITY"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "Small"
+            },
+            {
+              "value": "h1",
+              "label": "Medium"
+            },
+            {
+              "value": "h0",
+              "label": "Large"
+            },
+            {
+              "value": "hxl",
+              "label": "Extra Large"
+            },
+            {
+              "value": "hxxl",
+              "label": "Extra Extra Large"
+            }
+          ],
+          "default": "h1",
+          "label": "Heading Size"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Members get rewards and exclusive perks.</p>"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "Body"
+            },
+            {
+              "value": "subtitle",
+              "label": "Subtitle"
+            }
+          ],
+          "default": "body",
+          "label": "Text Style"
+        }
+      ]
+    },
+    {
+      "type": "email_form",
+      "name": "Email Form",
+      "limit": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email Signup Banner",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "paragraph"
+        },
+        {
+          "type": "email_form"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,191 @@
+.custom-hero {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.custom-hero__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.custom-hero__background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.custom-hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 1) 100%);
+  z-index: 1;
+}
+
+.custom-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+}
+
+.custom-hero__text-wrapper {
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.custom-hero__title {
+  font-size: 3rem;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale)));
+  text-transform: uppercase;
+  letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+  color: rgb(var(--color-foreground));
+  margin: 0 0 3rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (min-width: 750px) {
+  .custom-hero__title {
+    font-size: 6.1rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .custom-hero__title {
+    font-size: 6rem;
+  }
+}
+.custom-hero__text-wrapper:has(.custom-hero__subtext) .custom-hero__title {
+  margin-bottom: 1rem;
+}
+
+.custom-hero__subtext {
+  font-size: 1.25rem;
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: 300;
+  line-height: calc(1 + 0.6 / var(--font-body-scale));
+  letter-spacing: 0.02em;
+  color: rgb(var(--color-foreground));
+  margin: 0 0 2.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1rem;
+  opacity: 0.7;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-hero__subtext {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .custom-hero__subtext {
+    font-size: 1.8rem;
+  }
+}
+
+.custom-hero__buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-hero__buttons {
+    gap: 2rem;
+  }
+}
+
+.custom-hero__button {
+  min-width: 200px;
+  padding: 1.2rem 2.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border: 0.25px solid rgba(255,255,255,0.75);
+  transition: all 0.3s ease;
+}
+
+.custom-hero__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.custom-hero__button.button--primary {
+  background-color: rgba(255,255,255,0.75);
+  color: rgb(var(--color-background));
+  border: none;
+}
+
+.custom-hero__button.button--primary:hover {
+  background-color: rgba(var(--color-foreground), 0.9);
+}
+
+.custom-hero__button.button--secondary {
+  background-color: transparent;
+  color: rgb(var(--color-foreground));
+  border: 1px solid rgb(var(--color-foreground));
+}
+
+.custom-hero__button.button--secondary:hover {
+  background-color: rgba(var(--color-foreground), 0.1);
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 749px) {
+  .custom-hero {
+    min-height: 80vh !important;
+  }
+
+  .custom-hero__title {
+    font-size: 3.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .custom-hero__button {
+    /*flex: 1 1 0;*/
+    min-width: 0;
+    max-width: none;
+    width: 175px;
+    padding: 1rem 1.2rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .custom-hero__buttons .custom-hero__button:only-child {
+    flex: 0 1 auto;
+    max-width: min(100%, 30rem);
+  }
+}
+

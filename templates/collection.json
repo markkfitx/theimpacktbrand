@@ -1,0 +1,79 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_hero_aT4qwp": {
+      "type": "image-hero",
+      "custom_css": [
+        "* {text-align: left;}",
+        ".image-hero {border-bottom: 1px solid rgba(255, 255, 255, 0.2);}",
+        ".image-hero__content {justify-content: flex-start;}",
+        "@media screen and (min-width: 750px) {.page-width {padding: 0 5rem !important; }}",
+        ".page-width {max-width: 100vw; margin: 0; padding: 0 3.6rem;}"
+      ],
+      "name": "Image Hero",
+      "settings": {
+        "color_scheme": "",
+        "background_color": "",
+        "background_image": "shopify://shop_images/7AA92C1E-43A2-4661-A64F-689C80E93341.png",
+        "background_image_desktop": "shopify://shop_images/7AA92C1E-43A2-4661-A64F-689C80E93341.png",
+        "image_overlay_opacity": 30,
+        "image_position": "center",
+        "section_height": 30,
+        "title": "",
+        "text": "\"A competition to be the best will make everyone around you do better.\"",
+        "link_label": "JOIN TODAY",
+        "link": "",
+        "link_style": "text",
+        "button_style_secondary": false,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "custom_css": [
+        ".collection-hero__text-wrapper {padding-top: 5rem;}"
+      ],
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 20,
+        "columns_desktop": 5,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "drawer",
+        "enable_sorting": true,
+        "padding_top": 36,
+        "padding_bottom": 76
+      }
+    }
+  },
+  "order": [
+    "image_hero_aT4qwp",
+    "banner",
+    "product-grid"
+  ]
+}

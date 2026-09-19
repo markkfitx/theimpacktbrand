@@ -1,0 +1,304 @@
+/* -------------------------------------------------------------------------- */
+/* Promo banner — animated strip + card promos */
+/* -------------------------------------------------------------------------- */
+
+.promo-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.12);
+}
+
+.promo-banner .page-width {
+  position: relative;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.promo-banner__list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.25rem;
+  padding-inline: 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .promo-banner__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem 1.25rem;
+    align-items: stretch;
+    overflow: visible;
+  }
+
+  .promo-banner__list.promo-banner__list--slider {
+    display: grid;
+  }
+}
+
+.promo-banner__item {
+  flex: 1 1 auto;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0.35rem 0;
+  text-align: center;
+  animation: promo-item-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--promo-stagger, 0) * 0.08s);
+}
+
+@media screen and (min-width: 750px) {
+  .promo-banner__item {
+    padding: 0.25rem 0;
+  }
+}
+
+.promo-banner__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 1.1rem 1.15rem 1.15rem;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(var(--color-foreground), 0.05);
+  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  box-shadow: 0 0.1rem 0 rgba(var(--color-shadow), 0.06);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background-color 0.35s ease;
+  animation: promo-card-glow 5s ease-in-out infinite;
+  animation-delay: calc(var(--promo-stagger, 0) * 0.35s);
+}
+
+/* Sheen layers — scoped to each card only */
+.promo-banner--animated .promo-banner__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(var(--color-foreground), 0.06) 45%,
+    rgba(var(--color-foreground), 0.14) 50%,
+    rgba(var(--color-foreground), 0.06) 55%,
+    transparent 100%
+  );
+  background-size: 220% 100%;
+  animation: promo-sheen-scan 7s ease-in-out infinite;
+  animation-delay: calc(var(--promo-stagger, 0) * 0.25s);
+}
+
+.promo-banner__card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.promo-banner__link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+}
+
+.promo-banner__link:hover .promo-banner__card,
+.promo-banner__link:focus-visible .promo-banner__card {
+  transform: translateY(-0.2rem);
+  border-color: rgba(var(--color-foreground), 0.28);
+  background: rgba(var(--color-foreground), 0.08);
+  box-shadow:
+    0 0.35rem 1.2rem rgba(var(--color-shadow), 0.12),
+    0 0 0 0.1rem rgba(var(--color-foreground), 0.12);
+}
+
+.promo-banner__link:focus-visible {
+  outline: none;
+}
+
+.promo-banner__link:focus-visible .promo-banner__card {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.45);
+  outline-offset: 0.15rem;
+}
+
+.promo-banner__content {
+  width: 100%;
+}
+
+.promo-banner__heading-wrap {
+  display: block;
+  max-width: 100%;
+}
+
+.promo-banner__heading {
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2.8vw, 1.45rem);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+  display: block;
+  background: linear-gradient(
+    110deg,
+    rgb(var(--color-foreground)) 0%,
+    rgb(var(--color-foreground)) 40%,
+    rgba(var(--color-foreground), 0.72) 50%,
+    rgb(var(--color-foreground)) 60%,
+    rgb(var(--color-foreground)) 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: promo-heading-shimmer 6s ease-in-out infinite;
+  animation-delay: calc(var(--promo-stagger, 0) * 0.2s);
+}
+
+/* Fallback when clip not supported */
+@supports not (background-clip: text) {
+  .promo-banner__heading {
+    color: rgb(var(--color-foreground));
+    background: none;
+    animation: none;
+  }
+}
+
+.promo-banner__link-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 10rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--color-background));
+  background: rgb(var(--color-foreground));
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.promo-banner__link-label-text {
+  position: relative;
+}
+
+.promo-banner__link .promo-banner__link-label::after {
+  content: '';
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-left: 0.15rem;
+  border-top: 0.15rem solid rgb(var(--color-background));
+  border-right: 0.15rem solid rgb(var(--color-background));
+  transform: rotate(45deg) translate(0, 0.05rem);
+  transition: transform 0.3s ease;
+  vertical-align: middle;
+}
+
+.promo-banner__link:hover .promo-banner__link-label,
+.promo-banner__link:focus-visible .promo-banner__link-label {
+  transform: scale(1.03);
+  box-shadow: 0 0.25rem 0.85rem rgba(var(--color-foreground), 0.35);
+}
+
+.promo-banner__link:hover .promo-banner__link-label::after,
+.promo-banner__link:focus-visible .promo-banner__link-label::after {
+  transform: rotate(45deg) translate(0.15rem, -0.05rem);
+}
+
+.promo-banner__link-label--static {
+  background: rgba(var(--color-foreground), 0.12);
+  color: rgb(var(--color-foreground));
+}
+
+.promo-banner__link-label--static::after {
+  display: none;
+}
+
+/* Mobile: card width inside theme slider (component-slider.css handles scroll) */
+@media screen and (max-width: 749px) {
+  .promo-banner .slider.slider--mobile .promo-banner__item.slider__slide {
+    flex: 0 0 min(88vw, 22rem);
+    min-width: min(88vw, 22rem);
+  }
+}
+
+@keyframes promo-sheen-scan {
+  0%,
+  100% {
+    background-position: 120% 0;
+  }
+  50% {
+    background-position: -120% 0;
+  }
+}
+
+@keyframes promo-item-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes promo-card-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--color-foreground), 0);
+  }
+  50% {
+    box-shadow: 0 0 1.6rem 0.05rem rgba(var(--color-foreground), 0.07);
+  }
+}
+
+@keyframes promo-heading-shimmer {
+  0%,
+  100% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-banner__card::before,
+  .promo-banner__heading,
+  .promo-banner__card {
+    animation: none !important;
+  }
+
+  .promo-banner__item {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .promo-banner__heading {
+    color: rgb(var(--color-foreground));
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+  }
+}

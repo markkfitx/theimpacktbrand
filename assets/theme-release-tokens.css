@@ -1,0 +1,62 @@
+/*
+ * ============================================================================
+ * RELEASE-STYLE DESIGN TOKENS (reference record)
+ * ============================================================================
+ * Source inspiration: Alphalete "Release" theme base.css / section CSS exports.
+ * This file defines ONLY custom properties and aliases. It does NOT redefine
+ * global Dawn classes (.grid, .button, h1–h6, etc.) — those stay in base.css.
+ *
+ * Ported concepts:
+ *   - Spacing scale (--release-spacing-*)
+ *   - Page gutter for full-bleed vs contained sections
+ *   - Content max-width multipliers (proportional to --page-width)
+ *   - Heading text alias (maps to Dawn foreground RGB triplet)
+ *
+ * Not ported here (would conflict or need Liquid/section rewrites):
+ *   - Proxima Nova @font-face (theme uses Inter/Oswald in theme.liquid)
+ *   - Transparent header :has() rules, swiper, megamenu, product-option BEM
+ *   - Full button/form resets (see theme-release-layout.css for opt-in utils)
+ * ============================================================================
+ */
+
+:root {
+  /* Base unit ≈ Alphalete --spacing-unit 1.6rem */
+  --release-spacing-unit: 1.6rem;
+  --release-spacing-0: calc(var(--release-spacing-unit) * 0);
+  --release-spacing-05: calc(var(--release-spacing-unit) * 0.125);
+  --release-spacing-1: calc(var(--release-spacing-unit) * 0.25);
+  --release-spacing-2: calc(var(--release-spacing-unit) * 0.5);
+  --release-spacing-3: calc(var(--release-spacing-unit) * 0.75);
+  --release-spacing-4: calc(var(--release-spacing-unit) * 1);
+  --release-spacing-5: calc(var(--release-spacing-unit) * 1.5);
+  --release-spacing-6: calc(var(--release-spacing-unit) * 2);
+  --release-spacing-7: calc(var(--release-spacing-unit) * 3);
+  --release-spacing-8: calc(var(--release-spacing-unit) * 4);
+  --release-spacing-9: calc(var(--release-spacing-unit) * 6);
+  --release-spacing-10: calc(var(--release-spacing-unit) * 8);
+  --release-spacing-11: calc(var(--release-spacing-unit) * 10);
+
+  /* Horizontal padding for .release-container (Alphalete --page-gutter) */
+  --release-page-gutter: 1.6rem;
+  --release-section-y: calc(var(--release-spacing-4) * 2);
+
+  /* Proportional caps (Alphalete max-w-*-multiplier) */
+  --release-max-w-xxs-multiplier: 0.36;
+  --release-max-w-xs-multiplier: 0.48;
+  --release-max-w-sm-multiplier: 0.64;
+  --release-max-w-lg-multiplier: 0.78;
+
+  /* Aliases for Alphalete-style references in future CSS */
+  --color-heading-text: var(--color-foreground);
+
+  /* Durations (if not already on :root from theme) */
+  --release-duration-short: 0.1s;
+  --release-duration-default: 0.2s;
+  --release-duration-long: 0.3s;
+}
+
+@media screen and (min-width: 750px) {
+  :root {
+    --release-page-gutter: 2.4rem;
+  }
+}

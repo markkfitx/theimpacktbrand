@@ -1,0 +1,565 @@
+{% doc %}
+  @prompt
+    I need an image grid that I can add 6 image to. on desktop it should be 2 images per row and that spans the entire page. On each image there should be a heading text on the bottom left that has a "SHOP NOW" link with an arrow next to it., can you remove the border radius and the gap in between the images please. Also make the aspect ratio of the image 1/1 so that they are squares., I need an option to be able to adjust the saturation of the images, I also need to be able to change the letter spacing of the headings. Additionally, the first two images need to have a sticky header and link that will stay at the bottom of your screen when you scroll to the top of the site past the bottom of the image all the way until you hit the top of the image., Add the ability to change the gap between the header and link, on mobile devices I need the link to only display the arrow and remove the Link Text (Link text should only display on desktop and tablet). Additionally on mobile devices the Header and link should be displayed flex-row and be justified between so that the header is on the left side and the arrow is on the right side of the image., Allow me to change the aspect ratio of the images please; for mobile and desktop., allow me to add a desktop and mobile image
+{% enddoc %}
+
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-image-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    width: 100%;
+    /* max-width: {{ settings.page_width }}px; */
+    margin: 0 auto;
+    padding: 0;
+    background: rgba(255,255,255,0.2);
+    border-top: 0.15px solid rgba(255,255,255,0.2);
+    border-bottom: 0.15px solid rgba(255,255,255,0.2);
+  }
+
+  .ai-image-grid-item-{{ ai_gen_id }} {
+    position: relative;
+    aspect-ratio: {{ section.settings.aspect_ratio_desktop }};
+    overflow: hidden;
+  }
+
+  .ai-image-grid-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    filter: saturate({{ section.settings.image_saturation | divided_by: 100.0 }});
+  }
+
+  .ai-image-grid-image-mobile-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-image-grid-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-image-grid-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-image-grid-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-image-grid-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }}));
+    padding: {{ section.settings.content_padding }}px;
+    color: {{ section.settings.text_color }};
+  }
+
+  .ai-image-grid-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.heading_link_gap }}px;
+  }
+
+  .ai-image-grid-heading-{{ ai_gen_id }} {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+  }
+
+  .ai-image-grid-link-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: {{ section.settings.link_color }};
+    text-decoration: none;
+    font-size: {{ section.settings.link_size }}px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .ai-image-grid-link-{{ ai_gen_id }}:hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+
+  .ai-image-grid-arrow-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .ai-image-grid-link-{{ ai_gen_id }}:hover .ai-image-grid-arrow-{{ ai_gen_id }} {
+    transform: translateX(4px);
+  }
+
+  .ai-image-grid-item-{{ ai_gen_id }}:hover .ai-image-grid-image-{{ ai_gen_id }} {
+    transform: scale(1.05);
+  }
+
+  .ai-sticky-overlay-{{ ai_gen_id }} {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }}));
+    padding: {{ section.settings.content_padding }}px;
+    color: {{ section.settings.text_color }};
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: {{ settings.page_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-sticky-overlay-{{ ai_gen_id }}.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .ai-sticky-overlay-item-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.heading_link_gap }}px;
+  }
+
+  .ai-sticky-overlay-heading-{{ ai_gen_id }} {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+  }
+
+  .ai-sticky-overlay-link-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: {{ section.settings.link_color }};
+    text-decoration: none;
+    font-size: {{ section.settings.link_size }}px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .ai-sticky-overlay-link-{{ ai_gen_id }}:hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+
+  .ai-sticky-overlay-link-{{ ai_gen_id }}:hover .ai-image-grid-arrow-{{ ai_gen_id }} {
+    transform: translateX(4px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-image-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
+    }
+
+    .ai-image-grid-item-{{ ai_gen_id }} {
+      aspect-ratio: {{ section.settings.aspect_ratio_mobile }};
+    }
+
+    .ai-image-grid-image-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-image-grid-image-mobile-{{ ai_gen_id }} {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      filter: saturate({{ section.settings.image_saturation | divided_by: 100.0 }});
+    }
+
+    .ai-image-grid-content-{{ ai_gen_id }} {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ai-image-grid-heading-{{ ai_gen_id }} {
+      font-size: {{ section.settings.heading_size | times: 0.8 }}px;
+      margin: 0;
+      flex: 1;
+    }
+
+    .ai-image-grid-link-text-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-image-grid-link-{{ ai_gen_id }} {
+      font-size: {{ section.settings.link_size | times: 0.9 }}px;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .ai-image-grid-overlay-{{ ai_gen_id }} {
+      padding: {{ section.settings.content_padding | times: 0.8 }}px;
+    }
+
+    .ai-sticky-overlay-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      padding: {{ section.settings.content_padding | times: 0.8 }}px;
+    }
+
+    .ai-sticky-overlay-item-{{ ai_gen_id }} {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ai-sticky-overlay-heading-{{ ai_gen_id }} {
+      font-size: {{ section.settings.heading_size | times: 0.8 }}px;
+      flex: 1;
+    }
+
+    .ai-sticky-overlay-link-{{ ai_gen_id }} {
+      font-size: {{ section.settings.link_size | times: 0.9 }}px;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .ai-sticky-overlay-link-text-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-image-grid-item-{{ ai_gen_id }}:hover .ai-image-grid-image-mobile-{{ ai_gen_id }} {
+      transform: scale(1.05);
+    }
+  }
+{% endstyle %}
+
+<sticky-image-grid-{{ ai_gen_id }} class="ai-image-grid-{{ ai_gen_id }}">
+  {% for i in (1..4) %}
+    {% liquid
+      assign image_desktop_key = 'image_desktop_' | append: i
+      assign image_mobile_key = 'image_mobile_' | append: i
+      assign heading_key = 'heading_' | append: i
+      assign link_key = 'link_' | append: i
+
+      assign image_desktop = section.settings[image_desktop_key]
+      assign image_mobile = section.settings[image_mobile_key]
+      assign heading = section.settings[heading_key]
+      assign link = section.settings[link_key]
+    %}
+    <a href="{{ link }}" class="ai-image-grid-item-{{ ai_gen_id }}" data-item-index="{{ i }}">
+      {% if image_desktop or image_mobile %}
+        {% if image_desktop %}
+          <img
+            src="{{ image_desktop | image_url: width: 800 }}"
+            alt="{{ image_desktop.alt | escape }}"
+            loading="lazy"
+            width="{{ image_desktop.width }}"
+            height="{{ image_desktop.height }}"
+            class="ai-image-grid-image-{{ ai_gen_id }}"
+          >
+        {% endif %}
+
+        {% if image_mobile %}
+          <img
+            src="{{ image_mobile | image_url: width: 800 }}"
+            alt="{{ image_mobile.alt | escape }}"
+            loading="lazy"
+            width="{{ image_mobile.width }}"
+            height="{{ image_mobile.height }}"
+            class="ai-image-grid-image-mobile-{{ ai_gen_id }}"
+          >
+        {% endif %}
+      {% else %}
+        <div class="ai-image-grid-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <div class="ai-image-grid-empty-state-{{ ai_gen_id }}">
+            Add images for item {{ i }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if heading != blank or link != blank %}
+        <div class="ai-image-grid-overlay-{{ ai_gen_id }}">
+          <div class="ai-image-grid-content-{{ ai_gen_id }}">
+            {% if heading != blank %}
+              <h3 class="ai-image-grid-heading-{{ ai_gen_id }}">{{ heading }}</h3>
+            {% endif %}
+
+            {% if link != blank %}
+              <span class="ai-image-grid-link-{{ ai_gen_id }}">
+                <span class="ai-image-grid-link-text-{{ ai_gen_id }}">{{ section.settings.link_text }}</span>
+                <svg class="ai-image-grid-arrow-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </a>
+  {% endfor %}
+  {% if link != blank %}
+    <a href="{{ link }}" class="ai-sticky-overlay-{{ ai_gen_id }}" id="ai-sticky-overlay-{{ ai_gen_id }}">
+  {% else %}
+    <div class="ai-sticky-overlay-{{ ai_gen_id }}" id="ai-sticky-overlay-{{ ai_gen_id }}">
+  {% endif %}
+    {% for i in (1..4) %}
+      {% liquid
+        assign heading_key = 'heading_' | append: i
+        assign link_key = 'link_' | append: i
+        assign heading = section.settings[heading_key]
+        assign link = section.settings[link_key]
+      %}
+
+      {% if heading != blank or link != blank %}
+        <div class="ai-sticky-overlay-item-{{ ai_gen_id }}">
+          {% if heading != blank %}
+            <h3 class="ai-sticky-overlay-heading-{{ ai_gen_id }}">{{ heading }}</h3>
+          {% endif %}
+
+          <div class="ai-sticky-overlay-link-{{ ai_gen_id }}">
+            <span class="ai-sticky-overlay-link-text-{{ ai_gen_id }}">{{ section.settings.link_text }}</span>
+            <svg class="ai-image-grid-arrow-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="M12 5l7 7-7 7"></path>
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% if link != blank %}
+    </a>
+  {% else %}
+    </div>
+  {% endif %}
+</sticky-image-grid-{{ ai_gen_id }}>
+
+<script>
+(function() {
+  class StickyImageGrid{{ ai_gen_id }} extends HTMLElement {
+    constructor() {
+      super();
+      this.stickyOverlay = null;
+      this.firstTwoItems = [];
+      this.isSticky = false;
+    }
+
+    connectedCallback() {
+      this.stickyOverlay = this.querySelector('#ai-sticky-overlay-{{ ai_gen_id }}');
+      this.firstTwoItems = Array.from(this.querySelectorAll('.ai-image-grid-item-{{ ai_gen_id }}')).slice(0, 2);
+
+      if (this.stickyOverlay && this.firstTwoItems.length > 0) {
+        this.setupScrollListener();
+      }
+    }
+
+    setupScrollListener() {
+      const handleScroll = () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (this.firstTwoItems.length < 2) return;
+
+        const firstItemRect = this.firstTwoItems[0].getBoundingClientRect();
+        const secondItemRect = this.firstTwoItems[1].getBoundingClientRect();
+
+        const topOfFirstItem = firstItemRect.top + scrollTop;
+        const bottomOfSecondItem = secondItemRect.bottom + scrollTop;
+
+        const shouldShowSticky = scrollTop > bottomOfSecondItem && scrollTop < (topOfFirstItem + window.innerHeight);
+
+        if (shouldShowSticky && !this.isSticky) {
+          this.stickyOverlay.classList.add('active');
+          this.isSticky = true;
+        } else if (!shouldShowSticky && this.isSticky) {
+          this.stickyOverlay.classList.remove('active');
+          this.isSticky = false;
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      window.addEventListener('resize', handleScroll, { passive: true });
+      handleScroll();
+    }
+  }
+
+  customElements.define('sticky-image-grid-{{ ai_gen_id }}', StickyImageGrid{{ ai_gen_id }});
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Image grid",
+  "settings": [
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio_desktop",
+      "label": "Desktop aspect ratio",
+      "options": [
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "3 / 4", "label": "Portrait (3:4)" },
+        { "value": "16 / 9", "label": "Widescreen (16:9)" },
+        { "value": "9 / 16", "label": "Tall (9:16)" },
+        { "value": "3 / 2", "label": "Classic (3:2)" },
+        { "value": "2 / 3", "label": "Tall classic (2:3)" }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio_mobile",
+      "label": "Mobile aspect ratio",
+      "options": [
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "3 / 4", "label": "Portrait (3:4)" },
+        { "value": "16 / 9", "label": "Widescreen (16:9)" },
+        { "value": "9 / 16", "label": "Tall (9:16)" },
+        { "value": "3 / 2", "label": "Classic (3:2)" },
+        { "value": "2 / 3", "label": "Tall classic (2:3)" }
+      ],
+      "default": "1 / 1"
+    },
+    { "type": "header", "content": "Image style" },
+    {
+      "type": "range",
+      "id": "image_saturation",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "%",
+      "label": "Image saturation",
+      "default": 100
+    },
+    { "type": "header", "content": "Content style" },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Content padding",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 14,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "min": -2,
+      "max": 5,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Heading letter spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "heading_link_gap",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between heading and link",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "link_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Link size",
+      "default": 14
+    },
+    { "type": "text", "id": "link_text", "label": "Link text", "default": "SHOP NOW" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#ffffff" },
+    { "type": "color", "id": "link_color", "label": "Link color", "default": "#ffffff" },
+    { "type": "color", "id": "link_hover_color", "label": "Link hover color", "default": "#cccccc" },
+
+    { "type": "header", "content": "Image 1" },
+    { "type": "image_picker", "id": "image_desktop_1", "label": "Desktop image" },
+    { "type": "image_picker", "id": "image_mobile_1", "label": "Mobile image" },
+    { "type": "text", "id": "heading_1", "label": "Heading" },
+    { "type": "url", "id": "link_1", "label": "Link" },
+
+    { "type": "header", "content": "Image 2" },
+    { "type": "image_picker", "id": "image_desktop_2", "label": "Desktop image" },
+    { "type": "image_picker", "id": "image_mobile_2", "label": "Mobile image" },
+    { "type": "text", "id": "heading_2", "label": "Heading" },
+    { "type": "url", "id": "link_2", "label": "Link" },
+
+    { "type": "header", "content": "Image 3" },
+    { "type": "image_picker", "id": "image_desktop_3", "label": "Desktop image" },
+    { "type": "image_picker", "id": "image_mobile_3", "label": "Mobile image" },
+    { "type": "text", "id": "heading_3", "label": "Heading" },
+    { "type": "url", "id": "link_3", "label": "Link" },
+
+    { "type": "header", "content": "Image 4" },
+    { "type": "image_picker", "id": "image_desktop_4", "label": "Desktop image" },
+    { "type": "image_picker", "id": "image_mobile_4", "label": "Mobile image" },
+    { "type": "text", "id": "heading_4", "label": "Heading" },
+    { "type": "url", "id": "link_4", "label": "Link" }
+  ],
+  "presets": [{ "name": "Image grid" }],
+  "tag": "section"
+}
+{% endschema %}
