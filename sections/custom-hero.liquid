@@ -4,9 +4,9 @@
   #CustomHero-{{ section.id }} {
     min-height: {{ section.settings.section_height }}vh;
   }
-  
-  {%- if section.settings.background_image != blank -%}
-    #CustomHero-{{ section.id }} .custom-hero__background {
+
+  {%- if section.settings.background_image != blank and section.settings.image_overlay_opacity > 0 -%}
+    #CustomHero-{{ section.id }} .custom-hero__overlay {
       opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
     }
   {%- endif -%}
@@ -18,19 +18,26 @@
 >
   {%- if section.settings.background_image != blank -%}
     <div class="custom-hero__background">
-      <img
-        src="{{ section.settings.background_image | image_url: width: 3840 }}"
-        alt="{{ section.settings.background_image.alt | escape }}"
-        class="custom-hero__background-image"
-        style="object-position: {{ section.settings.image_position | default: 'center' }};"
-        loading="lazy"
-        width="{{ section.settings.background_image.width }}"
-        height="{{ section.settings.background_image.height }}"
-      >
+      {%- assign hero_alt = section.settings.background_image.alt | default: section.settings.title | escape -%}
+      {%- capture hero_style -%}object-position: {{ section.settings.image_position | default: 'center' }};{%- endcapture -%}
+      {{
+        section.settings.background_image
+        | image_url: width: 3840
+        | image_tag:
+          class: 'custom-hero__background-image',
+          widths: '750, 1100, 1500, 1780, 2000, 3000, 3840',
+          sizes: '100vw',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: hero_alt,
+          style: hero_style
+      }}
     </div>
   {%- endif -%}
 
-  <div class="custom-hero__overlay"></div>
+  {%- if section.settings.background_image != blank and section.settings.image_overlay_opacity > 0 -%}
+    <div class="custom-hero__overlay"></div>
+  {%- endif -%}
 
   <div class="custom-hero__content page-width">
     <div class="custom-hero__text-wrapper" style="text-align: {{ section.settings.title_alignment | default: 'center' }};">
@@ -111,7 +118,7 @@
       "unit": "%",
       "label": "Image Overlay Opacity",
       "default": 30,
-      "info": "Adds a dark overlay over the background image"
+      "info": "Controls the strength of the dark overlay over the background image"
     },
     {
       "type": "select",
@@ -228,4 +235,3 @@
   ]
 }
 {% endschema %}
-
