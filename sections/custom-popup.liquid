@@ -21,10 +21,7 @@
                             {% if block.type == 'form_field' and block.settings.show_acknowledgement == false %}
                                 {% assign field_id = 'SignupForm-' | append: block.id %}
                                 {% assign field_name = block.settings.label | handleize %}
-                                <div class="form_input_group__field" {{ block.shopify_attributes }}>
-                                    {% if block.settings.label != blank %}
-                                        <label for="{{ field_id }}">{{ block.settings.label }}</label>
-                                    {% endif %}
+                                <div class="field form_input_group__field" {{ block.shopify_attributes }}>
                                     {% if block.settings.input_type == 'textarea' %}
                                         <textarea
                                             class="field__input"
@@ -42,6 +39,9 @@
                                             placeholder="{{ block.settings.placeholder }}"
                                             {% if block.settings.required %}required aria-required="true"{% endif %}
                                         >
+                                    {% endif %}
+                                    {% if block.settings.label != blank %}
+                                        <label class="field__label" for="{{ field_id }}">{{ block.settings.label }}</label>
                                     {% endif %}
                                 </div>
                             {% endif %}
