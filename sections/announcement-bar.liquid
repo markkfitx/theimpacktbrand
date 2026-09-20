@@ -44,7 +44,16 @@
 >
   <div class="page-width utility-bar__grid{% if announcement_bar and language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--3-col{% elsif language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--2-col{% endif %}">
     {%- comment -%} JOIN US link {%- endcomment -%}
-    <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_register_url }}{%- endif -%}" class="announcement-bar__join-us link focus-inset" rel="nofollow" data-klaviyo-form="WdX36K">
+    <a
+      href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_register_url }}{%- endif -%}"
+      class="announcement-bar__join-us link focus-inset"
+      rel="nofollow"
+      {% if section.settings.show_popup %}
+        data-open-signup-popup
+      {% else %}
+        data-klaviyo-form="WdX36K"
+      {% endif %}
+    >
       <span>JOIN US</span>
     </a>
     {%- if section.settings.show_social and social_icons -%}
@@ -188,11 +197,21 @@
 </div>
 
 <script>
-  // Handle Klaviyo form trigger on JOIN US link
-  document.addEventListener('DOMContentLoaded', function() {
-    const joinUsLink = document.querySelector('.announcement-bar__join-us[data-klaviyo-form]');
-    if (joinUsLink) {
-      joinUsLink.addEventListener('click', function(e) {
+  document.addEventListener('DOMContentLoaded', function () {
+    const popupJoinUsLink = document.querySelector('.announcement-bar__join-us[data-open-signup-popup]');
+    if (popupJoinUsLink) {
+      popupJoinUsLink.addEventListener('click', function (e) {
+        if (typeof window.openSignupPopup === 'function') {
+          e.preventDefault();
+          window.openSignupPopup();
+        }
+      });
+      return;
+    }
+
+    const klaviyoJoinUsLink = document.querySelector('.announcement-bar__join-us[data-klaviyo-form]');
+    if (klaviyoJoinUsLink) {
+      klaviyoJoinUsLink.addEventListener('click', function (e) {
         const formId = this.getAttribute('data-klaviyo-form');
         if (formId && window._klOnsite) {
           e.preventDefault();
@@ -212,6 +231,13 @@
     "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_popup",
+      "label": "Show popup",
+      "info": "Opens the signup popup when JOIN US is clicked. Requires the Signup Popup section to be enabled.",
+      "default": false
+    },
     {
       "type": "checkbox",
       "id": "auto_rotate",
