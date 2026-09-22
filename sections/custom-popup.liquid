@@ -2,81 +2,101 @@
     <div class="signup-form-wrapper {{ section.settings.content_size_box | default: 'full' }} is-hidden" id="signup-form-wrapper" aria-hidden="true">
         <div class="signup-form-wrapper-content">
             <form id="signup_form" name="signup_form" method="post" action="">
-                {% if section.settings.popup_heading != blank or section.settings.popup_heading_two != blank or section.settings.popup_sub_heading != blank %}
-                    <div class="signup-form-header">
-                        {% if section.settings.popup_heading != blank %}
-                            <h1>{{ section.settings.popup_heading }}</h1>
-                        {% endif %}
-                        {% if section.settings.popup_heading_two != blank %}
-                            <h1>{{ section.settings.popup_heading_two }}</h1>
-                        {% endif %}
-                        {% if section.settings.popup_sub_heading != blank %}
-                            <p>{{ section.settings.popup_sub_heading }}</p>
-                        {% endif %}
-                    </div>
-                {% endif %}
-                <div class="signup-form-content">
-                    <div class="form_input_group row">
-                        {% for block in section.blocks %}
-                            {% if block.type == 'form_field' and block.settings.show_acknowledgement == false %}
-                                {% assign field_id = 'SignupForm-' | append: block.id %}
-                                {% assign field_name = block.settings.label | handleize %}
-                                <div class="field form_input_group__field" {{ block.shopify_attributes }}>
-                                    {% if block.settings.input_type == 'textarea' %}
-                                        <textarea
-                                            class="field__input"
-                                            id="{{ field_id }}"
-                                            name="contact[{{ field_name }}]"
-                                            placeholder="{{ block.settings.placeholder }}"
-                                            {% if block.settings.required %}required aria-required="true"{% endif %}
-                                        ></textarea>
-                                    {% else %}
+                <div class="signup-form-body">
+                    {% if section.settings.popup_heading != blank or section.settings.popup_heading_two != blank or section.settings.popup_sub_heading != blank %}
+                        <div class="signup-form-header">
+                            {% if section.settings.popup_heading != blank %}
+                                <h1>{{ section.settings.popup_heading }}</h1>
+                            {% endif %}
+                            {% if section.settings.popup_heading_two != blank %}
+                                <h1>{{ section.settings.popup_heading_two }}</h1>
+                            {% endif %}
+                            {% if section.settings.popup_sub_heading != blank %}
+                                <p>{{ section.settings.popup_sub_heading }}</p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    <div class="signup-form-content">
+                        <div class="signup-form-honeypot" aria-hidden="true">
+                            <label for="SignupForm-company">Company</label>
+                            <input
+                                type="text"
+                                id="SignupForm-company"
+                                name="company"
+                                tabindex="-1"
+                                autocomplete="off"
+                            >
+                        </div>
+                        <div class="form_input_group row">
+                            {% for block in section.blocks %}
+                                {% if block.type == 'form_field' and block.settings.show_acknowledgement == false %}
+                                    {% assign field_id = 'SignupForm-' | append: block.id %}
+                                    {% assign field_name = block.settings.label | handleize %}
+                                    <div class="field form_input_group__field" {{ block.shopify_attributes }}>
+                                        {% if block.settings.input_type == 'textarea' %}
+                                            <textarea
+                                                class="field__input"
+                                                id="{{ field_id }}"
+                                                name="contact[{{ field_name }}]"
+                                                placeholder="{{ block.settings.placeholder }}"
+                                                maxlength="1000"
+                                                autocomplete="off"
+                                                {% if block.settings.required %}required aria-required="true"{% endif %}
+                                            ></textarea>
+                                        {% else %}
+                                            <input
+                                                class="field__input"
+                                                type="{{ block.settings.input_type }}"
+                                                id="{{ field_id }}"
+                                                name="contact[{{ field_name }}]"
+                                                placeholder="{{ block.settings.placeholder }}"
+                                                maxlength="{% if block.settings.input_type == 'email' %}254{% elsif block.settings.input_type == 'tel' %}20{% else %}100{% endif %}"
+                                                autocomplete="{% if block.settings.input_type == 'email' %}email{% elsif block.settings.input_type == 'tel' %}tel{% elsif field_name == 'first-name' or field_name == 'first_name' %}given-name{% elsif field_name == 'last-name' or field_name == 'last_name' %}family-name{% else %}on{% endif %}"
+                                                {% if block.settings.required %}required aria-required="true"{% endif %}
+                                            >
+                                        {% endif %}
+                                        {% if block.settings.label != blank %}
+                                            <label class="field__label" for="{{ field_id }}">{{ block.settings.label }}</label>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="form_input_checkbox" style="margin-top: 1rem;">
+                            {% for block in section.blocks %}
+                                {% if block.type == 'form_field' and block.settings.show_acknowledgement %}
+                                    {% assign ack_id = 'SignupForm-ack-' | append: block.id %}
+                                    <div class="form_input_checkbox__item" {{ block.shopify_attributes }}>
                                         <input
-                                            class="field__input"
-                                            type="{{ block.settings.input_type }}"
-                                            id="{{ field_id }}"
-                                            name="contact[{{ field_name }}]"
-                                            placeholder="{{ block.settings.placeholder }}"
+                                            type="checkbox"
+                                            id="{{ ack_id }}"
+                                            name="contact[acknowledgement_{{ block.id }}]"
+                                            value="true"
                                             {% if block.settings.required %}required aria-required="true"{% endif %}
                                         >
-                                    {% endif %}
-                                    {% if block.settings.label != blank %}
-                                        <label class="field__label" for="{{ field_id }}">{{ block.settings.label }}</label>
-                                    {% endif %}
-                                </div>
+                                        <label for="{{ ack_id }}">
+                                            {{ block.settings.acknowledgement_text | default: block.settings.label }}
+                                        </label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            {% if section.settings.disclaimer_text != blank %}
+                                <p class="signup-form-disclaimer">{{ section.settings.disclaimer_text }}</p>
                             {% endif %}
-                        {% endfor %}
+                        </div>
                     </div>
-                    <div class="form_input_checkbox" style="margin-top: 1rem;">
-                        {% for block in section.blocks %}
-                            {% if block.type == 'form_field' and block.settings.show_acknowledgement %}
-                                {% assign ack_id = 'SignupForm-ack-' | append: block.id %}
-                                <div class="form_input_checkbox__item" {{ block.shopify_attributes }}>
-                                    <input
-                                        type="checkbox"
-                                        id="{{ ack_id }}"
-                                        name="contact[acknowledgement_{{ block.id }}]"
-                                        value="true"
-                                        {% if block.settings.required %}required aria-required="true"{% endif %}
-                                    >
-                                    <label for="{{ ack_id }}">
-                                        {{ block.settings.acknowledgement_text | default: block.settings.label }}
-                                    </label>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                        {% if section.settings.disclaimer_text != blank %}
-                            <p class="signup-form-disclaimer">{{ section.settings.disclaimer_text }}</p>
-                        {% endif %}
+                    <div class="signup-form-footer">
+                        <button type="submit" class="signup-form__cancel button" name="submit">
+                            {{ section.settings.submit_text }}
+                        </button>
+                        <button type="button" class="signup-form__submit link" name="cancel" id="signup-form-close">
+                            {{ section.settings.cancel_text }}
+                        </button>
+                        <p class="signup-form__status" id="signup-form-status" role="status" aria-live="polite"></p>
                     </div>
                 </div>
-                <div class="signup-form-footer">
-                    <button type="submit" class="signup-form__cancel button" name="submit">
-                        {{ section.settings.submit_text }}
-                    </button>
-                    <button type="button" class="signup-form__submit link" name="cancel" id="signup-form-close">
-                        {{ section.settings.cancel_text }}
-                    </button>
+                <div class="signup-form-success" id="signup-form-success" hidden aria-hidden="true">
+                    <p class="signup-form-success__message">You're locked in. Welcome to Impackt.</p>
                 </div>
             </form>
         </div>
@@ -172,18 +192,134 @@
         .signup-form-wrapper.is-hidden {
             display: none;
         }
+        .signup-form-honeypot {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .signup-form__status {
+            width: 100%;
+            text-align: center;
+            margin-top: 0.75rem;
+            font-size: 1.3rem;
+            min-height: 1.5em;
+        }
+        .signup-form__status:empty {
+            display: none;
+        }
+        .signup-form__status--error {
+            color: #ff6b6b;
+        }
+        .signup-form-success {
+            display: none;
+            text-align: center;
+            padding: 3rem 1rem;
+            opacity: 0;
+        }
+        .signup-form-success__message {
+            margin: 0;
+            color: #7dffb3;
+            font-weight: 600;
+            font-size: 2.4rem;
+            line-height: 1.3;
+            text-wrap: balance;
+        }
+        #signup_form.is-success .signup-form-body {
+            display: none;
+        }
+        #signup_form.is-success .signup-form-success {
+            display: block;
+            animation: signup-success-fade-in 0.5s ease forwards;
+        }
+        @keyframes signup-success-fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(0.6rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
     <script>
         (function () {
+            const KLAVIYO_ENDPOINT = 'https://a.klaviyo.com/client/subscriptions/';
+            const PUBLIC_API_KEY = 'St3hS5';
+            const LIST_ID = 'SRLhrU';
+            const REVISION = '2024-07-15';
+            const MIN_SUBMIT_INTERVAL_MS = 1500;
+            const REQUEST_TIMEOUT_MS = 15000;
+            const EMAIL_PATTERN = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+            const NAME_PATTERN = /^[\p{L}\p{M}\s'\-.]+$/u;
+            const PHONE_PATTERN = /^\+?[\d\s().-]{7,20}$/;
+
             const popup = document.getElementById('signup-form-wrapper');
             const form = document.getElementById('signup_form');
             const closeButton = document.getElementById('signup-form-close');
+            const submitButton = form ? form.querySelector('[type="submit"]') : null;
+            const honeypot = document.getElementById('SignupForm-company');
+            const statusEl = document.getElementById('signup-form-status');
+            const successEl = document.getElementById('signup-form-success');
 
-            if (!popup || !form || !closeButton) return;
+            if (!popup || !form || !closeButton || !successEl) return;
+
+            let activeController = null;
+            let requestId = 0;
+            let lastSubmitAt = 0;
+            let autoCloseTimer = null;
+            const SUCCESS_CLOSE_DELAY_MS = 2500;
+
+            function setStatus(message, type) {
+                if (!statusEl) return;
+                statusEl.textContent = message || '';
+                statusEl.classList.remove('signup-form__status--error');
+                if (type === 'error') statusEl.classList.add('signup-form__status--error');
+            }
+
+            function sanitizeText(value, maxLength) {
+                return String(value || '')
+                    .normalize('NFKC')
+                    .replace(/[\u0000-\u001F\u007F]/g, '')
+                    .replace(/[<>]/g, '')
+                    .trim()
+                    .slice(0, maxLength);
+            }
+
+            function getFieldValue(id, maxLength) {
+                const field = document.getElementById(id);
+                if (!field) return '';
+                return sanitizeText(field.value, maxLength);
+            }
+
+            function abortActiveRequest() {
+                if (activeController) {
+                    activeController.abort();
+                    activeController = null;
+                }
+            }
+
+            function clearAutoCloseTimer() {
+                if (autoCloseTimer) {
+                    clearTimeout(autoCloseTimer);
+                    autoCloseTimer = null;
+                }
+            }
+
+            function resetSuccessState() {
+                form.classList.remove('is-success');
+                successEl.hidden = true;
+                successEl.setAttribute('aria-hidden', 'true');
+            }
 
             function clearFormData() {
+                clearAutoCloseTimer();
+                requestId += 1;
+                abortActiveRequest();
                 form.reset();
-
+                resetSuccessState();
                 form.querySelectorAll('input, textarea, select').forEach(function (field) {
                     if (field.type === 'checkbox' || field.type === 'radio') {
                         field.checked = false;
@@ -191,9 +327,14 @@
                         field.value = '';
                     }
                 });
+                setStatus('');
+                form.removeAttribute('aria-busy');
+                if (submitButton) submitButton.disabled = false;
             }
 
             function openPopup() {
+                clearAutoCloseTimer();
+                resetSuccessState();
                 popup.classList.remove('is-hidden');
                 popup.setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = 'hidden';
@@ -206,78 +347,163 @@
                 document.body.style.overflow = '';
             }
 
+            function showSuccessAndClose() {
+                setStatus('');
+                if (submitButton) submitButton.disabled = true;
+                successEl.hidden = false;
+                successEl.setAttribute('aria-hidden', 'false');
+                form.classList.add('is-success');
+                clearAutoCloseTimer();
+                autoCloseTimer = setTimeout(function () {
+                    autoCloseTimer = null;
+                    closePopup();
+                }, SUCCESS_CLOSE_DELAY_MS);
+            }
+
+            function validatePayload(data) {
+                if (!data.email || !EMAIL_PATTERN.test(data.email) || data.email.length > 254) {
+                    return 'Please enter a valid email address.';
+                }
+                if (!data.firstName || data.firstName.length < 1 || !NAME_PATTERN.test(data.firstName)) {
+                    return 'Please enter a valid first name.';
+                }
+                if (!data.lastName || data.lastName.length < 1 || !NAME_PATTERN.test(data.lastName)) {
+                    return 'Please enter a valid last name.';
+                }
+                if (data.phone && !PHONE_PATTERN.test(data.phone)) {
+                    return 'Please enter a valid phone number.';
+                }
+
+                const requiredChecks = form.querySelectorAll('input[type="checkbox"][required]');
+                for (let i = 0; i < requiredChecks.length; i++) {
+                    if (!requiredChecks[i].checked) {
+                        return 'Please accept the required acknowledgement.';
+                    }
+                }
+
+                return null;
+            }
+
+            async function submitSignup(event) {
+                event.preventDefault();
+
+                if (honeypot && honeypot.value) {
+                    setStatus('Unable to submit right now. Please try again later.', 'error');
+                    return;
+                }
+
+                const now = Date.now();
+                if (now - lastSubmitAt < MIN_SUBMIT_INTERVAL_MS && activeController) {
+                    // Allow resubmit by aborting the in-flight request below.
+                } else if (now - lastSubmitAt < MIN_SUBMIT_INTERVAL_MS) {
+                    setStatus('Please wait a moment before submitting again.', 'error');
+                    return;
+                }
+
+                const data = {
+                    firstName: getFieldValue('SignupForm-first_name', 100),
+                    lastName: getFieldValue('SignupForm-last_name', 100),
+                    email: getFieldValue('SignupForm-email', 254).toLowerCase(),
+                    phone: getFieldValue('SignupForm-phone', 20)
+                };
+
+                const validationError = validatePayload(data);
+                if (validationError) {
+                    setStatus(validationError, 'error');
+                    return;
+                }
+
+                abortActiveRequest();
+                activeController = new AbortController();
+                const currentRequestId = ++requestId;
+                const { signal } = activeController;
+                const timeoutId = setTimeout(function () {
+                    if (currentRequestId === requestId) {
+                        abortActiveRequest();
+                    }
+                }, REQUEST_TIMEOUT_MS);
+
+                lastSubmitAt = now;
+                form.setAttribute('aria-busy', 'true');
+                setStatus('Submitting…');
+
+                const profileAttributes = {
+                    email: data.email,
+                    first_name: data.firstName,
+                    last_name: data.lastName
+                };
+                if (data.phone) profileAttributes.phone_number = data.phone;
+
+                const payload = {
+                    data: {
+                        type: 'subscription',
+                        attributes: {
+                            profile: {
+                                data: {
+                                    type: 'profile',
+                                    attributes: profileAttributes
+                                }
+                            }
+                        },
+                        relationships: {
+                            list: {
+                                data: {
+                                    type: 'list',
+                                    id: LIST_ID
+                                }
+                            }
+                        }
+                    }
+                };
+
+                try {
+                    const response = await fetch(
+                        KLAVIYO_ENDPOINT + '?company_id=' + encodeURIComponent(PUBLIC_API_KEY),
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Accept: 'application/json',
+                                revision: REVISION
+                            },
+                            body: JSON.stringify(payload),
+                            signal: signal,
+                            credentials: 'omit',
+                            referrerPolicy: 'no-referrer',
+                            cache: 'no-store'
+                        }
+                    );
+
+                    if (currentRequestId !== requestId) return;
+
+                    if (!response.ok) {
+                        throw new Error('request_failed');
+                    }
+
+                    if (honeypot) honeypot.value = '';
+                    form.reset();
+                    showSuccessAndClose();
+                } catch (error) {
+                    if (currentRequestId !== requestId) return;
+                    if (error && error.name === 'AbortError') {
+                        setStatus('Request timed out. Please try again.', 'error');
+                        return;
+                    }
+                    setStatus('Something went wrong. Please try again.', 'error');
+                } finally {
+                    clearTimeout(timeoutId);
+                    if (currentRequestId === requestId) {
+                        activeController = null;
+                        form.removeAttribute('aria-busy');
+                    }
+                }
+            }
+
+            form.addEventListener('submit', submitSignup);
             closeButton.addEventListener('click', closePopup);
             window.openSignupPopup = openPopup;
             window.closeSignupPopup = closePopup;
         })();
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('signup_form');
-        
-            if (!form) return;
-        
-            form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-        
-            const firstName = document.getElementById('SignupForm-first_name').value.trim();
-            const lastName = document.getElementById('SignupForm-last_name').value.trim();
-            const email = document.getElementById('SignupForm-email').value.trim();
-            console.log(firstName, lastName, email);
-            const PUBLIC_API_KEY = 'St3hS5';
-            const LIST_ID = 'SRLhrU';
-        
-            const payload = {
-                data: {
-                type: 'subscription',
-                attributes: {
-                    profile: {
-                    data: {
-                        type: 'profile',
-                        attributes: {
-                        email: email,
-                        first_name: firstName,
-                        last_name: lastName
-                        }
-                    }
-                    }
-                },
-                relationships: {
-                    list: {
-                    data: {
-                        type: 'list',
-                        id: LIST_ID
-                    }
-                    }
-                }
-                }
-            };
-        
-            try {
-                const response = await fetch(
-                `https://a.klaviyo.com/client/subscriptions/?company_id=${PUBLIC_API_KEY}`,
-                {
-                    method: 'POST',
-                    headers: {
-                    'Content-Type': 'application/json',
-                    'revision': '2024-07-15'
-                    },
-                    body: JSON.stringify(payload)
-                }
-                );
-        
-                if (!response.ok) {
-                const error = await response.text();
-                throw new Error(error);
-                }
-        
-                console.log('Successfully subscribed to Klaviyo');
-        
-                form.reset();
-        
-            } catch (error) {
-                console.error('Klaviyo signup failed:', error);
-            }
-            });
-        });
     </script>
 {% endif %}
 
