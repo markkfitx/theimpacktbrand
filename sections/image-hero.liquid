@@ -22,9 +22,11 @@
   }
   
   {%- if section.settings.background_image != blank or section.settings.background_image_desktop != blank -%}
-    #ImageHero-{{ section.id }} .image-hero__background {
-      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-    }
+    {%- if section.settings.image_overlay_opacity > 0 -%}
+      #ImageHero-{{ section.id }} .image-hero__overlay {
+        background-color: rgba(0, 0, 0, {{ section.settings.image_overlay_opacity | divided_by: 100.0 }});
+      }
+    {%- endif -%}
   {%- endif -%}
 {%- endstyle -%}
 
@@ -35,26 +37,34 @@
   {%- if section.settings.background_image != blank or section.settings.background_image_desktop != blank -%}
     <div class="image-hero__background{% if section.settings.background_image == blank and section.settings.background_image_desktop != blank %} image-hero__background--desktop-only{% endif %}">
       {%- if section.settings.background_image != blank -%}
-        <img
-          src="{{ section.settings.background_image | image_url: width: 3840 }}"
-          alt="{{ section.settings.background_image.alt | escape }}"
-          class="image-hero__background-image image-hero__background-image--mobile"
-          style="object-position: {{ section.settings.image_position | default: 'center' }};"
-          loading="lazy"
-          width="{{ section.settings.background_image.width }}"
-          height="{{ section.settings.background_image.height }}"
-        >
+        {%- assign image_hero_alt_mobile = section.settings.background_image.alt | default: section.settings.title | escape -%}
+        {%- capture image_hero_style -%}object-position: {{ section.settings.image_position | default: 'center' }};{%- endcapture -%}
+        {{
+          section.settings.background_image
+          | image_url: width: 3840
+          | image_tag:
+            class: 'image-hero__background-image image-hero__background-image--mobile',
+            widths: '750, 1100, 1500, 1780, 2000, 3000, 3840',
+            sizes: '100vw',
+            loading: 'lazy',
+            alt: image_hero_alt_mobile,
+            style: image_hero_style
+        }}
       {%- endif -%}
       {%- if section.settings.background_image_desktop != blank -%}
-        <img
-          src="{{ section.settings.background_image_desktop | image_url: width: 3840 }}"
-          alt="{{ section.settings.background_image_desktop.alt | escape }}"
-          class="image-hero__background-image image-hero__background-image--desktop"
-          style="object-position: {{ section.settings.image_position | default: 'center' }};"
-          loading="lazy"
-          width="{{ section.settings.background_image_desktop.width }}"
-          height="{{ section.settings.background_image_desktop.height }}"
-        >
+        {%- assign image_hero_alt_desktop = section.settings.background_image_desktop.alt | default: section.settings.title | escape -%}
+        {%- capture image_hero_style_desktop -%}object-position: {{ section.settings.image_position | default: 'center' }};{%- endcapture -%}
+        {{
+          section.settings.background_image_desktop
+          | image_url: width: 3840
+          | image_tag:
+            class: 'image-hero__background-image image-hero__background-image--desktop',
+            widths: '750, 1100, 1500, 1780, 2000, 3000, 3840',
+            sizes: '100vw',
+            loading: 'lazy',
+            alt: image_hero_alt_desktop,
+            style: image_hero_style_desktop
+        }}
       {%- endif -%}
     </div>
   {%- endif -%}
@@ -139,7 +149,7 @@
       "unit": "%",
       "label": "Image Overlay Opacity",
       "default": 30,
-      "info": "Adds a dark overlay over the background image for better text readability"
+      "info": "Controls the strength of the dark overlay over the background image"
     },
     {
       "type": "select",

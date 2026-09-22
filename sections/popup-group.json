@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+    "name": "Signup Popup",
+    "type": "custom.popup",
+    "sections": {
+      "custom-popup": {
+        "type": "custom-popup",
+  
+        "settings": {
+          "enable_popup": true,
+          "content_size_box": "full",
+          "popup_heading": "<span style='font-weight: 400;'>THE</span> <i style='font-style: italic;'>IMPACKT</i> <span style='font-weight: 400; margin-left:0.75rem;'>BRAND</span>",
+          "popup_heading_two": "LOCK IN NOW 🔐",
+          "popup_sub_heading": "For Up To 60% OFF Orders + More",
+          "submit_text": "LOCK IN 🔐",
+          "cancel_text": "Nah I Make Excuses",
+          "disclaimer_text": "By entering your email address, checking the box as applicable and submitting this form, you consent to receive marketing communications and/or targeted advertising from The Impackt Brand. We process your personal data as stated in our <a href='/policies/privacy-policy'>Privacy Policy</a>. You may withdraw your consent or manage your preferences at any time by clicking the unsubscribe link at the bottom of our marketing emails."
+        },
+  
+        "blocks": {
+        "first_name": {
+            "type": "form_field",
+            "settings": {
+            "label": "First Name",
+            "placeholder": "Enter your first name",
+            "input_type": "text",
+            "required": true,
+            "show_acknowledgement": false,
+            "acknowledgement_text": ""
+            }
+        },
+        "last_name": {
+            "type": "form_field",
+            "settings": {
+            "label": "Last Name",
+            "placeholder": "Enter your last name",
+            "input_type": "text",
+            "required": true,
+            "show_acknowledgement": false,
+            "acknowledgement_text": ""
+            }
+        },
+          "email": {
+            "type": "form_field",
+            "settings": {
+              "label": "Email",
+              "placeholder": "Enter your email",
+              "input_type": "email",
+              "required": true,
+              "show_acknowledgement": false,
+              "acknowledgement_text": ""
+            }
+          },
+  
+          "phone": {
+            "type": "form_field",
+            "settings": {
+              "label": "Phone",
+              "placeholder": "Enter your phone number",
+              "input_type": "tel",
+              "required": false,
+              "show_acknowledgement": false,
+              "acknowledgement_text": ""
+            }
+          },
+  
+          "acknowledgement": {
+            "type": "form_field",
+            "settings": {
+              "label": "Acknowledgement",
+              "placeholder": "",
+              "input_type": "text",
+              "required": true,
+              "show_acknowledgement": true,
+              "acknowledgement_text": "Community Data Release"
+            }
+          }
+        },
+  
+        "block_order": [
+          "first_name",
+          "last_name",
+          "email",
+          "acknowledgement"
+        ]
+      }
+    },
+  
+    "order": [
+      "custom-popup"
+    ]
+  }
