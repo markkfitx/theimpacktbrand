@@ -14,7 +14,7 @@
 
 <div
   id="CustomHero-{{ section.id }}"
-  class="custom-hero color-{{ section.settings.color_scheme }} gradient{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="custom-hero color-{{ section.settings.color_scheme }} gradient"
 >
   {%- if section.settings.background_image != blank -%}
     <div class="custom-hero__background">
@@ -25,10 +25,11 @@
         | image_url: width: 3840
         | image_tag:
           class: 'custom-hero__background-image',
-          widths: '750, 1100, 1500, 1780, 2000, 3000, 3840',
+          widths: '550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
           sizes: '100vw',
           loading: 'eager',
           fetchpriority: 'high',
+          preload: true,
           alt: hero_alt,
           style: hero_style
       }}
