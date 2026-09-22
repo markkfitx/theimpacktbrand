@@ -468,7 +468,7 @@ table:not([class]) th {
 a:empty,
 ul:empty,
 dl:empty,
-div:empty:not(.cart-drawer__free-shipping-progress-fill):not(.product-fit-range__fill),
+div:empty:not(.cart-drawer__free-shipping-progress-fill):not(.product-fit-range__fill):not(.custom-hero__overlay),
 section:empty,
 article:empty,
 p:empty,

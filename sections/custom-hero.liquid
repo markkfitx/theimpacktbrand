@@ -1,15 +1,18 @@
 {{ 'section-custom-hero.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign overlay_opacity = section.settings.image_overlay_opacity | default: 0 | plus: 0
+  assign overlay_opacity_decimal = overlay_opacity | divided_by: 100.0
+-%}
+
 {%- style -%}
   #CustomHero-{{ section.id }} {
     min-height: {{ section.settings.section_height }}vh;
   }
 
-  {%- if section.settings.background_image != blank and section.settings.image_overlay_opacity > 0 -%}
-    #CustomHero-{{ section.id }} .custom-hero__overlay {
-      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-    }
-  {%- endif -%}
+  #CustomHero-{{ section.id }} .custom-hero__overlay {
+    --overlay-opacity: {{ overlay_opacity_decimal }};
+  }
 {%- endstyle -%}
 
 <div
@@ -33,11 +36,10 @@
           alt: hero_alt,
           style: hero_style
       }}
+      {%- if overlay_opacity > 0 -%}
+        <div class="custom-hero__overlay" aria-hidden="true"></div>
+      {%- endif -%}
     </div>
-  {%- endif -%}
-
-  {%- if section.settings.background_image != blank and section.settings.image_overlay_opacity > 0 -%}
-    <div class="custom-hero__overlay"></div>
   {%- endif -%}
 
   <div class="custom-hero__content page-width">
