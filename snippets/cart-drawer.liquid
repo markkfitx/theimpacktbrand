@@ -5,8 +5,7 @@
   {% render 'cart-drawer' %}
 {% endcomment %}
 
-<link rel="stylesheet" href="{{ 'quantity-popover.css' | asset_url }}" media="print" onload="this.media='all'">
-<noscript>{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}</noscript>
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
