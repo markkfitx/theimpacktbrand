@@ -1,5 +1,7 @@
-{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{%- if section.blocks.size > 1 -%}
+  {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+  {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 
 <script>
   window._klOnsite = window._klOnsite || [];
@@ -201,10 +203,22 @@
     const popupJoinUsLink = document.querySelector('.announcement-bar__join-us[data-open-signup-popup]');
     if (popupJoinUsLink) {
       popupJoinUsLink.addEventListener('click', function (e) {
+        e.preventDefault();
         if (typeof window.openSignupPopup === 'function') {
-          e.preventDefault();
           window.openSignupPopup();
+          return;
         }
+        // Popup script is deferred; retry briefly if user clicks very early.
+        var attempts = 0;
+        var timer = setInterval(function () {
+          attempts += 1;
+          if (typeof window.openSignupPopup === 'function') {
+            clearInterval(timer);
+            window.openSignupPopup();
+          } else if (attempts >= 20) {
+            clearInterval(timer);
+          }
+        }, 50);
       });
       return;
     }
