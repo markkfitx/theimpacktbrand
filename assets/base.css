@@ -3602,3 +3602,12 @@ details-disclosure > details {
 .shopify-policy__container{
   margin-bottom: 3.25rem !important;
 }
+
+@media screen and (max-width: 749px) {
+  .promo-banner{
+    padding-top: 3rem !important;
+  }
+  .promo-banner__card{
+    height: 90px !important;
+  }
+}

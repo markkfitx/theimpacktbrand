@@ -44,18 +44,19 @@
   z-index: 2;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: start;
   padding: 4rem 1.5rem;
 }
 
 .custom-hero__text-wrapper {
-  text-align: center;
+  text-align: start;
   width: 100%;
   max-width: 800px;
 }
 
 .custom-hero__title {
+  text-align: start;
   font-size: 3rem;
   font-family: var(--font-heading-family);
   font-style: var(--font-heading-style);
@@ -80,7 +81,7 @@
   }
 }
 .custom-hero__text-wrapper:has(.custom-hero__subtext) .custom-hero__title {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .custom-hero__subtext {
@@ -94,21 +95,23 @@
   margin: 0 0 2.5rem;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
   max-width: 48rem;
-  margin-left: auto;
+  margin-left: 0.75rem;
+  margin-bottom: 2rem;
   margin-right: auto;
-  padding-bottom: 1rem;
+  padding-bottom: 0;
   opacity: 0.7;
+  text-align: start;
 }
 
 @media screen and (min-width: 750px) {
   .custom-hero__subtext {
-    font-size: 1.6rem;
+    font-size: 1.36rem;
   }
 }
 
 @media screen and (min-width: 990px) {
   .custom-hero__subtext {
-    font-size: 1.8rem;
+    font-size: 1.48rem;
   }
 }
 
@@ -118,25 +121,28 @@
   flex-wrap: nowrap;
   gap: 0.75rem;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
 }
 
 @media screen and (min-width: 750px) {
   .custom-hero__buttons {
-    gap: 2rem;
+    gap: 1.5rem;
   }
 }
 
 .custom-hero__button {
-  min-width: 200px;
+  /* Override base.css .button min-height / horizontal-only padding */
+  min-width: 150px;
+  min-height: 0;
+  height: auto;
   padding: 1.2rem 2.4rem;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   text-decoration: none;
-  border: 0.25px solid rgba(255,255,255,0.75);
+  border: 0.25px solid rgba(255,255,255,0.85);
   transition: all 0.3s ease;
 }
 
@@ -146,7 +152,7 @@
 }
 
 .custom-hero__button.button--primary {
-  background-color: rgba(255,255,255,0.75);
+  background-color: rgba(255,255,255,0.85);
   color: rgb(var(--color-background));
   border: none;
 }
@@ -169,23 +175,34 @@
 @media screen and (max-width: 749px) {
   .custom-hero {
     min-height: 80vh !important;
+    align-items: flex-end;
   }
 
   .custom-hero__title {
     font-size: 3.6rem;
     margin-bottom: 2rem;
+    text-align: end;
+  }
+  .custom-hero__subtext {
+    text-align: end;
+    margin-right: 0.75rem;
+    margin-left: auto
   }
 
   .custom-hero__button {
     /*flex: 1 1 0;*/
     min-width: 0;
     max-width: none;
-    width: 175px;
-    padding: 1rem 1.2rem;
-    font-size: 1.1rem;
+    width: 150px;
+    padding: 1.25rem 1.2rem;
+    font-size: 1rem;
     letter-spacing: 0.06em;
     text-align: center;
     white-space: normal;
+  }
+
+  .custom-hero__buttons {
+    justify-content: end;
   }
 
   .custom-hero__buttons .custom-hero__button:only-child {
