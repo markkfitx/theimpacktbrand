@@ -55,6 +55,7 @@
       {% else %}
         data-klaviyo-form="WdX36K"
       {% endif %}
+       style="font-size:10px; font-weight: 600;"
     >
       <span>JOIN US</span>
     </a>
@@ -75,7 +76,7 @@
               class="announcement-bar__link link link--text focus-inset animate-arrow"
             >
           {%- endif -%}
-          <p class="announcement-bar__message h5">
+          <p class="announcement-bar__message" style="font-size:10px;">
             <span>{{ section.blocks.first.settings.text | escape }}</span>
             {%- if section.blocks.first.settings.link != blank -%}
               {{- 'icon-arrow.svg' | inline_asset_content -}}
@@ -135,7 +136,7 @@
                         class="announcement-bar__link link link--text focus-inset animate-arrow"
                       >
                     {%- endif -%}
-                    <p class="announcement-bar__message h5">
+                    <p class="announcement-bar__message" style="font-size:10px;">
                       <span>{{ block.settings.text | escape }}</span>
                       {%- if block.settings.link != blank -%}
                         {{- 'icon-arrow.svg' | inline_asset_content -}}
