@@ -28,8 +28,10 @@
    -------------------------------------------------------------------------- */
 
 .promo-banner__list {
-  display: flex;
-  gap: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
   margin: 125px 0 36px 0;
   padding: 0;
   list-style: none;
@@ -38,34 +40,22 @@
 .promo-banner__item {
   position: relative;
   display: flex;
-  flex: 1 1 auto;
   align-items: stretch;
   justify-content: center;
   min-width: 0;
-  padding: 0.35rem 0;
   text-align: center;
   aspect-ratio: 1/1;
 }
 
-/* Mobile: card width inside theme slider (component-slider.css handles scroll) */
-@media screen and (max-width: 749px) {
-  .promo-banner .slider.slider--mobile .promo-banner__item.slider__slide {
-    flex: 0 0 min(88vw, 22rem);
-    min-width: min(88vw, 22rem);
+@media screen and (min-width: 750px) {
+  .promo-banner__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 990px) {
   .promo-banner__list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-    gap: 1rem 1.25rem;
-    align-items: stretch;
-    overflow: visible;
-  }
-
-  .promo-banner__item {
-    padding: 0.25rem 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

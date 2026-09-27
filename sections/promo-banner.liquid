@@ -1,5 +1,4 @@
 {{ 'section-promo-banner.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 <script>
   window._klOnsite = window._klOnsite || [];
@@ -26,27 +25,16 @@
   }
 {%- endstyle -%}
 
-{%- liquid
-  assign show_mobile_slider = false
-  if section.blocks.size > 1
-    assign show_mobile_slider = true
-  endif
--%}
-
 <div
   id="PromoBanner-{{ section.id }}"
   class="promo-banner promo-banner--animated color-{{ section.settings.color_scheme }} gradient{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} page-width"
 >
-  <slider-component class="slider-mobile-gutter">
-    <div
-      class="promo-banner__list{% if show_mobile_slider %} promo-banner__list--slider slider slider--mobile grid--peek{% endif %}"
-      id="Slider-{{ section.id }}"
-      role="list"
-    >
+    <div class="promo-banner__list" role="list">
       {%- for block in section.blocks -%}
         <article
-          id="Slide-{{ section.id }}-{{ forloop.index }}"
-          class="promo-banner__item{% if show_mobile_slider %} slider__slide{% endif %}"
+          id="PromoBannerItem-{{ section.id }}-{{ forloop.index }}"
+          class="promo-banner__item"
+          role="listitem"
           style="--promo-stagger: {{ forloop.index0 }};"
           {{ block.shopify_attributes }}
         >
@@ -76,7 +64,6 @@
         </article>
       {%- endfor -%}
     </div>
-  </slider-component>
 </div>
 
 <script>
@@ -94,20 +81,6 @@
         }
       });
     }
-
-    var list = root.querySelector('.promo-banner__list--slider');
-    if (!list || list.children.length < 2) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (window.matchMedia('(min-width: 750px)').matches) return;
-
-    var index = 0;
-    var intervalMs = 5500;
-
-    setInterval(function () {
-      if (list.matches(':hover')) return;
-      index = (index + 1) % list.children.length;
-      list.children[index].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    }, intervalMs);
   });
 </script>
 
