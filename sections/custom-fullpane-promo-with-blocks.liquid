@@ -12,6 +12,9 @@
 {%- endstyle -%}
 
 <div id="CustomFullpane-{{ section.id }}" class="custom-fullpane color-{{ section.settings.color_scheme }} gradient">
+  {%- if section.settings.logo_image != blank -%}
+    {{ section.settings.logo_image | image_url: width: 100 | image_tag: width: 50 }}
+  {%- endif -%}
   <div class="custom-fullpane__panel">
     {%- if section.settings.bg_video_link != blank -%}
       <video
@@ -91,6 +94,11 @@
             "label": "Color scheme",
             "default": "scheme-1"
           },
+          {
+            "type": "image_picker",
+            "id": "logo_image",
+            "label": "Logo"
+        },
           {
             "type": "header",
             "content": "Background Video"

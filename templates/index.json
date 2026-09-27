@@ -85,6 +85,49 @@
         "padding_bottom": 0
       }
     },
+    "fullpane_with_blocks_81a25": {
+      "type": "custom-fullpane-promo-with-blocks",
+      "name": "Full pane with blocks",
+      "blocks": {
+        "fullpane_block_Kwn234": {
+          "type": "card",
+          "settings": {
+            "card_body_text": ""
+          }
+        },
+        "fullpane_block_atr341": {
+          "type": "card",
+          "settings": {
+            "card_body_text": ""
+          }
+        },
+        "fullpane_block_rde453": {
+          "type": "card",
+          "settings": {
+            "card_body_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "fullpane_block_Kwn234",
+        "fullpane_block_atr341",
+        "fullpane_block_rde453"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "bg_video_link": "https://cdn.shopify.com/videos/c/o/v/fca7d16684114e79ba71908779dd601c.mp4",
+        "overlay_opacity": 70,
+        "panel_height": 50,
+        "banner_header": "LOCK IN ... NO EXCUSES.",
+        "banner_sub_header": "Performance starts with showing up. Explore IMPACKT fitness apparel, training essentials and gym gear built for the work behind every goal.",
+        "button_label_1": "SHOP MEN",
+        "button_link_1": "shopify://collections/all-products",
+        "button_style_secondary_1": false,
+        "button_label_2": "SHOP WOMEN",
+        "button_link_2": "shopify://collections/all-products",
+        "button_style_secondary_2": false
+      }
+    },
     "collection_list_Knqk6V": {
       "type": "collection-list",
       "blocks": {
@@ -189,6 +232,7 @@
   "order": [
     "custom_hero_4hRntY",
     "promo_banner_8G4dge",
+    "fullpane_with_blocks_81a25",
     "collection_list_Knqk6V",
     "image_hero_hfpjH8",
     "image_hero_gF7Wf4"

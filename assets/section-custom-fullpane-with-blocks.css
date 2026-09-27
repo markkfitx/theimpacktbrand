@@ -16,6 +16,7 @@
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
+  filter:grayscale(100%);
 }
 
 .custom-fullpane__overlay {
@@ -42,20 +43,24 @@
 
 .custom-fullpane__header {
   margin: 0;
-  max-width: 12ch;
+  max-width: 10ch;
   color: #fff;
-  font-size: clamp(4rem, 8vw, 8rem);
+  font-size: clamp(4rem, 7vw, 6rem);
   font-weight: 800;
   line-height: 0.95;
   text-transform: uppercase;
 }
 
 .custom-fullpane__subheader {
-  margin: 0;
-  max-width: 45ch;
-  color: #fff;
-  font-size: 1.6rem;
-  line-height: 1.5;
+    font-size: 1.25rem;
+    font-family: var(--font-body-family);
+    font-style: var(--font-body-style);
+    font-weight: 300;
+    line-height: calc(1 + 0.6 / var(--font-body-scale));
+    letter-spacing: 0.02em;
+    color: rgb(var(--color-foreground));
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
+    max-width: 400px;
 }
 
 .custom-fullpane__buttons {
