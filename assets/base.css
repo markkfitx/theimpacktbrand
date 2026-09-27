@@ -79,7 +79,7 @@
 .page-width {
   max-width: 100vw;
   margin: 0;
-  padding: 0 3.6rem;
+  padding: 0 1.75rem;
 }
 
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
@@ -102,7 +102,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 @media screen and (min-width: 750px) {
   .page-width {
-    padding-inline: 1.5rem;
+    padding-inline: 3.5rem;
   }
 
   .header.page-width,
@@ -1053,7 +1053,7 @@ summary::-webkit-details-marker {
   }
 
   .grid--peek.slider .grid__item:first-of-type {
-    margin-left: 1.5rem;
+    /*margin-left: 1.5rem;*/
   }
 
   /* Fix to show some space at the end of our sliders in all browsers */

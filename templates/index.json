@@ -20,8 +20,8 @@
         "image_position": "center",
         "title": "THE IMPACKT BRAND",
         "title_alignment": "center",
-        "subtext": "Trust . Community . Purpose . Lock In",
-        "button_label_1": "SHOP ALL",
+        "subtext": "Built on Trust. Driven by Purpose. Ready to Lock In",
+        "button_label_1": "SHOP APPAREL",
         "button_link_1": "shopify://collections/all-products",
         "button_style_secondary_1": false,
         "button_label_2": "NEW ARRIVALS",
@@ -89,25 +89,29 @@
         "featured_collection_3aJAGV": {
           "type": "featured_collection",
           "settings": {
-            "collection": "camo-drop"
+            "collection": "camo-drop",
+            "label": "Shop Camo"
           }
         },
         "featured_collection_aB9K9B": {
           "type": "featured_collection",
           "settings": {
-            "collection": "no-excuses-pre-workout"
+            "collection": "no-excuses-pre-workout",
+            "label": "Shop Performance"
           }
         },
         "featured_collection_A9DD4h": {
           "type": "featured_collection",
           "settings": {
-            "collection": "the-pack"
+            "collection": "the-pack",
+            "label": "Shop Raised By Wolves"
           }
         },
         "featured_collection_zVzwdC": {
           "type": "featured_collection",
           "settings": {
-            "collection": "the-pack-only"
+            "collection": "the-pack-only",
+            "label": "Shop The Pack"
           }
         }
       },

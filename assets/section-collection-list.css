@@ -13,10 +13,6 @@
     padding-right: 0;
   }
 
-  .section-collection-list .page-width {
-    padding-left: 0;
-    padding-right: 0;
-  }
 
   .section-collection-list .collection-list:not(.slider) {
     padding-left: 1.5rem;
@@ -117,7 +113,8 @@
   min-width: 0;
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
-  font-weight: 600;
+  text-transform:capitalize;
+  font-weight: 400;
   font-size: clamp(1.3rem, 2.8vw, 1.5rem);
   line-height: 1.25;
   letter-spacing: 0.04em;
@@ -136,14 +133,16 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background-color: rgba(var(--color-foreground), 0.08);
+  background-color: rgba(var(--color-foreground), 0.28);
   transition:
     background-color 0.25s ease,
     transform 0.25s ease;
+    display: none;
 }
 
 .collection-list .collection-card-wrapper .card-collection__link .card-collection__icon .icon-arrow {
   width: 1.15rem;
+  color: black;
 }
 
 .collection-list .collection-card-wrapper:hover .card-collection__link .card-collection__icon {
