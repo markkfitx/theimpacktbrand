@@ -56,6 +56,77 @@
   margin-top: 2rem;
 }
 
+.collection-list .card-collection__header {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(19, 19, 19, 0.75);
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.collection-list .card-collection__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  padding: 2.4rem;
+  border-radius: 4px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 60%);
+  color: #fff;
+}
+
+.collection-list .card-collection__overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.collection-list .card-collection__overlay .card-collection__header {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.collection-list .card-collection__overlay-title {
+  margin: 0;
+  font-size: clamp(2rem, 2.2vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.collection-list .card-collection__overlay-link {
+  color: inherit;
+}
+
+.collection-list .card-collection__overlay-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.collection-list .card-collection__button {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  background-color: #fff;
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+
+.collection-list .card-collection__overlay:hover .card-collection__button {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
 /* Stretch cards to fill the row whenever they don't overflow into a slider */
 .collection-list--fill:not(.slider) {
   display: grid;

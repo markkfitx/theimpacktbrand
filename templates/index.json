@@ -139,21 +139,30 @@
           "type": "featured_collection",
           "settings": {
             "collection": "camo-drop",
-            "label": "Shop Camo"
+            "label": "Shop Camo",
+            "card_header": "",
+            "content_position": "below",
+            "button_label": "Shop"
           }
         },
         "featured_collection_aB9K9B": {
           "type": "featured_collection",
           "settings": {
             "collection": "no-excuses-pre-workout",
-            "label": "Shop Performance"
+            "label": "Shop Performance",
+            "card_header": "",
+            "content_position": "below",
+            "button_label": "Shop"
           }
         },
         "featured_collection_zVzwdC": {
           "type": "featured_collection",
           "settings": {
             "collection": "the-pack-only",
-            "label": "Shop The Pack"
+            "label": "Shop The Pack",
+            "card_header": "",
+            "content_position": "below",
+            "button_label": "Shop"
           }
         }
       },
@@ -167,8 +176,95 @@
         "title": "",
         "heading_size": "h1",
         "image_ratio": "square",
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile":"1",
+        "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collection_list_Knqk4b": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_3aJAwb": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "shirts",
+            "label": "Shirts",
+            "card_header": "Built to stand out.",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        },
+        "featured_collection_aB9K3w": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "shorts",
+            "label": "Shorts",
+            "card_header": "Made to move",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        },
+        "featured_collection_aB92kl": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hoodies",
+            "label": "Hoodies",
+            "card_header": "Your everyday layer",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        },
+        "featured_collection_aB94n7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "joggers",
+            "label": "Joggers",
+            "card_header": "Comfort in motion",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        },
+        "featured_collection_aB934f": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bras",
+            "label": "Bras",
+            "card_header": "Support that moves",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        },
+        "featured_collection_aB9kjh": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "accessories-1",
+            "label": "Accessories",
+            "card_header": "Finish the fit",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_3aJAwb",
+        "featured_collection_aB9K3w",
+        "featured_collection_aB92kl",
+        "featured_collection_aB94n7",
+        "featured_collection_aB934f",
+        "featured_collection_aB9kjh"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "The Pack Favorites",
+        "heading_size": "h1",
+        "image_ratio": "portrait",
+        "columns_desktop": 6,
+        "color_scheme": "scheme-1",
+        "logo_img": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
         "show_view_all": false,
         "columns_mobile":"2",
         "swipe_on_mobile": true,
@@ -206,6 +302,7 @@
     "custom_hero_4hRntY",
     "collection_list_Knqk6V",
     "fullpane_with_blocks_81a25",
+    "collection_list_Knqk4b",
     "promo_banner_8G4dge",
     "image_hero_hfpjH8",
   ]

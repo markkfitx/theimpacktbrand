@@ -785,11 +785,12 @@ summary::-webkit-details-marker {
 
 .title-wrapper-with-link {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-end;
   gap: 1rem;
   margin-bottom: 3rem;
   flex-wrap: wrap;
+  margin-top:125px;
 }
 
 .title--primary {
@@ -812,7 +813,7 @@ summary::-webkit-details-marker {
 @media screen and (min-width: 990px) {
   .title,
   .title-wrapper-with-link {
-    margin: 5rem 0 3rem;
+    margin: 125px 0 24px 0;
   }
 
   .title--primary {

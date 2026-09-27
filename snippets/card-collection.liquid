@@ -8,6 +8,10 @@
   - extend_height: {Boolean} Card height extends to available container space. Default: false (optional)
   - wrapper_class: {String} Wrapper class for card (optional)
   - placeholder_image: {String} Placeholder image when collection is empty (optional)
+  - card_collection_label: {String} Overrides the collection title (optional)
+  - card_collection_header: {String} Small text shown above the title (optional)
+  - content_position: {String} "below" (default) or "overlay" to place the text and button inside the card (optional)
+  - button_label: {String} Button text shown when content_position is "overlay" (optional)
 
   Usage:
   {% render 'card-collection' %}
@@ -28,6 +32,19 @@
   if wrapper_class == null or wrapper_class == 'none'
     assign card_color_scheme = settings.collection_card_color_scheme
     assign card_style = settings.collection_card_style
+  endif
+
+  assign content_overlay = false
+  if content_position == 'overlay' and card_collection != blank
+    assign content_overlay = true
+  endif
+
+  if card_collection_label != blank
+    assign card_title = card_collection_label | escape
+  elsif card_collection.title != blank
+    assign card_title = card_collection.title | escape
+  else
+    assign card_title = 'onboarding.collection_title' | t
   endif
 -%}
 
@@ -80,6 +97,22 @@
         <div class="card__media">
           {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
         </div>
+      {%- elsif content_overlay -%}
+        <div class="card-collection__overlay">
+          <div class="card-collection__overlay-content">
+            {%- if card_collection_header != blank -%}
+              <p class="card-collection__header">{{ card_collection_header | escape }}</p>
+            {%- endif -%}
+            <h3 class="card-collection__overlay-title">
+              <a href="{{ card_collection.url }}" class="full-unstyled-link card-collection__overlay-link">
+                {{- card_title -}}
+              </a>
+            </h3>
+            {%- if button_label != blank -%}
+              <span class="card-collection__button" aria-hidden="true">{{ button_label | escape }}</span>
+            {%- endif -%}
+          </div>
+        </div>
       {%- else -%}
         <div class="card__content">
           <div class="card__information">
@@ -122,7 +155,7 @@
         </div>
       {%- endif -%}
     </div>
-    {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
+    {%- if content_overlay == false and card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
       <div class="card__content">
         <div class="card__information">
           <h3 class="card__heading">
@@ -150,6 +183,9 @@
               {%- endif %}
             </a>
           </h3>
+          {%- if card_collection_header != blank -%}
+            <p class="card-collection__header">{{ card_collection_header | escape }}</p>
+          {%- endif -%}
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption card-collection__caption">
               <span class="card-collection__caption-text">
