@@ -7,12 +7,17 @@
 
 .promo-banner {
   --promo-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --promo-surface: rgba(var(--color-foreground), 0.05);
-  --promo-surface-hover: rgba(var(--color-foreground), 0.08);
-  --promo-border: rgba(var(--color-foreground), 0.1);
-  --promo-border-hover: rgba(var(--color-foreground), 0.28);
-  --promo-ring: rgba(var(--color-foreground), 0.12);
-  --promo-body-color: #e8e5de;
+
+  /* Light grey card palette matching the theme's light scheme, independent of
+     the section color scheme. Contrast on --promo-surface (#e4e4e4): ink 14.7:1,
+     body 9.9:1, border-hover 5:1, focus ring 14.7:1 (WCAG AA: text 4.5:1, UI 3:1). */
+  --promo-ink-rgb: 18, 18, 18;
+  --promo-ink: rgb(var(--promo-ink-rgb));
+  --promo-body-color: #333333;
+  --promo-surface: rgba(240,240,240,1);
+  --promo-surface-hover: rgba(240,240,240,1);
+  --promo-ring: rgba(var(--promo-ink-rgb), 0.12);
+  --promo-focus: var(--promo-ink);
 
   position: relative;
   width: 100%;
@@ -39,6 +44,7 @@
   min-width: 0;
   padding: 0.35rem 0;
   text-align: center;
+  aspect-ratio: 1/1;
 }
 
 /* Mobile: card width inside theme slider (component-slider.css handles scroll) */
@@ -75,11 +81,10 @@
   width: 100%;
   height: 100%;
   min-height: 25rem;
-  padding: 2.1rem 1.15rem 2.15rem;
+  padding: 3rem;;
   isolation: isolate;
+  color: var(--promo-ink);
   background: var(--promo-surface);
-  border: 0.1rem solid var(--promo-border);
-  box-shadow: 0 0.1rem 0 rgba(var(--color-shadow), 0.06);
   transition:
     transform 0.35s var(--promo-ease),
     border-color 0.35s ease,
@@ -104,11 +109,12 @@
   line-height: 1.25;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgb(var(--color-foreground));
+  color: var(--promo-ink);
 }
 
 .promo-banner__body {
   max-width: 36rem;
+  height: 105px;
   margin: 0 auto 1.6rem;
   font-family: var(--font-body-family);
   font-weight: 300;
@@ -124,7 +130,7 @@
 .promo-banner__link {
   display: block;
   width: 100%;
-  color: rgb(var(--color-foreground));
+  color: var(--promo-ink);
   text-decoration: none;
 }
 
@@ -134,23 +140,18 @@
 
 .promo-banner__link:focus-visible .promo-banner__card {
   transform: translateY(-0.2rem);
-  border-color: var(--promo-border-hover);
   background: var(--promo-surface-hover);
   box-shadow:
-    0 0.35rem 1.2rem rgba(var(--color-shadow), 0.12),
+    0 0.35rem 1.2rem rgba(var(--promo-ink-rgb), 0.12),
     0 0 0 0.1rem var(--promo-ring);
-  outline: 0.2rem solid rgba(var(--color-foreground), 0.45);
-  outline-offset: 0.15rem;
+  outline: 0.2rem solid var(--promo-focus);
+  outline-offset: -0.5rem;
 }
 
 @media (hover: hover) {
   .promo-banner__link:hover .promo-banner__card {
     transform: translateY(-0.2rem);
-    border-color: var(--promo-border-hover);
     background: var(--promo-surface-hover);
-    box-shadow:
-      0 0.35rem 1.2rem rgba(var(--color-shadow), 0.12),
-      0 0 0 0.1rem var(--promo-ring);
   }
 }
 
@@ -169,7 +170,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: rgb(var(--color-foreground));
+  color: var(--promo-ink);
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: 0.35rem;
@@ -219,9 +220,9 @@
     background: linear-gradient(
       105deg,
       transparent 0%,
-      rgba(var(--color-foreground), 0.06) 45%,
-      rgba(var(--color-foreground), 0.14) 50%,
-      rgba(var(--color-foreground), 0.06) 55%,
+      rgba(var(--promo-ink-rgb), 0.025) 45%,
+      rgba(var(--promo-ink-rgb), 0.06) 50%,
+      rgba(var(--promo-ink-rgb), 0.025) 55%,
       transparent 100%
     );
     background-size: 220% 100%;
@@ -236,7 +237,7 @@
     inset: -0.1rem;
     z-index: -1;
     pointer-events: none;
-    box-shadow: 0 0 1.6rem 0.05rem rgba(var(--color-foreground), 0.07);
+    box-shadow: 0 0 1.6rem 0.05rem rgba(var(--promo-ink-rgb), 0.1);
     opacity: 0;
     animation: promo-card-glow 5s ease-in-out infinite;
     animation-delay: calc(var(--promo-stagger, 0) * 0.35s);
@@ -247,11 +248,11 @@
       color: transparent;
       background: linear-gradient(
         110deg,
-        rgb(var(--color-foreground)) 0%,
-        rgb(var(--color-foreground)) 40%,
-        rgba(var(--color-foreground), 0.72) 50%,
-        rgb(var(--color-foreground)) 60%,
-        rgb(var(--color-foreground)) 100%
+        var(--promo-ink) 0%,
+        var(--promo-ink) 40%,
+        rgba(var(--promo-ink-rgb), 0.72) 50%,
+        var(--promo-ink) 60%,
+        var(--promo-ink) 100%
       );
       background-size: 220% auto;
       -webkit-background-clip: text;

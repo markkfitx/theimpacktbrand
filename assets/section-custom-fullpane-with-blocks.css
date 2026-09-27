@@ -1,0 +1,72 @@
+.custom-fullpane__panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--panel-min-height, 70vh);
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #000;
+}
+
+.custom-fullpane__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.custom-fullpane__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: #000;
+  opacity: var(--overlay-opacity, 0.4);
+  pointer-events: none;
+}
+
+.custom-fullpane__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
+  width: 100%;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  color: #fff;
+}
+
+.custom-fullpane__header {
+  margin: 0;
+  max-width: 12ch;
+  color: #fff;
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 800;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.custom-fullpane__subheader {
+  margin: 0;
+  max-width: 45ch;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.custom-fullpane__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-fullpane__video {
+    display: none;
+  }
+}
