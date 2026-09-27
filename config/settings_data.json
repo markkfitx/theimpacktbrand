@@ -9,9 +9,9 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/The_Pack_Only_Logo_c1739d6e-a6d8-44d0-b1a9-f9e11944e044.png",
-    "logo_width": 70,
-    "favicon": "shopify://shop_images/X_white.png",
+    "logo": "shopify://shop_images/compressed_new_logo_white.png",
+    "logo_width": 50,
+    "favicon": "shopify://shop_images/compressed_new_logo.jpg",
     "type_header_font": "murecho_n4",
     "heading_scale": 100,
     "type_body_font": "murecho_n4",
