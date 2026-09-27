@@ -92,19 +92,22 @@
         "fullpane_block_Kwn234": {
           "type": "card",
           "settings": {
-            "card_body_text": ""
+            "card_image": "shopify://shop_images/IMG_8987.jpg",
+            "card_body_text": "Relaxed everyday tees with bold back graphics, detailed artwork and easygoing fits designed for training, layering and everyday wear."
           }
         },
         "fullpane_block_atr341": {
           "type": "card",
           "settings": {
-            "card_body_text": ""
+            "card_image": "shopify://shop_images/Photoroom_20260628_033554.jpg",
+            "card_body_text": "Heavyweight oversized silhouettes with detailed artwork, dropped shoulders and a relaxed fit designed to stand out."
           }
         },
         "fullpane_block_rde453": {
           "type": "card",
           "settings": {
-            "card_body_text": ""
+            "card_image": "shopify://shop_images/2C528379-DEC3-4368-8E90-DD4CC50DE2DE.jpg",
+            "card_body_text": "Fitted tops and lightweight shorts designed for easy movement, flattering comfort and everyday versatility."
           }
         }
       },
@@ -118,6 +121,7 @@
         "bg_video_link": "https://cdn.shopify.com/videos/c/o/v/fca7d16684114e79ba71908779dd601c.mp4",
         "overlay_opacity": 70,
         "panel_height": 50,
+        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
         "banner_header": "LOCK IN ... NO EXCUSES.",
         "banner_sub_header": "Performance starts with showing up. Explore IMPACKT fitness apparel, training essentials and gym gear built for the work behind every goal.",
         "button_label_1": "SHOP MEN",
@@ -145,13 +149,6 @@
             "label": "Shop Performance"
           }
         },
-        "featured_collection_A9DD4h": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "the-pack",
-            "label": "Shop Raised By Wolves"
-          }
-        },
         "featured_collection_zVzwdC": {
           "type": "featured_collection",
           "settings": {
@@ -163,14 +160,13 @@
       "block_order": [
         "featured_collection_3aJAGV",
         "featured_collection_aB9K9B",
-        "featured_collection_A9DD4h",
         "featured_collection_zVzwdC"
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
         "title": "",
         "heading_size": "h1",
-        "image_ratio": "portrait",
+        "image_ratio": "square",
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
         "show_view_all": false,
@@ -204,37 +200,13 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
-    },
-    "image_hero_gF7Wf4": {
-      "type": "image-hero",
-      "name": "Image Hero",
-      "settings": {
-        "color_scheme": "scheme-8bfa54e6-155d-488e-adc8-0f78cd65f6e1",
-        "background_color": "#000000",
-        "background_image": "shopify://shop_images/AY8I4757.png",
-        "background_image_desktop": "shopify://shop_images/AY8I4757.png",
-        "image_overlay_opacity": 55,
-        "image_position": "top",
-        "section_height": 35,
-        "title": "JOIN THE COMMUNITY",
-        "text": "Built on discipline. Backed by support. No obligations.",
-        "link_label": "Learn More",
-        "link": "https://affiliates.theimpacktbrand.com/",
-        "link_style": "text",
-        "button_style_secondary": false,
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
     "custom_hero_4hRntY",
-    "promo_banner_8G4dge",
-    "fullpane_with_blocks_81a25",
     "collection_list_Knqk6V",
+    "fullpane_with_blocks_81a25",
+    "promo_banner_8G4dge",
     "image_hero_hfpjH8",
-    "image_hero_gF7Wf4"
   ]
 }

@@ -11,9 +11,9 @@
   }
 {%- endstyle -%}
 
-<div id="CustomFullpane-{{ section.id }}" class="custom-fullpane color-{{ section.settings.color_scheme }} gradient">
+<div id="CustomFullpane-{{ section.id }}" class="custom-fullpane color-{{ section.settings.color_scheme }} gradient page-width">
   {%- if section.settings.logo_image != blank -%}
-    {{ section.settings.logo_image | image_url: width: 100 | image_tag: width: 50 }}
+    <div class="CustomFullpaneLogo">{{ section.settings.logo_image | image_url: width: 100 | image_tag: width: 50 }}</div>
   {%- endif -%}
   <div class="custom-fullpane__panel">
     {%- if section.settings.bg_video_link != blank -%}
@@ -70,10 +70,17 @@
       {%- if block.settings.card_image != blank -%}
         <div class="CustomFullpane-card-wrapper">
           <div class="CustomFullpane-card">
-            {{ block.settings.card_image | image_url: width: 100 | image_tag }}
+            {{
+              block.settings.card_image
+              | image_url: width: 1200
+              | image_tag:
+                widths: '375, 550, 750, 1100, 1200',
+                sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+                loading: 'lazy'
+            }}
           </div>
           {%- if block.settings.card_body_text != blank -%}
-              <p class="CustomFullpane-card-body"></p>
+              <p class="CustomFullpane-card-body">{{ block.settings.card_body_text | escape }}</p>
           {%- endif -%}
         </div>
       {%- endif -%}

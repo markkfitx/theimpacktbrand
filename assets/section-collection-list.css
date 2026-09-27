@@ -56,6 +56,34 @@
   margin-top: 2rem;
 }
 
+/* Stretch cards to fill the row whenever they don't overflow into a slider */
+.collection-list--fill:not(.slider) {
+  display: grid;
+  grid-template-columns: repeat(var(--fill-columns-mobile, 1), minmax(0, 1fr));
+  column-gap: var(--grid-mobile-horizontal-spacing);
+  row-gap: var(--grid-mobile-vertical-spacing);
+}
+
+.collection-list--fill:not(.slider) .collection-list__item {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 990px) {
+  .collection-list--fill,
+  .collection-list--fill:not(.slider) {
+    display: grid;
+    grid-template-columns: repeat(var(--fill-columns-desktop, 1), minmax(0, 1fr));
+    column-gap: var(--grid-desktop-horizontal-spacing);
+    row-gap: var(--grid-desktop-vertical-spacing);
+  }
+
+  .collection-list--fill .collection-list__item {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /* Collection list cards: split title / arrow + modern polish */
 /* -------------------------------------------------------------------------- */
