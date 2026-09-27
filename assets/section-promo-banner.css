@@ -2,26 +2,51 @@
 /* Promo banner — animated strip + card promos */
 /* -------------------------------------------------------------------------- */
 
+/* Section wrapper + tokens
+   -------------------------------------------------------------------------- */
+
 .promo-banner {
+  --promo-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --promo-surface: rgba(var(--color-foreground), 0.05);
+  --promo-surface-hover: rgba(var(--color-foreground), 0.08);
+  --promo-border: rgba(var(--color-foreground), 0.1);
+  --promo-border-hover: rgba(var(--color-foreground), 0.28);
+  --promo-ring: rgba(var(--color-foreground), 0.12);
+  --promo-body-color: #e8e5de;
+
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-top: 0.1rem solid rgba(var(--color-foreground), 0.12);
 }
 
-.promo-banner .page-width {
-  position: relative;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
+/* List + items
+   -------------------------------------------------------------------------- */
 
 .promo-banner__list {
   display: flex;
-  list-style: none;
+  gap: 1.25rem;
   margin: 0;
   padding: 0;
-  gap: 1.25rem;
-  padding-inline: 1.5rem;
+  list-style: none;
+}
+
+.promo-banner__item {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: stretch;
+  justify-content: center;
+  min-width: 0;
+  padding: 0.35rem 0;
+  text-align: center;
+}
+
+/* Mobile: card width inside theme slider (component-slider.css handles scroll) */
+@media screen and (max-width: 749px) {
+  .promo-banner .slider.slider--mobile .promo-banner__item.slider__slide {
+    flex: 0 0 min(88vw, 22rem);
+    min-width: min(88vw, 22rem);
+  }
 }
 
 @media screen and (min-width: 750px) {
@@ -33,29 +58,13 @@
     overflow: visible;
   }
 
-  .promo-banner__list.promo-banner__list--slider {
-    display: grid;
-  }
-}
-
-.promo-banner__item {
-  flex: 1 1 auto;
-  min-width: 0;
-  position: relative;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  padding: 0.35rem 0;
-  text-align: center;
-  animation: promo-item-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) backwards;
-  animation-delay: calc(var(--promo-stagger, 0) * 0.08s);
-}
-
-@media screen and (min-width: 750px) {
   .promo-banner__item {
     padding: 0.25rem 0;
   }
 }
+
+/* Card
+   -------------------------------------------------------------------------- */
 
 .promo-banner__card {
   position: relative;
@@ -63,65 +72,60 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
   width: 100%;
-  padding: 1.1rem 1.15rem 1.15rem;
-  border-radius: 0.85rem;
-  overflow: hidden;
+  height: 100%;
+  min-height: 25rem;
+  padding: 2.1rem 1.15rem 2.15rem;
   isolation: isolate;
-  background: rgba(var(--color-foreground), 0.05);
-  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  background: var(--promo-surface);
+  border: 0.1rem solid var(--promo-border);
   box-shadow: 0 0.1rem 0 rgba(var(--color-shadow), 0.06);
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s var(--promo-ease),
     border-color 0.35s ease,
     box-shadow 0.35s ease,
     background-color 0.35s ease;
-  animation: promo-card-glow 5s ease-in-out infinite;
-  animation-delay: calc(var(--promo-stagger, 0) * 0.35s);
-}
-
-/* Sheen layers — scoped to each card only */
-.promo-banner--animated .promo-banner__card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(var(--color-foreground), 0.06) 45%,
-    rgba(var(--color-foreground), 0.14) 50%,
-    rgba(var(--color-foreground), 0.06) 55%,
-    transparent 100%
-  );
-  background-size: 220% 100%;
-  animation: promo-sheen-scan 7s ease-in-out infinite;
-  animation-delay: calc(var(--promo-stagger, 0) * 0.25s);
 }
 
 .promo-banner__card > * {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
+
+/* Card text
+   -------------------------------------------------------------------------- */
+
+.promo-banner__heading {
+  margin: 0 0 1rem;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 2.8vw, 1.45rem);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+}
+
+.promo-banner__body {
+  max-width: 36rem;
+  margin: 0 auto 1.6rem;
+  font-family: var(--font-body-family);
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: var(--promo-body-color);
+}
+
+/* Link + interaction states
+   -------------------------------------------------------------------------- */
 
 .promo-banner__link {
   display: block;
   width: 100%;
-  text-decoration: none;
   color: rgb(var(--color-foreground));
-}
-
-.promo-banner__link:hover .promo-banner__card,
-.promo-banner__link:focus-visible .promo-banner__card {
-  transform: translateY(-0.2rem);
-  border-color: rgba(var(--color-foreground), 0.28);
-  background: rgba(var(--color-foreground), 0.08);
-  box-shadow:
-    0 0.35rem 1.2rem rgba(var(--color-shadow), 0.12),
-    0 0 0 0.1rem rgba(var(--color-foreground), 0.12);
+  text-decoration: none;
 }
 
 .promo-banner__link:focus-visible {
@@ -129,127 +133,137 @@
 }
 
 .promo-banner__link:focus-visible .promo-banner__card {
+  transform: translateY(-0.2rem);
+  border-color: var(--promo-border-hover);
+  background: var(--promo-surface-hover);
+  box-shadow:
+    0 0.35rem 1.2rem rgba(var(--color-shadow), 0.12),
+    0 0 0 0.1rem var(--promo-ring);
   outline: 0.2rem solid rgba(var(--color-foreground), 0.45);
   outline-offset: 0.15rem;
 }
 
-.promo-banner__content {
-  width: 100%;
-}
-
-.promo-banner__heading-wrap {
-  display: block;
-  max-width: 100%;
-}
-
-.promo-banner__heading {
-  font-family: var(--font-heading-family);
-  font-style: var(--font-heading-style);
-  font-weight: 700;
-  font-size: clamp(1.15rem, 2.8vw, 1.45rem);
-  line-height: 1.25;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgb(var(--color-foreground));
-  display: block;
-  background: linear-gradient(
-    110deg,
-    rgb(var(--color-foreground)) 0%,
-    rgb(var(--color-foreground)) 40%,
-    rgba(var(--color-foreground), 0.72) 50%,
-    rgb(var(--color-foreground)) 60%,
-    rgb(var(--color-foreground)) 100%
-  );
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: promo-heading-shimmer 6s ease-in-out infinite;
-  animation-delay: calc(var(--promo-stagger, 0) * 0.2s);
-}
-
-/* Fallback when clip not supported */
-@supports not (background-clip: text) {
-  .promo-banner__heading {
-    color: rgb(var(--color-foreground));
-    background: none;
-    animation: none;
+@media (hover: hover) {
+  .promo-banner__link:hover .promo-banner__card {
+    transform: translateY(-0.2rem);
+    border-color: var(--promo-border-hover);
+    background: var(--promo-surface-hover);
+    box-shadow:
+      0 0.35rem 1.2rem rgba(var(--color-shadow), 0.12),
+      0 0 0 0.1rem var(--promo-ring);
   }
 }
+
+/* CTA text link
+   -------------------------------------------------------------------------- */
 
 .promo-banner__link-label {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  padding: 0.45rem 1.1rem;
-  border-radius: 10rem;
-  font-size: 1.05rem;
+  align-self: center;
+  gap: 0.6rem;
+  font-family: var(--font-body-family);
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgb(var(--color-background));
-  background: rgb(var(--color-foreground));
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.promo-banner__link-label-text {
-  position: relative;
-}
-
-.promo-banner__link .promo-banner__link-label::after {
-  content: '';
-  display: inline-block;
-  width: 0.45rem;
-  height: 0.45rem;
-  margin-left: 0.15rem;
-  border-top: 0.15rem solid rgb(var(--color-background));
-  border-right: 0.15rem solid rgb(var(--color-background));
-  transform: rotate(45deg) translate(0, 0.05rem);
-  transition: transform 0.3s ease;
-  vertical-align: middle;
-}
-
-.promo-banner__link:hover .promo-banner__link-label,
-.promo-banner__link:focus-visible .promo-banner__link-label {
-  transform: scale(1.03);
-  box-shadow: 0 0.25rem 0.85rem rgba(var(--color-foreground), 0.35);
-}
-
-.promo-banner__link:hover .promo-banner__link-label::after,
-.promo-banner__link:focus-visible .promo-banner__link-label::after {
-  transform: rotate(45deg) translate(0.15rem, -0.05rem);
-}
-
-.promo-banner__link-label--static {
-  background: rgba(var(--color-foreground), 0.12);
+  white-space: nowrap;
   color: rgb(var(--color-foreground));
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.35rem;
+  transition: text-decoration-color 0.3s ease;
 }
 
-.promo-banner__link-label--static::after {
-  display: none;
+.promo-banner__link-label::after {
+  content: '→';
+  display: inline-block;
+  transition: transform 0.3s var(--promo-ease);
 }
 
-/* Mobile: card width inside theme slider (component-slider.css handles scroll) */
-@media screen and (max-width: 749px) {
-  .promo-banner .slider.slider--mobile .promo-banner__item.slider__slide {
-    flex: 0 0 min(88vw, 22rem);
-    min-width: min(88vw, 22rem);
+.promo-banner__link:focus-visible .promo-banner__link-label {
+  text-decoration-color: currentColor;
+}
+
+.promo-banner__link:focus-visible .promo-banner__link-label::after {
+  transform: translateX(0.4rem);
+}
+
+@media (hover: hover) {
+  .promo-banner__link:hover .promo-banner__link-label {
+    text-decoration-color: currentColor;
+  }
+
+  .promo-banner__link:hover .promo-banner__link-label::after {
+    transform: translateX(0.4rem);
   }
 }
 
-@keyframes promo-sheen-scan {
-  0%,
-  100% {
-    background-position: 120% 0;
+/* Animations — only when the user allows motion
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .promo-banner--animated .promo-banner__item {
+    animation: promo-item-rise 0.65s var(--promo-ease) backwards;
+    animation-delay: calc(var(--promo-stagger, 0) * 0.08s);
   }
-  50% {
-    background-position: -120% 0;
+
+  /* Sheen sweeping across each card */
+  .promo-banner--animated .promo-banner__card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(var(--color-foreground), 0.06) 45%,
+      rgba(var(--color-foreground), 0.14) 50%,
+      rgba(var(--color-foreground), 0.06) 55%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    animation: promo-sheen-scan 7s ease-in-out infinite;
+    animation-delay: calc(var(--promo-stagger, 0) * 0.25s);
+  }
+
+  /* Pulsing glow; opacity-only so it never overrides the card's own box-shadow */
+  .promo-banner--animated .promo-banner__card::after {
+    content: '';
+    position: absolute;
+    inset: -0.1rem;
+    z-index: -1;
+    pointer-events: none;
+    box-shadow: 0 0 1.6rem 0.05rem rgba(var(--color-foreground), 0.07);
+    opacity: 0;
+    animation: promo-card-glow 5s ease-in-out infinite;
+    animation-delay: calc(var(--promo-stagger, 0) * 0.35s);
+  }
+
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    .promo-banner--animated .promo-banner__heading {
+      color: transparent;
+      background: linear-gradient(
+        110deg,
+        rgb(var(--color-foreground)) 0%,
+        rgb(var(--color-foreground)) 40%,
+        rgba(var(--color-foreground), 0.72) 50%,
+        rgb(var(--color-foreground)) 60%,
+        rgb(var(--color-foreground)) 100%
+      );
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: promo-heading-shimmer 6s ease-in-out infinite;
+      animation-delay: calc(var(--promo-stagger, 0) * 0.2s);
+    }
   }
 }
+
+/* Keyframes
+   -------------------------------------------------------------------------- */
 
 @keyframes promo-item-rise {
   from {
@@ -265,10 +279,20 @@
 @keyframes promo-card-glow {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(var(--color-foreground), 0);
+    opacity: 0;
   }
   50% {
-    box-shadow: 0 0 1.6rem 0.05rem rgba(var(--color-foreground), 0.07);
+    opacity: 1;
+  }
+}
+
+@keyframes promo-sheen-scan {
+  0%,
+  100% {
+    background-position: 120% 0;
+  }
+  50% {
+    background-position: -120% 0;
   }
 }
 
@@ -279,26 +303,5 @@
   }
   50% {
     background-position: 0% 50%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .promo-banner__card::before,
-  .promo-banner__heading,
-  .promo-banner__card {
-    animation: none !important;
-  }
-
-  .promo-banner__item {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-
-  .promo-banner__heading {
-    color: rgb(var(--color-foreground));
-    background: none;
-    -webkit-background-clip: unset;
-    background-clip: unset;
   }
 }

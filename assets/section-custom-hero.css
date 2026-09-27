@@ -1,11 +1,20 @@
+/* Height follows viewport width: 600px at a 600px-wide viewport, scaling
+   linearly to 800px at 1440px wide and capped there. Below 600px wide the
+   hero switches to a tall portrait layout at the full 800px. */
 .custom-hero {
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  height: clamp(600px, calc(457.14px + 23.81vw), 800px);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+@media screen and (max-width: 599px) {
+  .custom-hero {
+    height: 800px;
+  }
 }
 
 .custom-hero__background {
@@ -14,6 +23,12 @@
   width: 100%;
   height: 100%;
   z-index: 0;
+}
+
+.custom-hero__background picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .custom-hero__background-image {
@@ -174,7 +189,6 @@
 /* Mobile adjustments */
 @media screen and (max-width: 749px) {
   .custom-hero {
-    min-height: 80vh !important;
     align-items: flex-end;
   }
 

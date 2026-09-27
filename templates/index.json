@@ -13,7 +13,6 @@
       "type": "custom-hero",
       "name": "Custom Hero",
       "settings": {
-        "section_height": 100,
         "color_scheme": "",
         "background_image": "shopify://shop_images/Hero-image.jpg",
         "image_overlay_opacity": 30,
@@ -35,34 +34,38 @@
         "promo_p693XU": {
           "type": "promo",
           "settings": {
-            "heading": "EXCLUSIVE MEMBERS COMMUNITY",
+            "heading": "Join the IMPACKT Community",
             "link_label": "Join Now",
-            "link": "#"
+            "link": "#",
+            "body": "Connect with a community built around growth, support and opportunity, with members and staff who actually interact with you. Explore affiliate perks, brand incentives and ways to grow with IMPACKT."
           }
         },
         "promo_ThgGJC": {
           "type": "promo",
           "settings": {
-            "heading": "FREE GIFT WHEN YOU SPEND $85",
+            "heading": "FREE GIFTS WHEN YOU SPEND $85",
             "link_label": "CLAIM FREE GIFT",
-            "link": "shopify://collections/all-products"
+            "link": "shopify://collections/all-products",
+            "body": "Spend $85 or more and unlock free gifts with your order while supplies last. Our way of giving a little more back when you lock in with IMPACKT."
           }
         },
         "promo_w7bLLP": {
           "type": "promo",
           "settings": {
-            "heading": "FREE SHIPPING ON $150+",
-            "link_label": "Shop Now",
-            "link": "shopify://collections/all-products"
+            "heading": "BUILD YOUR NEXT FIT",
+            "link_label": "Start Here",
+            "link": "shopify://collections/all-products",
+            "body": "Find fitness apparel, activewear and gym essentials built for performance, comfort and everyday wear—so you can lock in wherever the day takes you."
           }
         },
         "promo_3Ymt63": {
           "type": "promo",
           "disabled": true,
-          "settings": {
+          "settings": { 
             "heading": "EARN FREE PRODUCTS",
             "link_label": "Join Now",
-            "link": ""
+            "link": "",
+            "body": "TST"
           }
         }
       },
@@ -79,8 +82,8 @@
         "background_color": "#131313",
         "margin_top": 0,
         "margin_bottom": 0,
-        "padding_top": 16,
-        "padding_bottom": 16
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "collection_list_Knqk6V": {
@@ -131,8 +134,8 @@
         "show_view_all": false,
         "columns_mobile":"2",
         "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "display_boxes_yYhzQG": {
@@ -235,8 +238,8 @@
         "button_style_secondary": false,
         "margin_top": 0,
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "image_hero_gF7Wf4": {
@@ -258,8 +261,8 @@
         "button_style_secondary": false,
         "margin_top": 0,
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
