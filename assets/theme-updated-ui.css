@@ -19,9 +19,6 @@
 /* Product cards (collection, search, recommendations) */
 .card__heading {
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 600;
-  line-height: 1.3;
 }
 
 /* Retail-style price emphasis */

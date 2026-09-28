@@ -2921,7 +2921,6 @@ details-disclosure > details {
   display: inline-block;
   text-align: center;
   background-color: rgb(var(--color-badge-background));
-  border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
   color: rgb(var(--color-badge-foreground));
   word-break: break-word;
 
@@ -2931,8 +2930,10 @@ details-disclosure > details {
   letter-spacing: .14rem;
   text-transform: uppercase;
   line-height: 1.2;
-  border: .1rem solid rgba(255, 255, 255, .2);
+  /* Border uses the badge's own text color so the edge stays visible on both light and dark product images */
+  border: .1rem solid rgba(var(--color-badge-border), .5);
   border-radius: .4rem;
+  box-shadow: 0 .1rem .3rem rgba(0, 0, 0, .15);
 }
 
 .gradient {
@@ -3447,6 +3448,7 @@ details-disclosure > details {
     z-index: 2;
   }
 
+  
   :root {
     --easter-egg: none;
     --sparkle: url('./sparkle.gif');

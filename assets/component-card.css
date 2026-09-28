@@ -354,12 +354,31 @@
 .card__heading {
   margin-top: 0;
   margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.8vw, 1.5rem);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-align: left;
 }
 
 .card__heading:last-child {
   margin-bottom: 0;
 }
-
+.price__container{
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
 .card--horizontal .card__heading,
 .card--horizontal .price__container .price-item,
 .card--horizontal__quick-add {

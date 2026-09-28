@@ -314,7 +314,7 @@ a.product__text {
 
 .product__badge {
   display: inline-block;
-  background-color: #000;
+  background-color: #131313;
   color: #fff;
   padding: 0.6rem 0.8rem;
   font-size: 8px;
@@ -322,21 +322,14 @@ a.product__text {
   letter-spacing: 0.14rem;
   text-transform: uppercase;
   line-height: 1.2;
-  border: 0.1rem solid rgba(255,255,255,.2);
+  border: 0.1rem solid #131313;
   border-radius: 0.4rem;
 }
 
 .product__badge--discount,
-.product__badge--new,
-.product__badge--relaxed,
-.product__badge--fabric {
-  background-color: #000;
-  color: #fff;
-}
-
-.product__badge--discount {
+.product__badge--out-of-stock {
   background-color: #fff;
-  color: #000;
+  color: #131313;
 }
 
 /* Alphalete-style layout: Title and Price on same row */
