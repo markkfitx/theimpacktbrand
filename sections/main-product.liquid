@@ -74,7 +74,7 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-  <div class="page-width">
+  <div class="page-width ">
     <div
       class="release-shell release-shell--pdp release-shell--{{ section.settings.media_size }}{% if product.media.size == 0 %} release-shell--no-media{% endif %}"
     >
@@ -104,9 +104,6 @@
               endif
             -%}
             {%- comment -%} Discount percentage badge {%- endcomment -%}
-            {%- if has_discount and discount_percentage > 0 -%}
-              <span class="product__badge product__badge--discount">-{{ discount_percentage }}%</span>
-                {%- endif -%}
             {%- comment -%} NEW badge if product is in "New Arrivals" collection or has "new" tag {%- endcomment -%}
             {%- liquid
               assign is_new_arrival = false
@@ -169,7 +166,6 @@
             
           </div>
 
-          {%- comment -%} Alphalete-style layout: Title and Price on same row {%- endcomment -%}
           <div class="product__title-price-row">
             {%- for block in section.blocks -%}
               {%- if block.type == 'title' -%}
@@ -193,10 +189,112 @@
                     show_badges: false,
                     price_class: 'price--large'
                   -%}
+                  {%- if has_discount and discount_percentage > 0 -%}
+                    <span class="product__discount-text">{{ discount_percentage }}% off</span>
+                  {%- endif -%}
                 </div>
               {%- endif -%}
             {%- endfor -%}
           </div>
+
+          {%- liquid
+            assign size_option_name = ''
+            for option in product.options
+              assign option_downcase = option | downcase
+              if option_downcase contains 'size'
+                assign size_option_name = option
+                break
+              endif
+            endfor
+
+            assign has_variant_picker = false
+            for block in section.blocks
+              if block.type == 'variant_picker'
+                assign has_variant_picker = true
+              endif
+            endfor
+
+            assign size_guide_in_picker = false
+            if size_option_name != blank and has_variant_picker and product.has_only_default_variant == false
+              assign size_guide_in_picker = true
+            endif
+          -%}
+
+          {%- capture size_chart_html -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'size_chart' -%}
+                {%- liquid
+                  assign size_chart_image = null
+                  assign has_metafield_image = false
+              
+                  assign size_chart_metafield = product.metafields.custom.size_guide | default: product.metafields.custom.size_chart | default: product.metafields.custom['size_guide'] | default: product.metafields.custom['size_chart']
+              
+                  if size_chart_metafield != blank
+                    if size_chart_metafield.media_type == 'image'
+                      assign size_chart_image = size_chart_metafield
+                      assign has_metafield_image = true
+                    elsif size_chart_metafield.size_chart_image != blank
+                      assign size_chart_image = size_chart_metafield.size_chart_image
+                      assign has_metafield_image = true
+                    elsif size_chart_metafield['size_chart_image'] != blank
+                      assign size_chart_image = size_chart_metafield['size_chart_image']
+                      assign has_metafield_image = true
+                    elsif size_chart_metafield.image != blank
+                      assign size_chart_image = size_chart_metafield.image
+                      assign has_metafield_image = true
+                    elsif size_chart_metafield.value != blank
+                      if size_chart_metafield.value.media_type == 'image'
+                        assign size_chart_image = size_chart_metafield.value
+                        assign has_metafield_image = true
+                      elsif size_chart_metafield.value.size_chart_image != blank
+                        assign size_chart_image = size_chart_metafield.value.size_chart_image
+                        assign has_metafield_image = true
+                      elsif size_chart_metafield.value['size_chart_image'] != blank
+                        assign size_chart_image = size_chart_metafield.value['size_chart_image']
+                        assign has_metafield_image = true
+                      elsif size_chart_metafield.value.image != blank
+                        assign size_chart_image = size_chart_metafield.value.image
+                        assign has_metafield_image = true
+                      endif
+                    endif
+                  endif
+                -%}
+                {%- if has_metafield_image or block.settings.size_chart_page != blank or block.settings.size_chart_url != blank -%}
+                  <div class="product__size-chart" {{ block.shopify_attributes }}>
+                    {%- if has_metafield_image -%}
+                      <modal-opener
+                        class="product-popup-modal__opener"
+                        data-modal="#SizeChartModal-{{ block.id }}"
+                      >
+                        <button
+                          id="SizeChartButton-{{ block.id }}"
+                          class="link product__size-chart-link"
+                          type="button"
+                          aria-haspopup="dialog"
+                        >
+                          {{ block.settings.link_text | default: 'Size Chart' }}
+                          {%- if block.settings.show_icon -%}
+                            {{- 'icon-arrow.svg' | inline_asset_content -}}
+                          {%- endif -%}
+                        </button>
+                      </modal-opener>
+                    {%- else -%}
+                      <a
+                        href="{% if block.settings.size_chart_page != blank %}{{ block.settings.size_chart_page.url }}{% else %}{{ block.settings.size_chart_url }}{% endif %}"
+                        class="link product__size-chart-link"
+                        {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                      >
+                        {{ block.settings.link_text | default: 'Size Chart' }}
+                        {%- if block.settings.show_icon -%}
+                          {{- 'icon-arrow.svg' | inline_asset_content -}}
+                        {%- endif -%}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
 
           {%- comment -%} First pass: Purchase-related blocks (variants, quantity, buy buttons, etc.) {%- endcomment -%}
           {%- for block in section.blocks -%}
@@ -476,80 +574,37 @@
                 %}
 
               {%- when 'variant_picker' -%}
-                {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
-              {%- when 'size_chart' -%}
                 {%- liquid
-                  assign size_chart_image = null
-                  assign has_metafield_image = false
-                  
-                  assign size_chart_metafield = product.metafields.custom.size_guide | default: product.metafields.custom.size_chart | default: product.metafields.custom['size_guide'] | default: product.metafields.custom['size_chart']
-                  
-                  if size_chart_metafield != blank
-                    if size_chart_metafield.media_type == 'image'
-                      assign size_chart_image = size_chart_metafield
-                      assign has_metafield_image = true
-                    elsif size_chart_metafield.size_chart_image != blank
-                      assign size_chart_image = size_chart_metafield.size_chart_image
-                      assign has_metafield_image = true
-                    elsif size_chart_metafield['size_chart_image'] != blank
-                      assign size_chart_image = size_chart_metafield['size_chart_image']
-                      assign has_metafield_image = true
-                    elsif size_chart_metafield.image != blank
-                      assign size_chart_image = size_chart_metafield.image
-                      assign has_metafield_image = true
-                    elsif size_chart_metafield.value != blank
-                      if size_chart_metafield.value.media_type == 'image'
-                        assign size_chart_image = size_chart_metafield.value
-                        assign has_metafield_image = true
-                      elsif size_chart_metafield.value.size_chart_image != blank
-                        assign size_chart_image = size_chart_metafield.value.size_chart_image
-                        assign has_metafield_image = true
-                      elsif size_chart_metafield.value['size_chart_image'] != blank
-                        assign size_chart_image = size_chart_metafield.value['size_chart_image']
-                        assign has_metafield_image = true
-                      elsif size_chart_metafield.value.image != blank
-                        assign size_chart_image = size_chart_metafield.value.image
-                        assign has_metafield_image = true
-                      endif
-                    endif
+                  assign picker_size_guide = ''
+                  if size_guide_in_picker
+                    assign picker_size_guide = size_chart_html
                   endif
                 -%}
-                {%- if has_metafield_image or block.settings.size_chart_page != blank or block.settings.size_chart_url != blank -%}
-                  <div class="product__size-chart" {{ block.shopify_attributes }}>
-                    {%- if has_metafield_image -%}
-                      <modal-opener
-                        class="product-popup-modal__opener"
-                        data-modal="#SizeChartModal-{{ block.id }}"
-                      >
-                        <button
-                          id="SizeChartButton-{{ block.id }}"
-                          class="link product__size-chart-link"
-                          type="button"
-                          aria-haspopup="dialog"
-                        >
-                          {{ block.settings.link_text | default: 'Size Chart' }}
-                          {%- if block.settings.show_icon -%}
-                            {{- 'icon-arrow.svg' | inline_asset_content -}}
-                          {%- endif -%}
-                        </button>
-                      </modal-opener>
-                    {%- else -%}
-                      <a
-                        href="{% if block.settings.size_chart_page != blank %}{{ block.settings.size_chart_page.url }}{% else %}{{ block.settings.size_chart_url }}{% endif %}"
-                        class="link product__size-chart-link"
-                        {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-                      >
-                        {{ block.settings.link_text | default: 'Size Chart' }}
-                        {%- if block.settings.show_icon -%}
-                          {{- 'icon-arrow.svg' | inline_asset_content -}}
-                        {%- endif -%}
-                      </a>
-                    {%- endif -%}
-                  </div>
-                {%- endif -%}
-              {%- when 'buy_buttons' -%}
-                {%- render 'buy-buttons',
+                {% render 'product-variant-picker',
+                  product: product,
                   block: block,
+                  product_form_id: product_form_id,
+                  size_option_name: size_option_name,
+                  size_guide_html: picker_size_guide
+                %}
+              {%- when 'size_chart' -%}
+                {%- unless size_guide_in_picker -%}{{ size_chart_html }}{%- endunless -%}
+              {%- when 'buy_buttons' -%}
+                {%- assign buy_buttons_block = block -%}
+                {%- for price_block in section.blocks -%}
+                  {%- if price_block.type == 'price' -%}
+                    <div class="product__installments">
+                      {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                      {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                        {{ form | payment_terms }}
+                      {%- endform -%}
+                    </div>
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- render 'buy-buttons',
+                  block: buy_buttons_block,
                   product: product,
                   product_form_id: product_form_id,
                   section_id: section.id,
@@ -570,18 +625,6 @@
                     {%- endif -%}
                   </div>
                 {%- endif -%}
-                {%- for block in section.blocks -%}
-                  {%- if block.type == 'price' -%}
-                    <div {{ block.shopify_attributes }}>
-                      {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                      {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                        {{ form | payment_terms }}
-                      {%- endform -%}
-                    </div>
-                    {%- break -%}
-                  {%- endif -%}
-                {%- endfor -%}
               {%- when 'description' -%}
                 {%- comment -%} Moved to second pass below {%- endcomment -%}
               {%- when 'fit_range' -%}

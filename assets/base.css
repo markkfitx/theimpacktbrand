@@ -81,6 +81,11 @@
   margin: 0;
   padding-inline: 24px;
 }
+.limit-width{
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+}
 
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 100%;
@@ -3448,7 +3453,7 @@ details-disclosure > details {
     z-index: 2;
   }
 
-  
+
   :root {
     --easter-egg: none;
     --sparkle: url('./sparkle.gif');

@@ -1239,6 +1239,39 @@ input.mobile-facets__checkbox {
     position: relative;
   }
 
+  .facets-vertical-form.facets-toolbar {
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2.4rem;
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  }
+
+  .facets-toolbar .facets-toolbar__count {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-left: 0;
+    padding-right: 2.4rem;
+  }
+
+  .facets-toolbar__count-label {
+    font-size: 1.1rem;
+    line-height: 1.2;
+    color: rgba(var(--color-foreground), 0.55);
+  }
+
+  .facets-toolbar .product-count__text {
+    font-size: 1.3rem;
+    color: rgb(var(--color-foreground));
+  }
+
+  .facets-toolbar .facets-toolbar__sort {
+    padding-left: 0;
+    flex: 0 0 auto;
+  }
+
   .facets-vertical .active-facets__button-wrapper {
     margin-bottom: 2rem;
   }
