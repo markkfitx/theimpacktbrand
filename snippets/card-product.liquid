@@ -372,8 +372,9 @@
                   <a
                     href="{{ swatch_url }}"
                     class="card__color-swatch{% if option_disabled %} card__color-swatch--unavailable{% endif %}{% if value == color_option.selected_value %} card__color-swatch--selected{% endif %}"
-                    aria-label="{{ value }}"
-                    title="{{ value }}"
+                    aria-label="{{ value | escape }}"
+                    title="{{ value | escape }}"
+                    {% if value == color_option.selected_value %}aria-current="true"{% endif %}
                     {% if option_disabled %}aria-disabled="true"{% endif %}
                   >
                     {%- if swatch_value -%}

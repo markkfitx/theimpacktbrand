@@ -16,25 +16,25 @@
   margin-bottom: 0.5rem;
 }
 
+/* 2rem swatch + 0.2rem padding = 24px target (WCAG 2.5.8). States use an inset
+   ring so the swatch doesn't shift and the focus outline stays free. */
 .card__color-swatch {
   display: inline-block;
   position: relative;
-  cursor: pointer;
-  text-decoration: none;
-  /*border: 0.1rem solid rgba(var(--color-foreground), 0.2);*/
-  border-radius: 0;
   padding: 0.2rem;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  border-radius: 0;
+  text-decoration: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .card__color-swatch:hover {
-  border-color: rgba(var(--color-foreground), 0.6);
-  transform: scale(1.05);
+  box-shadow: inset 0 0 0 0.1rem rgba(var(--color-foreground), 0.6);
 }
 
-.card__color-swatch--selected {
-  border-color: rgba(var(--color-foreground), 1);
-  border-width: 0.2rem;
+.card__color-swatch--selected,
+.card__color-swatch--selected:hover {
+  box-shadow: inset 0 0 0 0.1rem rgb(var(--color-foreground));
 }
 
 .card__color-swatch--unavailable {
@@ -42,15 +42,17 @@
   cursor: not-allowed;
 }
 
-.card__color-swatch--unavailable:hover {
-  transform: none;
+@media (prefers-reduced-motion: no-preference) {
+  .card__color-swatch:not(.card__color-swatch--unavailable):hover {
+    transform: scale(1.05);
+  }
 }
 
 .card__color-swatch .swatch {
   display: block;
   width: 2rem;
   height: 2rem;
-  border-radius: 0rem;
+  border-radius: 0;
 }
 
 .card {
@@ -157,7 +159,7 @@
 }
 
 .card--standard .card__media {
-  margin: 0 /*var(--image-padding);*/
+  margin: 0;
 }
 
 .card__inner {
@@ -359,8 +361,7 @@
   min-width: 0;
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
-  text-transform: capitalize;
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(1.3rem, 2.8vw, 1.5rem);
   line-height: 1.25;
   letter-spacing: 0.04em;
@@ -371,12 +372,16 @@
 .card__heading:last-child {
   margin-bottom: 0;
 }
-.price__container{
+
+.card__information .price__container {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 1.6;
+}
+.price__regular{
+  color: rgba(var(--color-foreground), 0.65);
 }
 .card--horizontal .card__heading,
 .card--horizontal .price__container .price-item,
