@@ -98,24 +98,24 @@
             "collection": "no-excuses-pre-workout"
           }
         },
-        "featured_collection_3aJAGV": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "camo-drop"
-          }
-        },
         "featured_collection_zVzwdC": {
           "type": "featured_collection",
           "settings": {
             "collection": "the-pack-only"
+          }
+        },
+        "featured_collection_3aJAGV": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "camo-drop"
           }
         }
       },
       "block_order": [
         "featured_collection_A9DD4h",
         "featured_collection_aB9K9B",
-        "featured_collection_3aJAGV",
-        "featured_collection_zVzwdC"
+        "featured_collection_zVzwdC",
+        "featured_collection_3aJAGV"
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
