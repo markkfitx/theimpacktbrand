@@ -11,11 +11,11 @@
   /* Light grey card palette matching the theme's light scheme, independent of
      the section color scheme. Contrast on --promo-surface (#e4e4e4): ink 14.7:1,
      body 9.9:1, border-hover 5:1, focus ring 14.7:1 (WCAG AA: text 4.5:1, UI 3:1). */
-  --promo-ink-rgb: 18, 18, 18;
-  --promo-ink: rgb(var(--promo-ink-rgb));
-  --promo-body-color: #333333;
-  --promo-surface: rgba(240,240,240,1);
-  --promo-surface-hover: rgba(240,240,240,1);
+  --promo-ink-rgb: 255,255,255;
+  --promo-ink: #ffffff;
+  --promo-body-color: #ffffffad;
+  --promo-surface: #131313;
+  --promo-surface-hover: #131313ee;
   --promo-ring: rgba(var(--promo-ink-rgb), 0.12);
   --promo-focus: var(--promo-ink);
 
@@ -32,7 +32,7 @@
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1rem;
   align-items: stretch;
-  margin: 125px 0 36px 0;
+  margin: 0 0 36px 0;
   padding: 0;
   list-style: none;
 }

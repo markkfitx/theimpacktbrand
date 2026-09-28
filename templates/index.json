@@ -119,7 +119,7 @@
       "settings": {
         "color_scheme": "scheme-2",
         "bg_video_link": "https://cdn.shopify.com/videos/c/o/v/fca7d16684114e79ba71908779dd601c.mp4",
-        "overlay_opacity": 70,
+        "overlay_opacity": 10,
         "panel_height": 50,
         "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
         "banner_header": "LOCK IN ... NO EXCUSES.",
@@ -129,6 +129,30 @@
         "button_style_secondary_1": false,
         "button_label_2": "SHOP WOMEN",
         "button_link_2": "shopify://collections/all-products",
+        "button_style_secondary_2": false
+      }
+    },
+    "fullpane_with_blocks_81b31": {
+      "type": "custom-fullpane-promo-with-blocks",
+      "name": "Full pane with blocks",
+      "blocks": {
+      },
+      "block_order": [
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "bg_video_link": "",
+        "bg_image": "shopify://shop_images/file_1.jpg",
+        "overlay_opacity": 50,
+        "panel_height": 50,
+        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
+        "banner_header": "MORE THAN WHAT YOU WEAR",
+        "banner_sub_header": "Discover apparel, perks and a community built to keep you connected, rewarded and ready to lock in.",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
         "button_style_secondary_2": false
       }
     },
@@ -303,6 +327,7 @@
     "collection_list_Knqk6V",
     "fullpane_with_blocks_81a25",
     "collection_list_Knqk4b",
+    "fullpane_with_blocks_81b31",
     "promo_banner_8G4dge",
     "image_hero_hfpjH8",
   ]

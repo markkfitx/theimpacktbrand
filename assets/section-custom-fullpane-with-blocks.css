@@ -8,7 +8,8 @@
   background-color: #000;
 }
 
-.custom-fullpane__video {
+.custom-fullpane__video,
+.custom-fullpane__image {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -104,7 +105,9 @@
   flex-direction: column;
   gap: 1rem;
 }
-
+#CustomFullpane-template--22990297235523__fullpane_with_blocks_81b31 .custom-fullpane__header{
+    max-width:13ch ;
+}
 .CustomFullpane-card {
   aspect-ratio: 4 / 5;
   overflow: hidden;
