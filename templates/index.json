@@ -86,10 +86,10 @@
     "collection_list_Knqk6V": {
       "type": "collection-list",
       "blocks": {
-        "featured_collection_3aJAGV": {
+        "featured_collection_A9DD4h": {
           "type": "featured_collection",
           "settings": {
-            "collection": "camo-drop"
+            "collection": "the-pack"
           }
         },
         "featured_collection_aB9K9B": {
@@ -98,10 +98,10 @@
             "collection": "no-excuses-pre-workout"
           }
         },
-        "featured_collection_A9DD4h": {
+        "featured_collection_3aJAGV": {
           "type": "featured_collection",
           "settings": {
-            "collection": "the-pack"
+            "collection": "camo-drop"
           }
         },
         "featured_collection_zVzwdC": {
@@ -112,9 +112,9 @@
         }
       },
       "block_order": [
-        "featured_collection_3aJAGV",
-        "featured_collection_aB9K9B",
         "featured_collection_A9DD4h",
+        "featured_collection_aB9K9B",
+        "featured_collection_3aJAGV",
         "featured_collection_zVzwdC"
       ],
       "name": "t:sections.collection-list.presets.name",
@@ -125,7 +125,7 @@
         "columns_desktop": 4,
         "color_scheme": "",
         "show_view_all": false,
-        "columns_mobile":"2",
+        "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
