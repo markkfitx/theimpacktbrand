@@ -1,5 +1,6 @@
 /*
- * Product detail: Alphalete-style 5-track grid (60/40 large, 40/60 small, 50/50 medium).
+ * Product detail grid: large = capped 700px image + 440px info centered as a pair,
+ * small = 40/60 on a 5-track grid, medium = 50/50.
  * Activated by .release-shell--pdp wrapper in main-product.liquid.
  *
  * Dawn .grid uses flexbox with percentage widths on .grid__item; those widths are
@@ -89,6 +90,15 @@
     margin-bottom: 0;
   }
 
+  /* Large: capped image + info columns, centered together as a pair */
+  .release-shell--pdp.release-shell--large:not(.release-shell--no-media) .product.grid {
+    --pdp-media-span: 1;
+    --pdp-info-span: 1;
+    grid-template-columns: minmax(0, 70rem) minmax(0, 44rem);
+    justify-content: center;
+    column-gap: 4rem;
+  }
+
   .release-shell--pdp.release-shell--small:not(.release-shell--no-media) .product.grid {
     --pdp-media-span: 2;
     --pdp-info-span: 3;
@@ -117,14 +127,5 @@
   .release-shell--pdp:not(.release-shell--no-media) .product.grid > .product__info-wrapper {
     grid-column: span var(--pdp-info-span);
     padding: var(--pdp-info-padding);
-  }
-}
-
-/* Ultra-wide: 3-column shell for large media (Alphalete 1920px behavior, simplified) */
-@media screen and (min-width: 1920px) {
-  .release-shell--pdp.release-shell--large:not(.release-shell--no-media) .product.grid {
-    --pdp-columns: 3;
-    --pdp-media-span: 2;
-    --pdp-info-span: 1;
   }
 }
