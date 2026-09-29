@@ -1881,7 +1881,7 @@ input[type='checkbox'] {
 .quantity {
   color: rgba(var(--color-foreground));
   position: relative;
-  width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
+  width: calc(10rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
   display: flex;
   border-radius: 0;
   min-height: calc((var(--inputs-border-width) * 2) + 4.5rem);

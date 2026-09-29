@@ -17,7 +17,7 @@
 
 .drawer__inner {
   height: 100%;
-  width: 40rem;
+  width: 600px;
   max-width: calc(100vw - 3rem);
   padding: 0 1.5rem;
   border: 0.1rem solid rgba(var(--color-foreground), 0.2);
@@ -413,7 +413,10 @@ cart-drawer-items {
   display: table-row;
   margin-bottom: 0;
 }
-
+.cart-item__name{
+  font-weight:400;
+  font-size:1.4rem;
+}
 .cart-drawer .cart-items th {
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
