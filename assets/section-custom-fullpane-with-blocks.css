@@ -138,6 +138,23 @@
   line-height:1.6;
 }
 
+@media screen and (max-width: 749px) {
+    .custom-fullpane__cards.scroll-mobile {
+        position: relative;
+        display:flex;
+        flex-wrap: inherit;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scroll-padding-left: 1.5rem;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 1rem;
+    }
+    .custom-fullpane__cards.scroll-mobile .CustomFullpane-card-wrapper{
+        min-width: 75dvw;
+    }
+  }
+
 @media screen and (min-width: 750px) {
   .custom-fullpane__cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));

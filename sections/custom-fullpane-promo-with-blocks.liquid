@@ -79,7 +79,7 @@
     </div>
   </div>
   {%- if section.blocks != empty -%}
-    <div class="custom-fullpane__cards">
+    <div class="custom-fullpane__cards{% if section.settings.grid_orientation == "0" %} scroll-mobile{% endif %}">
       {% for block in section.blocks %}
         {%- if block.settings.card_image != blank -%}
           <div class="CustomFullpane-card-wrapper">
@@ -146,6 +146,20 @@
             "unit": "%",
             "label": "Overlay opacity",
             "default": 40
+          },
+          {
+            "type": "select",
+            "label": "Mobile Layout",
+            "id": "grid_orientation",
+            "options": [
+              {
+                "value":"0",
+                "label":"Grid"
+              },
+              {
+                "value":"1",
+                "label":"Column"
+              }]
           },
           {
             "type": "range",
