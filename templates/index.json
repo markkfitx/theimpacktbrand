@@ -31,16 +31,6 @@
     "collection_list_Knqk6V": {
       "type": "collection-list",
       "blocks": {
-        "featured_collection_3aJAGV": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "camo-drop",
-            "label": "",
-            "card_header": "",
-            "content_position": "below",
-            "button_label": "Shop"
-          }
-        },
         "featured_collection_aB9K9B": {
           "type": "featured_collection",
           "settings": {
@@ -51,10 +41,20 @@
             "button_label": "Shop"
           }
         },
+        "featured_collection_3aJAGV": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "camo-drop",
+            "label": "",
+            "card_header": "",
+            "content_position": "below",
+            "button_label": "Shop"
+          }
+        },
         "featured_collection_zVzwdC": {
           "type": "featured_collection",
           "settings": {
-            "collection": "the-pack-only",
+            "collection": "the-pack",
             "label": "Shop The Pack",
             "card_header": "",
             "content_position": "below",
@@ -63,8 +63,8 @@
         }
       },
       "block_order": [
-        "featured_collection_3aJAGV",
         "featured_collection_aB9K9B",
+        "featured_collection_3aJAGV",
         "featured_collection_zVzwdC"
       ],
       "name": "t:sections.collection-list.presets.name",
