@@ -61,7 +61,7 @@
         "promo_3Ymt63": {
           "type": "promo",
           "disabled": true,
-          "settings": { 
+          "settings": {
             "heading": "EARN FREE PRODUCTS",
             "link_label": "Join Now",
             "link": "",
@@ -87,7 +87,6 @@
     },
     "fullpane_with_blocks_81a25": {
       "type": "custom-fullpane-promo-with-blocks",
-      "name": "Full pane with blocks",
       "blocks": {
         "fullpane_block_Kwn234": {
           "type": "card",
@@ -116,13 +115,14 @@
         "fullpane_block_atr341",
         "fullpane_block_rde453"
       ],
+      "name": "Full pane with blocks",
       "settings": {
         "color_scheme": "scheme-2",
+        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
         "bg_video_link": "https://cdn.shopify.com/videos/c/o/v/fca7d16684114e79ba71908779dd601c.mp4",
         "overlay_opacity": 10,
-        "panel_height": 50,
         "grid_orientation": "0",
-        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
+        "panel_height": 50,
         "banner_header": "LOCK IN ... NO EXCUSES.",
         "banner_sub_header": "Performance starts with showing up. Explore IMPACKT fitness apparel, training essentials and gym gear built for the work behind every goal.",
         "button_label_1": "SHOP MEN",
@@ -136,18 +136,14 @@
     "fullpane_with_blocks_81b31": {
       "type": "custom-fullpane-promo-with-blocks",
       "name": "Full pane with blocks",
-      "blocks": {
-      },
-      "block_order": [
-      ],
       "settings": {
         "color_scheme": "scheme-2",
+        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
         "bg_video_link": "",
         "bg_image": "shopify://shop_images/file_1.jpg",
         "overlay_opacity": 50,
-        "panel_height": 50,
         "grid_orientation": "1",
-        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
+        "panel_height": 50,
         "banner_header": "MORE THAN WHAT YOU WEAR",
         "banner_sub_header": "Discover apparel, perks and a community built to keep you connected, rewarded and ready to lock in.",
         "button_label_1": "",
@@ -211,7 +207,7 @@
         "columns_desktop": 3,
         "color_scheme": "scheme-1",
         "show_view_all": false,
-        "columns_mobile":"1",
+        "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 0,
         "padding_bottom": 0
@@ -291,12 +287,12 @@
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
+        "logo_img": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
         "title": "The Pack Favorites",
         "heading_size": "h1",
         "image_ratio": "portrait",
         "columns_desktop": 6,
         "color_scheme": "scheme-1",
-        "logo_img": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
         "show_view_all": false,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
@@ -337,6 +333,6 @@
     "collection_list_Knqk4b",
     "fullpane_with_blocks_81b31",
     "promo_banner_8G4dge",
-    "image_hero_hfpjH8",
+    "image_hero_hfpjH8"
   ]
 }
