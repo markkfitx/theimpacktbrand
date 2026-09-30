@@ -28,140 +28,14 @@
         "button_style_secondary_2": false
       }
     },
-    "promo_banner_8G4dge": {
-      "type": "promo-banner",
-      "blocks": {
-        "promo_p693XU": {
-          "type": "promo",
-          "settings": {
-            "heading": "Join the IMPACKT Community",
-            "link_label": "Join Now",
-            "link": "#",
-            "body": "Connect with a community built around growth, support and opportunity, with members and staff who actually interact with you. Explore affiliate perks, brand incentives and ways to grow with IMPACKT."
-          }
-        },
-        "promo_ThgGJC": {
-          "type": "promo",
-          "settings": {
-            "heading": "FREE GIFTS WHEN YOU SPEND $85",
-            "link_label": "CLAIM FREE GIFT",
-            "link": "shopify://collections/all-products",
-            "body": "Spend $85 or more and unlock free gifts with your order while supplies last. Our way of giving a little more back when you lock in with IMPACKT."
-          }
-        },
-        "promo_w7bLLP": {
-          "type": "promo",
-          "settings": {
-            "heading": "BUILD YOUR NEXT FIT",
-            "link_label": "Start Here",
-            "link": "shopify://collections/all-products",
-            "body": "Find fitness apparel, activewear and gym essentials built for performance, comfort and everyday wear—so you can lock in wherever the day takes you."
-          }
-        },
-        "promo_3Ymt63": {
-          "type": "promo",
-          "disabled": true,
-          "settings": {
-            "heading": "EARN FREE PRODUCTS",
-            "link_label": "Join Now",
-            "link": "",
-            "body": "TST"
-          }
-        }
-      },
-      "block_order": [
-        "promo_p693XU",
-        "promo_ThgGJC",
-        "promo_w7bLLP",
-        "promo_3Ymt63"
-      ],
-      "custom_css": [],
-      "name": "Promo Banner",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "fullpane_with_blocks_81a25": {
-      "type": "custom-fullpane-promo-with-blocks",
-      "blocks": {
-        "fullpane_block_Kwn234": {
-          "type": "card",
-          "settings": {
-            "card_image": "shopify://shop_images/IMG_8987.jpg",
-            "card_body_text": "Relaxed everyday tees with bold back graphics, detailed artwork and easygoing fits designed for training, layering and everyday wear."
-          }
-        },
-        "fullpane_block_atr341": {
-          "type": "card",
-          "settings": {
-            "card_image": "shopify://shop_images/Photoroom_20260628_033554.jpg",
-            "card_body_text": "Heavyweight oversized silhouettes with detailed artwork, dropped shoulders and a relaxed fit designed to stand out."
-          }
-        },
-        "fullpane_block_rde453": {
-          "type": "card",
-          "settings": {
-            "card_image": "shopify://shop_images/2C528379-DEC3-4368-8E90-DD4CC50DE2DE.jpg",
-            "card_body_text": "Fitted tops and lightweight shorts designed for easy movement, flattering comfort and everyday versatility."
-          }
-        }
-      },
-      "block_order": [
-        "fullpane_block_Kwn234",
-        "fullpane_block_atr341",
-        "fullpane_block_rde453"
-      ],
-      "name": "Full pane with blocks",
-      "settings": {
-        "color_scheme": "scheme-2",
-        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
-        "bg_video_link": "https://cdn.shopify.com/videos/c/o/v/fca7d16684114e79ba71908779dd601c.mp4",
-        "overlay_opacity": 10,
-        "grid_orientation": "0",
-        "panel_height": 50,
-        "banner_header": "LOCK IN ... NO EXCUSES.",
-        "banner_sub_header": "Performance starts with showing up. Explore IMPACKT fitness apparel, training essentials and gym gear built for the work behind every goal.",
-        "button_label_1": "SHOP MEN",
-        "button_link_1": "shopify://collections/all-products",
-        "button_style_secondary_1": false,
-        "button_label_2": "SHOP WOMEN",
-        "button_link_2": "shopify://collections/all-products",
-        "button_style_secondary_2": false
-      }
-    },
-    "fullpane_with_blocks_81b31": {
-      "type": "custom-fullpane-promo-with-blocks",
-      "name": "Full pane with blocks",
-      "settings": {
-        "color_scheme": "scheme-2",
-        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
-        "bg_video_link": "",
-        "bg_image": "shopify://shop_images/file_1.jpg",
-        "overlay_opacity": 50,
-        "grid_orientation": "1",
-        "panel_height": 50,
-        "banner_header": "MORE THAN WHAT YOU WEAR",
-        "banner_sub_header": "Discover apparel, perks and a community built to keep you connected, rewarded and ready to lock in.",
-        "button_label_1": "",
-        "button_link_1": "",
-        "button_style_secondary_1": false,
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_style_secondary_2": false
-      }
-    },
     "collection_list_Knqk6V": {
       "type": "collection-list",
       "blocks": {
-        "featured_collection_A9DD4h": {
+        "featured_collection_3aJAGV": {
           "type": "featured_collection",
           "settings": {
             "collection": "camo-drop",
-            "label": "Shop Camo",
+            "label": "",
             "card_header": "",
             "content_position": "below",
             "button_label": "Shop"
@@ -186,12 +60,6 @@
             "content_position": "below",
             "button_label": "Shop"
           }
-        },
-        "featured_collection_3aJAGV": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "camo-drop"
-          }
         }
       },
       "block_order": [
@@ -211,6 +79,57 @@
         "swipe_on_mobile": true,
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "fullpane_with_blocks_81a25": {
+      "type": "custom-fullpane-promo-with-blocks",
+      "blocks": {
+        "fullpane_block_Kwn234": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/IMG_8987.jpg",
+            "card_body_text": "Relaxed everyday tees with bold back graphics, detailed artwork and easygoing fits designed for training, layering and everyday wear.",
+            "products": ""
+          }
+        },
+        "fullpane_block_atr341": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/Photoroom_20260628_033554.jpg",
+            "card_body_text": "Heavyweight oversized silhouettes with detailed artwork, dropped shoulders and a relaxed fit designed to stand out.",
+            "products": ""
+          }
+        },
+        "fullpane_block_rde453": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/2C528379-DEC3-4368-8E90-DD4CC50DE2DE.jpg",
+            "card_body_text": "Fitted tops and lightweight shorts designed for easy movement, flattering comfort and everyday versatility.",
+            "products": ""
+          }
+        }
+      },
+      "block_order": [
+        "fullpane_block_Kwn234",
+        "fullpane_block_atr341",
+        "fullpane_block_rde453"
+      ],
+      "name": "Full pane with blocks",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
+        "bg_video_link": "https://cdn.shopify.com/videos/c/o/v/fca7d16684114e79ba71908779dd601c.mp4",
+        "overlay_opacity": 10,
+        "grid_orientation": "0",
+        "panel_height": 50,
+        "banner_header": "LOCK IN ... NO EXCUSES.",
+        "banner_sub_header": "Performance starts with showing up. Explore IMPACKT fitness apparel, training essentials and gym gear built for the work behind every goal.",
+        "button_label_1": "SHOP MEN",
+        "button_link_1": "shopify://collections/all-products",
+        "button_style_secondary_1": false,
+        "button_label_2": "SHOP WOMEN",
+        "button_link_2": "shopify://collections/all-products",
+        "button_style_secondary_2": false
       }
     },
     "collection_list_Knqk4b": {
@@ -296,6 +215,85 @@
         "show_view_all": false,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "fullpane_with_blocks_81b31": {
+      "type": "custom-fullpane-promo-with-blocks",
+      "name": "Full pane with blocks",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
+        "bg_video_link": "",
+        "bg_image": "shopify://shop_images/file_1.jpg",
+        "overlay_opacity": 50,
+        "grid_orientation": "1",
+        "panel_height": 50,
+        "banner_header": "MORE THAN WHAT YOU WEAR",
+        "banner_sub_header": "Discover apparel, perks and a community built to keep you connected, rewarded and ready to lock in.",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": false
+      }
+    },
+    "promo_banner_8G4dge": {
+      "type": "promo-banner",
+      "blocks": {
+        "promo_p693XU": {
+          "type": "promo",
+          "settings": {
+            "heading": "Join the IMPACKT Community",
+            "link_label": "Join Now",
+            "link": "#",
+            "body": "Connect with a community built around growth, support and opportunity, with members and staff who actually interact with you. Explore affiliate perks, brand incentives and ways to grow with IMPACKT."
+          }
+        },
+        "promo_ThgGJC": {
+          "type": "promo",
+          "settings": {
+            "heading": "FREE GIFTS WHEN YOU SPEND $85",
+            "link_label": "CLAIM FREE GIFT",
+            "link": "shopify://collections/all-products",
+            "body": "Spend $85 or more and unlock free gifts with your order while supplies last. Our way of giving a little more back when you lock in with IMPACKT."
+          }
+        },
+        "promo_w7bLLP": {
+          "type": "promo",
+          "settings": {
+            "heading": "BUILD YOUR NEXT FIT",
+            "link_label": "Start Here",
+            "link": "shopify://collections/all-products",
+            "body": "Find fitness apparel, activewear and gym essentials built for performance, comfort and everyday wear; so you can lock in wherever the day takes you."
+          }
+        },
+        "promo_3Ymt63": {
+          "type": "promo",
+          "disabled": true,
+          "settings": {
+            "heading": "EARN FREE PRODUCTS",
+            "link_label": "Join Now",
+            "link": "",
+            "body": "TST"
+          }
+        }
+      },
+      "block_order": [
+        "promo_p693XU",
+        "promo_ThgGJC",
+        "promo_w7bLLP",
+        "promo_3Ymt63"
+      ],
+      "custom_css": [],
+      "name": "Promo Banner",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "background_color": "",
+        "margin_top": 0,
+        "margin_bottom": 0,
         "padding_top": 0,
         "padding_bottom": 0
       }
