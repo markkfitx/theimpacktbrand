@@ -89,7 +89,10 @@
     align-items: start;
     margin-bottom: 0;
   }
-
+  variant-selects{
+    margin-top:5rem !important;
+    margin-bottom:5rem !important;
+  }
   /* Large: capped image + info columns, centered together as a pair */
   .release-shell--pdp.release-shell--large:not(.release-shell--no-media) .product.grid {
     --pdp-media-span: 1;

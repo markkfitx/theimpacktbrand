@@ -381,23 +381,26 @@ a.product__text {
   color: rgb(var(--color-foreground));
 }
 
-/* Size option: label row with size guide, then a 2-column grid */
-.product-form__input--size {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
-  max-width: 100%;
+/* Variant pills (size, color, ...): every option row spans the full info column */
+.product-form__input--pill {
   width: 100%;
+  max-width: 100%;
 }
 
+/* Size option: label row with size guide */
 .product-form__input--size .product-form__label-row {
-  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   margin: 0 0 0.4rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: rgb(var(--color-foreground));
+}
+
+.product-form__input .form__label--below{
+  font-size: 1.4rem;
   font-weight: 500;
   color: rgb(var(--color-foreground));
 }
@@ -407,26 +410,9 @@ a.product__text {
 }
 
 .product-form__input--size .product__size-chart-link {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: rgb(var(--color-foreground));
-}
-
-.product-form__input--size input[type='radio'] + label {
-  width: 100%;
-  height: 4.8rem;
-  margin: 0;
-  padding-inline: 1rem;
-  font-size: 1.4rem;
-  letter-spacing: 0;
-  border-radius: 0.4rem;
-}
-
-/* Filled (inverted) selected state; no box-shadow so the pill focus ring still shows */
-.product-form__input--size input[type='radio']:checked + label {
-  background-color: rgb(var(--color-foreground));
-  color: rgb(var(--color-background));
-  border-color: rgb(var(--color-foreground));
 }
 
 .product__installments {
@@ -1827,4 +1813,37 @@ a.product__text {
   .product--thumbnail_right .thumbnail.global-media-settings img {
     border-radius: calc(var(--media-radius) - var(--media-border-width));
   }
+}
+
+
+/* Shared 5-column grid for all variant pill options (size, color, ...) */
+.product-varient-option-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.7rem;
+  width: 100%;
+}
+
+/* .product-form__input prefix outranks the Dawn pill defaults in
+   component-product-variant-picker.css regardless of load order */
+.product-form__input .product-varient-option-wrapper input[type='radio'] + label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  height: 4.8rem;
+  margin: 0;
+  padding-inline: 1rem;
+  font-size: 1.4rem;
+  letter-spacing: 0;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.55);
+  border-radius: 0.4rem;
+}
+
+/* Filled (inverted) selected state; no box-shadow so the pill focus ring still shows */
+.product-form__input .product-varient-option-wrapper input[type='radio']:checked + label {
+  color: rgb(var(--color-background));
+  background-color: rgb(var(--color-foreground));
+  border-color: rgb(var(--color-foreground));
 }
