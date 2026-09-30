@@ -3613,3 +3613,7 @@ details-disclosure > details {
   margin-bottom: 3.25rem !important;
   max-width:800px !important;
 }
+
+.template-search__results .card__inner{
+  aspect-ratio: 1/1 !important;
+}

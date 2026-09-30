@@ -171,6 +171,8 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
 
 .predictive-search__item-heading {
   margin: 0;
+  font-weight:500 !important;
+  font-family: var(--font-body-family);
 }
 
 .predictive-search__item-query-result *:not(mark) {
