@@ -22,12 +22,16 @@
   if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
     assign show_mobile_slider = true
   endif
+
+  assign fill_columns_desktop = section.blocks.size | at_most: section.settings.columns_desktop | at_least: 1
+  assign fill_columns_mobile = section.blocks.size | at_most: columns_mobile_int | at_least: 1
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-list-wrapper page-width isolate{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
     {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
+      <div class="title-wrapper-with-link{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %}">
+        {%- if section.settings.logo_img != blank -%}{{ section.settings.logo_img | image_url: width:50 | image_tag }}{%- endif -%}
         <h2
           id="SectionHeading-{{ section.id }}"
           class="collection-list-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -50,7 +54,8 @@
 
     <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
-        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
+        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items collection-list--fill"
+        style="--fill-columns-desktop: {{ fill_columns_desktop }}; --fill-columns-mobile: {{ fill_columns_mobile }};"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -74,6 +79,10 @@
             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
             {% render 'card-collection',
               card_collection: block.settings.collection,
+              card_collection_label: block.settings.label,
+              card_collection_header: block.settings.card_header,
+              content_position: block.settings.content_position,
+              button_label: block.settings.button_label,
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
               placeholder_image: placeholder_image
@@ -143,6 +152,11 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_img",
+      "label": "Logo"
+    },
     {
       "type": "inline_richtext",
       "id": "title",
@@ -284,6 +298,41 @@
           "type": "collection",
           "id": "collection",
           "label": "t:sections.collection-list.blocks.featured_collection.settings.collection.label"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Custom label",
+          "info": "Overrides the collection title"
+        },
+        {
+          "type": "text",
+          "id": "card_header",
+          "label": "Card header",
+          "info": "Small text shown above the label"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Text position",
+          "options": [
+            {
+              "value": "below",
+              "label": "Below the card"
+            },
+            {
+              "value": "overlay",
+              "label": "Inside the card"
+            }
+          ],
+          "default": "below"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop",
+          "info": "Shown when text is inside the card"
         }
       ]
     }

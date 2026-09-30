@@ -2,8 +2,11 @@
   font-size: 1.65rem;
   font-weight: 400;
   margin: 0.25rem;
+  color: white;
 }
-
+.signup-form-header h1{
+  color:white;
+}
 .signup-form-wrapper .field__input {
   border: 0.15px solid rgba(255, 255, 255, 0.25);
 }
@@ -35,6 +38,9 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
+.signup-form-wrapper-content .field__input{
+  font-size:1.4rem;
+}
 .signup-form-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -81,6 +87,23 @@
   width: 100%;
   padding: 1rem;
   border: none;
+}
+
+.signup-form-footer .signup-form__submit{
+  background: #ffffff;
+  color:#191919;
+  font-weight: 500;
+}
+
+.signup-form-footer .signup-form__submit:hover{
+  background: #ffffffe1;
+}
+
+.signup-form-footer .signup-form__cancel{
+  color: #ffff;
+}
+.signup-form-footer .signup-form__cancel:hover{
+  color:  #ffffffe1;
 }
 
 .signup-form-disclaimer {

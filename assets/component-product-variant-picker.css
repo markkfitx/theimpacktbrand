@@ -75,7 +75,7 @@ variant-selects {
   position: relative;
   width: auto;
   min-width: 2.8rem;
-  height: 2.8rem;
+  height: 3.8rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -164,5 +164,4 @@ variant-selects {
   margin-bottom: 1.2rem;
   font-size: 1.4rem;
   font-weight: normal;
-  color: rgba(var(--color-foreground), 0.8);
 }

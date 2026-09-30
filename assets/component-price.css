@@ -90,8 +90,15 @@
   font-size: inherit;
 }
 
+/* Green for the dark schemes (5.3:1 on #131313); darker green on the
+   light schemes (7.1:1 on white, 5.6:1 on #e4e4e4) */
 .price--on-sale .price-item--sale {
-  color: #ff4848;
+  color: #1b9e4b;
+}
+
+.color-scheme-2 .price--on-sale .price-item--sale,
+.color-scheme-5 .price--on-sale .price-item--sale {
+  color: #166534;
 }
 
 .unit-price {

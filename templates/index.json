@@ -13,15 +13,14 @@
       "type": "custom-hero",
       "name": "Custom Hero",
       "settings": {
-        "section_height": 100,
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "background_image": "shopify://shop_images/Hero-image.jpg",
-        "image_overlay_opacity": 30,
+        "image_overlay_opacity": 55,
         "image_position": "center",
         "title": "THE IMPACKT BRAND",
         "title_alignment": "center",
-        "subtext": "Trust . Community . Purpose . Lock In",
-        "button_label_1": "SHOP ALL",
+        "subtext": "Built on Trust. Driven by Purpose. Ready to Lock In",
+        "button_label_1": "SHOP APPAREL",
         "button_link_1": "shopify://collections/all-products",
         "button_style_secondary_1": false,
         "button_label_2": "NEW ARRIVALS",
@@ -35,34 +34,38 @@
         "promo_p693XU": {
           "type": "promo",
           "settings": {
-            "heading": "EXCLUSIVE MEMBERS COMMUNITY",
+            "heading": "Join the IMPACKT Community",
             "link_label": "Join Now",
-            "link": "#"
+            "link": "#",
+            "body": "Connect with a community built around growth, support and opportunity, with members and staff who actually interact with you. Explore affiliate perks, brand incentives and ways to grow with IMPACKT."
           }
         },
         "promo_ThgGJC": {
           "type": "promo",
           "settings": {
-            "heading": "FREE GIFT WHEN YOU SPEND $85",
+            "heading": "FREE GIFTS WHEN YOU SPEND $85",
             "link_label": "CLAIM FREE GIFT",
-            "link": "shopify://collections/all-products"
+            "link": "shopify://collections/all-products",
+            "body": "Spend $85 or more and unlock free gifts with your order while supplies last. Our way of giving a little more back when you lock in with IMPACKT."
           }
         },
         "promo_w7bLLP": {
           "type": "promo",
           "settings": {
-            "heading": "FREE SHIPPING ON $150+",
-            "link_label": "Shop Now",
-            "link": "shopify://collections/all-products"
+            "heading": "BUILD YOUR NEXT FIT",
+            "link_label": "Start Here",
+            "link": "shopify://collections/all-products",
+            "body": "Find fitness apparel, activewear and gym essentials built for performance, comfort and everyday wear—so you can lock in wherever the day takes you."
           }
         },
         "promo_3Ymt63": {
           "type": "promo",
           "disabled": true,
-          "settings": {
+          "settings": { 
             "heading": "EARN FREE PRODUCTS",
             "link_label": "Join Now",
-            "link": ""
+            "link": "",
+            "body": "TST"
           }
         }
       },
@@ -76,11 +79,83 @@
       "name": "Promo Banner",
       "settings": {
         "color_scheme": "scheme-1",
-        "background_color": "#131313",
         "margin_top": 0,
         "margin_bottom": 0,
-        "padding_top": 16,
-        "padding_bottom": 16
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "fullpane_with_blocks_81a25": {
+      "type": "custom-fullpane-promo-with-blocks",
+      "name": "Full pane with blocks",
+      "blocks": {
+        "fullpane_block_Kwn234": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/IMG_8987.jpg",
+            "card_body_text": "Relaxed everyday tees with bold back graphics, detailed artwork and easygoing fits designed for training, layering and everyday wear."
+          }
+        },
+        "fullpane_block_atr341": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/Photoroom_20260628_033554.jpg",
+            "card_body_text": "Heavyweight oversized silhouettes with detailed artwork, dropped shoulders and a relaxed fit designed to stand out."
+          }
+        },
+        "fullpane_block_rde453": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/2C528379-DEC3-4368-8E90-DD4CC50DE2DE.jpg",
+            "card_body_text": "Fitted tops and lightweight shorts designed for easy movement, flattering comfort and everyday versatility."
+          }
+        }
+      },
+      "block_order": [
+        "fullpane_block_Kwn234",
+        "fullpane_block_atr341",
+        "fullpane_block_rde453"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "bg_video_link": "https://cdn.shopify.com/videos/c/o/v/fca7d16684114e79ba71908779dd601c.mp4",
+        "overlay_opacity": 10,
+        "panel_height": 50,
+        "grid_orientation": "0",
+        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
+        "banner_header": "LOCK IN ... NO EXCUSES.",
+        "banner_sub_header": "Performance starts with showing up. Explore IMPACKT fitness apparel, training essentials and gym gear built for the work behind every goal.",
+        "button_label_1": "SHOP MEN",
+        "button_link_1": "shopify://collections/all-products",
+        "button_style_secondary_1": false,
+        "button_label_2": "SHOP WOMEN",
+        "button_link_2": "shopify://collections/all-products",
+        "button_style_secondary_2": false
+      }
+    },
+    "fullpane_with_blocks_81b31": {
+      "type": "custom-fullpane-promo-with-blocks",
+      "name": "Full pane with blocks",
+      "blocks": {
+      },
+      "block_order": [
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "bg_video_link": "",
+        "bg_image": "shopify://shop_images/file_1.jpg",
+        "overlay_opacity": 50,
+        "panel_height": 50,
+        "grid_orientation": "1",
+        "logo_image": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
+        "banner_header": "MORE THAN WHAT YOU WEAR",
+        "banner_sub_header": "Discover apparel, perks and a community built to keep you connected, rewarded and ready to lock in.",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": false
       }
     },
     "collection_list_Knqk6V": {
@@ -89,19 +164,31 @@
         "featured_collection_A9DD4h": {
           "type": "featured_collection",
           "settings": {
-            "collection": "the-pack"
+            "collection": "camo-drop",
+            "label": "Shop Camo",
+            "card_header": "",
+            "content_position": "below",
+            "button_label": "Shop"
           }
         },
         "featured_collection_aB9K9B": {
           "type": "featured_collection",
           "settings": {
-            "collection": "no-excuses-pre-workout"
+            "collection": "no-excuses-pre-workout",
+            "label": "Shop Performance",
+            "card_header": "",
+            "content_position": "below",
+            "button_label": "Shop"
           }
         },
         "featured_collection_zVzwdC": {
           "type": "featured_collection",
           "settings": {
-            "collection": "the-pack-only"
+            "collection": "the-pack-only",
+            "label": "Shop The Pack",
+            "card_header": "",
+            "content_position": "below",
+            "button_label": "Shop"
           }
         },
         "featured_collection_3aJAGV": {
@@ -112,102 +199,109 @@
         }
       },
       "block_order": [
-        "featured_collection_A9DD4h",
+        "featured_collection_3aJAGV",
         "featured_collection_aB9K9B",
-        "featured_collection_zVzwdC",
-        "featured_collection_3aJAGV"
+        "featured_collection_zVzwdC"
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
         "title": "",
         "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile":"1",
+        "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collection_list_Knqk4b": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_3aJAwb": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "shirts",
+            "label": "Shirts",
+            "card_header": "Built to stand out.",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        },
+        "featured_collection_aB9K3w": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "shorts",
+            "label": "Shorts",
+            "card_header": "Made to move",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        },
+        "featured_collection_aB92kl": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hoodies",
+            "label": "Hoodies",
+            "card_header": "Your everyday layer",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        },
+        "featured_collection_aB94n7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "joggers",
+            "label": "Joggers",
+            "card_header": "Comfort in motion",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        },
+        "featured_collection_aB934f": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bras",
+            "label": "Bras",
+            "card_header": "Support that moves",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        },
+        "featured_collection_aB9kjh": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "accessories-1",
+            "label": "Accessories",
+            "card_header": "Finish the fit",
+            "content_position": "bottom",
+            "button_label": "Shop"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_3aJAwb",
+        "featured_collection_aB9K3w",
+        "featured_collection_aB92kl",
+        "featured_collection_aB94n7",
+        "featured_collection_aB934f",
+        "featured_collection_aB9kjh"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "The Pack Favorites",
+        "heading_size": "h1",
         "image_ratio": "portrait",
-        "columns_desktop": 4,
-        "color_scheme": "",
+        "columns_desktop": 6,
+        "color_scheme": "scheme-1",
+        "logo_img": "shopify://shop_images/compressed_new_black_logo_-_no_background.png",
         "show_view_all": false,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "display_boxes_yYhzQG": {
-      "type": "display-boxes",
-      "disabled": true,
-      "custom_css": [
-        "h3 {color: #fff !important;}"
-      ],
-      "name": "Image grid",
-      "settings": {
-        "columns_mobile": "1",
-        "aspect_ratio_desktop": "1 / 1",
-        "aspect_ratio_mobile": "3 / 4",
-        "image_saturation": 20,
-        "overlay_opacity": 40,
-        "content_padding": 25,
-        "heading_size": 28,
-        "heading_letter_spacing": 1,
-        "heading_link_gap": 0,
-        "link_size": 12,
-        "link_text": "SHOP NOW",
-        "text_color": "#ffffff",
-        "link_color": "#ffffff",
-        "link_hover_color": "#cccccc",
-        "image_desktop_1": "shopify://shop_images/5F231BDE-8B73-4F57-B88D-8A740E4DD4AE.jpg",
-        "image_mobile_1": "shopify://shop_images/5F231BDE-8B73-4F57-B88D-8A740E4DD4AE.jpg",
-        "heading_1": "UP TO 15% OFF",
-        "link_1": "shopify://collections/new-arrivals-10-off",
-        "image_desktop_2": "shopify://shop_images/IMG_2493_3850fd4b-b896-4b91-962a-7459a56d873b.jpg",
-        "image_mobile_2": "shopify://shop_images/IMG_2493_3850fd4b-b896-4b91-962a-7459a56d873b.jpg",
-        "heading_2": "20% - 30% OFF",
-        "link_2": "shopify://collections/all-20-30-off",
-        "image_desktop_3": "shopify://shop_images/6F5CB97E-152A-490E-8D33-AC9FDDC63802.jpg",
-        "image_mobile_3": "shopify://shop_images/6F5CB97E-152A-490E-8D33-AC9FDDC63802.jpg",
-        "heading_3": "35% - 50% OFF",
-        "link_3": "shopify://collections/all-40-50-off",
-        "image_desktop_4": "shopify://shop_images/Photoroom_20250808_122823.jpg",
-        "image_mobile_4": "shopify://shop_images/Photoroom_20250808_122823.jpg",
-        "heading_4": "LIMITED TIME DEALS",
-        "link_4": "shopify://collections/clearance"
-      }
-    },
-    "display_boxes_pqAFMV": {
-      "type": "display-boxes",
-      "custom_css": [
-        "h3 {color: #fff !important;}"
-      ],
-      "name": "Image grid",
-      "settings": {
-        "columns_mobile": "2",
-        "aspect_ratio_desktop": "1 / 1",
-        "aspect_ratio_mobile": "3 / 4",
-        "image_saturation": 100,
-        "overlay_opacity": 40,
-        "content_padding": 25,
-        "heading_size": 28,
-        "heading_letter_spacing": 1,
-        "heading_link_gap": 0,
-        "link_size": 12,
-        "link_text": "SHOP NOW",
-        "text_color": "#ffffff",
-        "link_color": "#ffffff",
-        "link_hover_color": "#cccccc",
-        "image_desktop_1": "shopify://shop_images/5F231BDE-8B73-4F57-B88D-8A740E4DD4AE.jpg",
-        "image_mobile_1": "shopify://shop_images/5F231BDE-8B73-4F57-B88D-8A740E4DD4AE.jpg",
-        "heading_1": "MEN'S",
-        "link_1": "shopify://collections/mens-clothing",
-        "image_desktop_2": "shopify://shop_images/IMG_1874_6909a178-fe17-4fb6-9c27-f102a4c2fa54.jpg",
-        "image_mobile_2": "shopify://shop_images/IMG_1874_6909a178-fe17-4fb6-9c27-f102a4c2fa54.jpg",
-        "heading_2": "WOMEN'S",
-        "link_2": "shopify://collections/womens-clothing",
-        "image_desktop_3": "shopify://shop_images/IMG_1830.jpg",
-        "image_mobile_3": "shopify://shop_images/IMG_1830.jpg",
-        "heading_3": "NEW DROPS",
-        "link_3": "shopify://collections/new-arrivals",
-        "image_desktop_4": "shopify://shop_images/IMG_1297.jpg",
-        "image_mobile_4": "shopify://shop_images/IMG_1297.jpg",
-        "heading_4": "ACCESSORIES",
-        "link_4": "shopify://collections/accessories-1"
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "image_hero_hfpjH8": {
@@ -220,7 +314,7 @@
         "background_color": "#000000",
         "background_image": "shopify://shop_images/7AA92C1E-43A2-4661-A64F-689C80E93341.jpg",
         "background_image_desktop": "shopify://shop_images/7AA92C1E-43A2-4661-A64F-689C80E93341.png",
-        "image_overlay_opacity": 25,
+        "image_overlay_opacity": 55,
         "image_position": "top",
         "section_height": 35,
         "title": "NEWEST DROPS",
@@ -231,41 +325,18 @@
         "button_style_secondary": false,
         "margin_top": 0,
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
-    "image_hero_gF7Wf4": {
-      "type": "image-hero",
-      "name": "Image Hero",
-      "settings": {
-        "color_scheme": "scheme-8bfa54e6-155d-488e-adc8-0f78cd65f6e1",
-        "background_color": "#000000",
-        "background_image": "shopify://shop_images/AY8I4757.png",
-        "background_image_desktop": "shopify://shop_images/AY8I4757.png",
-        "image_overlay_opacity": 25,
-        "image_position": "top",
-        "section_height": 35,
-        "title": "JOIN THE COMMUNITY",
-        "text": "Built on discipline. Backed by support. No obligations.",
-        "link_label": "Learn More",
-        "link": "https://affiliates.theimpacktbrand.com/",
-        "link_style": "text",
-        "button_style_secondary": false,
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
     "custom_hero_4hRntY",
-    "promo_banner_8G4dge",
     "collection_list_Knqk6V",
-    "display_boxes_yYhzQG",
-    "display_boxes_pqAFMV",
+    "fullpane_with_blocks_81a25",
+    "collection_list_Knqk4b",
+    "fullpane_with_blocks_81b31",
+    "promo_banner_8G4dge",
     "image_hero_hfpjH8",
-    "image_hero_gF7Wf4"
   ]
 }

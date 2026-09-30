@@ -6,10 +6,6 @@
 -%}
 
 {%- style -%}
-  #CustomHero-{{ section.id }} {
-    min-height: {{ section.settings.section_height }}vh;
-  }
-
   #CustomHero-{{ section.id }} .custom-hero__overlay {
     --overlay-opacity: {{ overlay_opacity_decimal }};
   }
@@ -23,19 +19,49 @@
     <div class="custom-hero__background">
       {%- assign hero_alt = section.settings.background_image.alt | default: section.settings.title | escape -%}
       {%- capture hero_style -%}object-position: {{ section.settings.image_position | default: 'center' }};{%- endcapture -%}
-      {{
-        section.settings.background_image
-        | image_url: width: 3840
-        | image_tag:
-          class: 'custom-hero__background-image',
-          widths: '550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
-          sizes: '100vw',
-          loading: 'eager',
-          fetchpriority: 'high',
-          preload: true,
-          alt: hero_alt,
-          style: hero_style
-      }}
+      {%- assign mobile_image = section.settings.mobile_image -%}
+      <picture>
+        {%- if mobile_image != blank -%}
+          <source
+            media="(max-width: 599px)"
+            srcset="
+              {{ mobile_image | image_url: width: 550 }} 550w,
+              {{ mobile_image | image_url: width: 750 }} 750w,
+              {{ mobile_image | image_url: width: 1100 }} 1100w,
+              {{ mobile_image | image_url: width: 1500 }} 1500w
+            "
+            sizes="100vw"
+          >
+        {%- endif -%}
+        {%- if mobile_image != blank -%}
+          {{
+            section.settings.background_image
+            | image_url: width: 3840
+            | image_tag:
+              class: 'custom-hero__background-image',
+              widths: '750, 1100, 1500, 1780, 2000, 3000, 3840',
+              sizes: '100vw',
+              loading: 'eager',
+              fetchpriority: 'high',
+              alt: hero_alt,
+              style: hero_style
+          }}
+        {%- else -%}
+          {{
+            section.settings.background_image
+            | image_url: width: 3840
+            | image_tag:
+              class: 'custom-hero__background-image',
+              widths: '550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+              sizes: '100vw',
+              loading: 'eager',
+              fetchpriority: 'high',
+              preload: true,
+              alt: hero_alt,
+              style: hero_style
+          }}
+        {%- endif -%}
+      </picture>
       {%- if overlay_opacity > 0 -%}
         <div class="custom-hero__overlay" aria-hidden="true"></div>
       {%- endif -%}
@@ -88,20 +114,10 @@
   "class": "section",
   "settings": [
     {
-      "type": "range",
-      "id": "section_height",
-      "min": 50,
-      "max": 100,
-      "step": 5,
-      "unit": "vh",
-      "label": "Section Height",
-      "default": 80
-    },
-    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
-      "default": "scheme-1"
+      "default": "scheme-2"
     },
     {
       "type": "header",
@@ -111,6 +127,12 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image",
+      "info": "Optional portrait image shown below 600px wide. Recommended ratio 2:3 (e.g. 1000 × 1500px)."
     },
     {
       "type": "range",

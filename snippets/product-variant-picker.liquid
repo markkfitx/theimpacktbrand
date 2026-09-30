@@ -5,6 +5,8 @@
   - product: {Object} product object.
   - block: {Object} passing the block information.
   - product_form_id: {String} Id of the product form to which the variant picker is associated.
+  - size_option_name: {String} Name of the size option, rendered as a 2-column grid with a "Select" label (optional)
+  - size_guide_html: {String} Size guide link markup shown beside the size label (optional)
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
@@ -45,8 +47,21 @@
           </div>
         </fieldset>
       {%- elsif picker_type == 'button' -%}
-        <fieldset class="js product-form__input product-form__input--pill">
-          <div class="form__label form__label--below">{{ option.name }}</div>
+        {%- liquid
+          assign is_size_option = false
+          if size_option_name != blank and option.name == size_option_name
+            assign is_size_option = true
+          endif
+        -%}
+        <fieldset class="js product-form__input product-form__input--pill{% if is_size_option %} product-form__input--size{% endif %}">
+          {%- if is_size_option -%}
+            <div class="form__label product-form__label-row">
+              <span>Select {{ option.name }}</span>
+              {{- size_guide_html -}}
+            </div>
+          {%- else -%}
+            <div class="form__label form__label--below">{{ option.name }}</div>
+          {%- endif -%}
           <legend class="visually-hidden">{{ option.name }}</legend>
           {% render 'product-variant-options',
             product: product,

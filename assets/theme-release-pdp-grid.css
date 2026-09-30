@@ -1,121 +1,134 @@
 /*
- * Product detail: Alphalete-style 5-track grid (60/40 large, 40/60 small, 50/50 medium).
+ * Product detail grid: large = capped 700px image + 440px info centered as a pair,
+ * small = 40/60 on a 5-track grid, medium = 50/50.
  * Activated by .release-shell--pdp wrapper in main-product.liquid.
  *
- * Dawn .grid uses flexbox; .grid__item gets width:50% for grid--2-col-tablet — that
- * blocks real CSS Grid until we reset width/max-width on these items.
+ * Dawn .grid uses flexbox with percentage widths on .grid__item; those widths are
+ * reset below so grid-column spans work. Layout tracks are driven by custom
+ * properties set on the grid:
+ *   --pdp-columns, --pdp-media-span, --pdp-info-span, --pdp-info-padding
  */
 
-@media screen and (max-width: 749px) {
-  .release-shell--pdp .product.grid.grid--2-col-tablet {
-    gap: 1rem;
-  }
-}
+/* No media
+   -------------------------------------------------------------------------- */
 
-@media screen and (min-width: 750px) {
-  .release-shell--pdp:not(.release-shell--no-media) .product.grid.grid--2-col-tablet {
-    display: grid;
-    flex-wrap: unset;
-    margin-bottom: 0;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 2.8rem;
-    column-gap: 2.8rem;
-    row-gap: 2.8rem;
-    align-items: start;
-  }
-
-  /* Critical: remove Dawn flex widths so grid-column span works */
-  .release-shell--pdp:not(.release-shell--no-media) .product.grid.grid--2-col-tablet > .grid__item {
-    width: auto !important;
-    max-width: none !important;
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-
-  /* Large media: 3/5 + 2/5 (Alphalete product-grid__size--large) */
-  .release-shell--pdp.release-shell--large:not(.release-shell--no-media) .product__media-wrapper {
-    grid-column: span 3;
-    max-width: none !important;
-    width: 100% !important;
-  }
-
-  .release-shell--pdp.release-shell--large:not(.release-shell--no-media) .product__info-wrapper {
-    grid-column: span 2;
-    max-width: none !important;
-    width: 100% !important;
-    padding: 0 !important;
-  }
-
-  /* Small media: 2/5 + 3/5 */
-  .release-shell--pdp.release-shell--small:not(.release-shell--no-media) .product__media-wrapper {
-    grid-column: span 2;
-    max-width: none !important;
-    width: 100% !important;
-  }
-
-  .release-shell--pdp.release-shell--small:not(.release-shell--no-media) .product__info-wrapper {
-    grid-column: span 3;
-    max-width: none !important;
-    width: 100% !important;
-    padding: 0 !important;
-  }
-
-  /* Medium: equal columns */
-  .release-shell--pdp.release-shell--medium:not(.release-shell--no-media) .product__media-wrapper,
-  .release-shell--pdp.release-shell--medium:not(.release-shell--no-media) .product__info-wrapper {
-    grid-column: span 1;
-    max-width: none !important;
-    width: 100% !important;
-  }
-
-  .release-shell--pdp.release-shell--medium:not(.release-shell--no-media) .product.grid.grid--2-col-tablet {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .release-shell--pdp.release-shell--medium:not(.release-shell--no-media) .product__info-wrapper {
-    padding: 0 0 0 4rem !important;
-  }
-
-  .release-shell--pdp.release-shell--medium:not(.release-shell--no-media) .product.product--right .product__info-wrapper {
-    padding: 0 4rem 0 0 !important;
-  }
-
-  /* Media on the right: grid order */
-  .release-shell--pdp .product--right .product__media-wrapper {
-    order: 2;
-  }
-
-  .release-shell--pdp .product--right .product__info-wrapper {
-    order: 1;
-  }
-}
-
-/* No media */
 .release-shell--pdp.release-shell--no-media .product.grid {
   max-width: 57rem;
   margin-inline: auto;
 }
 
-@media screen and (min-width: 750px) {
-  .release-shell--pdp.release-shell--no-media .product__info-wrapper {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+@media screen and (max-width: 749px) {
+  .release-shell--pdp.release-shell--no-media .product.grid {
+    gap: 1rem;
   }
 }
 
-/* Ultra-wide: optional 3-column shell (Alphalete 1920px behavior, simplified) */
-@media screen and (min-width: 1920px) {
-  .release-shell--pdp.release-shell--large:not(.release-shell--no-media) .product.grid.grid--2-col-tablet {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media screen and (min-width: 750px) {
+  .release-shell--pdp.release-shell--no-media .product__info-wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0;
+  }
+}
+
+/* Below 956px: single column, title + price above the gallery (Nike-style).
+   The info wrapper/container use display: contents so their children join the
+   product grid and can be ordered around the media without duplicating markup.
+   -------------------------------------------------------------------------- */
+
+@media screen and (max-width: 955px) {
+  .release-shell--pdp:not(.release-shell--no-media) .product.grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
   }
 
-  .release-shell--pdp.release-shell--large:not(.release-shell--no-media) .product__media-wrapper {
-    grid-column: span 2;
+  .release-shell--pdp:not(.release-shell--no-media) .product.grid > .grid__item {
+    width: 100%;
+    max-width: none;
+    padding: 0;
   }
 
-  .release-shell--pdp.release-shell--large:not(.release-shell--no-media) .product__info-wrapper {
-    grid-column: span 1;
+  .release-shell--pdp:not(.release-shell--no-media) .product__info-wrapper,
+  .release-shell--pdp:not(.release-shell--no-media) .product__info-container {
+    display: contents;
+  }
+
+  .release-shell--pdp:not(.release-shell--no-media) .product__info-container > * {
+    order: 4;
+  }
+
+  .release-shell--pdp:not(.release-shell--no-media) .product.grid .product__badges-top {
+    order: 1;
+  }
+
+  .release-shell--pdp:not(.release-shell--no-media) .product.grid .product__title-price-row {
+    order: 2;
+    margin-bottom: 1.6rem;
+  }
+
+  .release-shell--pdp:not(.release-shell--no-media) .product.grid .product__media-wrapper {
+    order: 3;
+    margin-bottom: 2.4rem;
+  }
+}
+
+/* 956px and up: multi-track grid
+   -------------------------------------------------------------------------- */
+
+@media screen and (min-width: 956px) {
+  .release-shell--pdp:not(.release-shell--no-media) .product.grid {
+    --pdp-columns: 5;
+    --pdp-media-span: 3;
+    --pdp-info-span: 2;
+    --pdp-info-padding: 0;
+
+    display: grid;
+    grid-template-columns: repeat(var(--pdp-columns), minmax(0, 1fr));
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: 0;
+  }
+  variant-selects{
+    margin-top:5rem !important;
+    margin-bottom:5rem !important;
+  }
+  /* Large: capped image + info columns, centered together as a pair */
+  .release-shell--pdp.release-shell--large:not(.release-shell--no-media) .product.grid {
+    --pdp-media-span: 1;
+    --pdp-info-span: 1;
+    grid-template-columns: minmax(0, 70rem) minmax(0, 44rem);
+    justify-content: center;
+    column-gap: 4rem;
+  }
+
+  .release-shell--pdp.release-shell--small:not(.release-shell--no-media) .product.grid {
+    --pdp-media-span: 2;
+    --pdp-info-span: 3;
+  }
+
+  .release-shell--pdp.release-shell--medium:not(.release-shell--no-media) .product.grid {
+    --pdp-columns: 2;
+    --pdp-media-span: 1;
+    --pdp-info-span: 1;
+    --pdp-info-padding: 0 0 0 4rem;
+  }
+
+  .release-shell--pdp.release-shell--medium:not(.release-shell--no-media) .product.grid.product--right {
+    --pdp-info-padding: 0 4rem 0 0;
+  }
+
+  .release-shell--pdp:not(.release-shell--no-media) .product.grid > .grid__item {
+    width: 100%;
+    max-width: none;
+  }
+
+  .release-shell--pdp:not(.release-shell--no-media) .product.grid > .product__media-wrapper {
+    grid-column: span var(--pdp-media-span);
+  }
+
+  .release-shell--pdp:not(.release-shell--no-media) .product.grid > .product__info-wrapper {
+    grid-column: span var(--pdp-info-span);
+    padding: var(--pdp-info-padding);
   }
 }

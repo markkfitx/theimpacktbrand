@@ -1,0 +1,264 @@
+{{ 'section-custom-fullpane-with-blocks.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign overlay_opacity = section.settings.overlay_opacity | default: 0 | divided_by: 100.0
+-%}
+
+{%- style -%}
+  #CustomFullpane-{{ section.id }} .custom-fullpane__panel {
+    --panel-min-height: {{ section.settings.panel_height }}vh;
+    --overlay-opacity: {{ overlay_opacity }};
+  }
+{%- endstyle -%}
+
+<div id="CustomFullpane-{{ section.id }}" class="custom-fullpane color-{{ section.settings.color_scheme }} gradient page-width">
+  {%- if section.settings.logo_image != blank -%}
+    <div class="CustomFullpaneLogo">{{ section.settings.logo_image | image_url: width: 100 | image_tag: width: 50 }}</div>
+  {%- endif -%}
+  <div class="custom-fullpane__panel">
+    {%- if section.settings.bg_video_link != blank -%}
+      <video
+        class="custom-fullpane__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+        {% if section.settings.bg_image != blank %}
+          poster="{{ section.settings.bg_image | image_url: width: 1920 }}"
+        {% endif %}
+      >
+        <source src="{{ section.settings.bg_video_link | escape }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.bg_image != blank -%}
+      {{
+        section.settings.bg_image
+        | image_url: width: 3840
+        | image_tag:
+          class: 'custom-fullpane__image',
+          widths: '750, 1100, 1500, 1920, 2500, 3000, 3840',
+          sizes: '100vw',
+          loading: 'lazy',
+          alt: ''
+      }}
+    {%- endif -%}
+
+    <div class="custom-fullpane__overlay product-fit-range__fill" aria-hidden="true"></div>
+
+    <div class="custom-fullpane__content page-width">
+      {%- if section.settings.banner_header != blank -%}
+        <h2 class="custom-fullpane__header">{{ section.settings.banner_header | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.banner_sub_header != blank -%}
+        <p class="custom-fullpane__subheader">{{ section.settings.banner_sub_header | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.button_label_1 != blank or section.settings.button_label_2 != blank -%}
+        <div class="custom-fullpane__buttons">
+          {%- if section.settings.button_label_1 != blank -%}
+            <a
+              href="{{ section.settings.button_link_1 | default: '#' }}"
+              class="button{% if section.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+            >
+              {{ section.settings.button_label_1 | escape }}
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.button_label_2 != blank -%}
+            <a
+              href="{{ section.settings.button_link_2 | default: '#' }}"
+              class="button{% if section.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+            >
+              {{ section.settings.button_label_2 | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- if section.blocks != empty -%}
+    <div class="custom-fullpane__cards{% if section.settings.grid_orientation == "0" %} scroll-mobile{% endif %}">
+      {% for block in section.blocks %}
+        {%- if block.settings.card_image != blank -%}
+          <div class="CustomFullpane-card-wrapper">
+            <div class="CustomFullpane-card">
+              {{
+                block.settings.card_image
+                | image_url: width: 1200
+                | image_tag:
+                  widths: '375, 550, 750, 1100, 1200',
+                  sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+                  loading: 'lazy'
+              }}
+            </div>
+            {%- if block.settings.card_body_text != blank -%}
+                <p class="CustomFullpane-card-body">{{ block.settings.card_body_text | escape }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%  endfor %}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+
+{
+    "name": "Full pane with blocks",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "Color scheme",
+            "default": "scheme-1"
+          },
+          {
+            "type": "image_picker",
+            "id": "logo_image",
+            "label": "Logo"
+        },
+          {
+            "type": "header",
+            "content": "Background"
+          },
+          {
+            "type": "text",
+            "id": "bg_video_link",
+            "label": "MP4 Video File URL",
+            "info": "Upload the MP4 under Content > Files and paste its URL here. Takes priority over the image."
+          },
+          {
+            "type": "image_picker",
+            "id": "bg_image",
+            "label": "Background image",
+            "info": "Used when no video URL is set, and as the video's loading poster"
+          },
+          {
+            "type": "range",
+            "id": "overlay_opacity",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "%",
+            "label": "Overlay opacity",
+            "default": 40
+          },
+          {
+            "type": "select",
+            "label": "Mobile Layout",
+            "id": "grid_orientation",
+            "options": [
+              {
+                "value":"0",
+                "label":"Grid"
+              },
+              {
+                "value":"1",
+                "label":"Column"
+              }]
+          },
+          {
+            "type": "range",
+            "id": "panel_height",
+            "min": 40,
+            "max": 100,
+            "step": 5,
+            "unit": "vh",
+            "label": "Panel height",
+            "default": 70
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "type": "text",
+            "id": "banner_header",
+            "label": "Header",
+            "default": "insert text here"
+        },
+        {
+            "type": "text",
+            "id": "banner_sub_header",
+            "label": "Subtitle",
+            "default": "insert text here"
+        },
+        {
+            "type": "header",
+            "content": "Button 1"
+          },
+          {
+            "type": "text",
+            "id": "button_label_1",
+            "label": "Button Label",
+            "default": "SHOP MENS"
+          },
+          {
+            "type": "url",
+            "id": "button_link_1",
+            "label": "Button Link"
+          },
+          {
+            "type": "checkbox",
+            "id": "button_style_secondary_1",
+            "label": "Use secondary button style (outlined)",
+            "default": true
+          },
+          {
+            "type": "header",
+            "content": "Button 2"
+          },
+          {
+            "type": "text",
+            "id": "button_label_2",
+            "label": "Button Label",
+            "default": "SHOP SHE"
+          },
+          {
+            "type": "url",
+            "id": "button_link_2",
+            "label": "Button Link"
+          },
+          {
+            "type": "checkbox",
+            "id": "button_style_secondary_2",
+            "label": "Use secondary button style (outlined)",
+            "default": true
+          }
+    ],
+    "blocks" : [
+        {
+            "type": "card",
+            "name": "card",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "card_image",
+                    "label": "Card image"
+                },
+                {
+                    "type": "text",
+                    "id": "card_body_text",
+                    "label": "Card Label",
+                    "default": "insert text here"
+                },
+                {
+                    "type": "product",
+                    "label": "Product",
+                    "id": "products"
+                }
+            ]
+        }   
+    ],
+    "presets": [
+        {
+            "name": "Full pane with blocks"
+        }
+    ]
+}
+
+{% endschema %}

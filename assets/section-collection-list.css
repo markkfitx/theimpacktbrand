@@ -13,11 +13,6 @@
     padding-right: 0;
   }
 
-  .section-collection-list .page-width {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
   .section-collection-list .collection-list:not(.slider) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -61,26 +56,48 @@
 }
 
 /* -------------------------------------------------------------------------- */
-/* Collection list cards: split title / arrow + modern polish */
+/* Fill layout: stretch cards to fill the row when they don't overflow        */
+/* -------------------------------------------------------------------------- */
+
+.collection-list--fill:not(.slider) {
+  display: grid;
+  grid-template-columns: repeat(var(--fill-columns-mobile, 1), minmax(0, 1fr));
+  column-gap: var(--grid-mobile-horizontal-spacing);
+  row-gap: var(--grid-mobile-vertical-spacing);
+}
+
+.collection-list--fill:not(.slider) .collection-list__item {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Desktop applies to sliders too; :not(.slider) is repeated to outrank the mobile rule */
+@media screen and (min-width: 990px) {
+  .collection-list--fill,
+  .collection-list--fill:not(.slider) {
+    grid-template-columns: repeat(var(--fill-columns-desktop, 1), minmax(0, 1fr));
+    display: grid;
+    column-gap: var(--grid-desktop-horizontal-spacing);
+    row-gap: var(--grid-desktop-vertical-spacing);
+  }
+
+  .collection-list--fill .collection-list__item {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Standard card: title row + caption                                         */
 /* -------------------------------------------------------------------------- */
 
 .collection-list .collection-card-wrapper {
   transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 750px) and (prefers-reduced-motion: no-preference) {
   .collection-list .collection-card-wrapper:hover {
     transform: translateY(-0.3rem);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .collection-list .collection-card-wrapper {
-    transition: none;
-  }
-
-  .collection-list .collection-card-wrapper:hover {
-    transform: none;
   }
 }
 
@@ -100,9 +117,18 @@
   width: 100%;
 }
 
+.collection-list .card-collection__header {
+  max-width: 50rem;
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
 .collection-list .collection-card-wrapper .card-collection__link {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 1rem 1.5rem;
@@ -117,46 +143,20 @@
   min-width: 0;
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
-  font-weight: 600;
+  font-weight: 400;
   font-size: clamp(1.3rem, 2.8vw, 1.5rem);
   line-height: 1.25;
   letter-spacing: 0.04em;
-  text-transform: none;
   text-align: left;
 }
 
+/* Arrow next to the title is hidden; the caption arrow below is the visible one */
 .collection-list .collection-card-wrapper .card-collection__link .card-collection__icon {
-  position: relative;
-  z-index: 2;
-  flex: 0 0 auto;
-  margin-left: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background-color: rgba(var(--color-foreground), 0.08);
-  transition:
-    background-color 0.25s ease,
-    transform 0.25s ease;
-}
-
-.collection-list .collection-card-wrapper .card-collection__link .card-collection__icon .icon-arrow {
-  width: 1.15rem;
-}
-
-.collection-list .collection-card-wrapper:hover .card-collection__link .card-collection__icon {
-  background-color: rgba(var(--color-foreground), 0.14);
-}
-
-.collection-list .collection-card-wrapper:hover .card-collection__link .card-collection__icon .icon-arrow path {
-  transform: translateX(0.15rem);
+  display: none;
 }
 
 .collection-list .collection-card-wrapper .card-collection__caption {
   display: flex;
-  flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem 1.5rem;
@@ -174,18 +174,103 @@
 }
 
 .collection-list .collection-card-wrapper .card-collection__caption .card-collection__icon {
-  flex: 0 0 auto;
-  margin-left: 0;
-  margin-top: 0.1rem;
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
+  margin: 0.1rem 0 0;
   border-radius: 50%;
   background-color: rgba(var(--color-foreground), 0.08);
+  transition: background-color 0.25s ease;
 }
 
 .collection-list .collection-card-wrapper:hover .card-collection__caption .card-collection__icon {
   background-color: rgba(var(--color-foreground), 0.14);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Overlay card: text over the image                                          */
+/* -------------------------------------------------------------------------- */
+
+/* Gradient stays >= 60% black behind the text block so white text holds 4.5:1
+   even over a white image */
+.collection-list .card-collection__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  padding: 2.4rem;
+  border-radius: 0.4rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.6) 35%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  color: #fff;
+}
+
+.collection-list .card-collection__overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.collection-list .card-collection__overlay .card-collection__header {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.collection-list .card-collection__overlay-title {
+  margin: 0;
+  font-size: clamp(2rem, 2.2vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.collection-list .card-collection__overlay-link {
+  color: inherit;
+}
+
+/* Stretched link: the whole card is clickable, and the focus ring outlines the card */
+.collection-list .card-collection__overlay-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.collection-list .card-collection__overlay-link:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.collection-list .card-collection__overlay-link:focus-visible::after {
+  outline: 0.2rem solid #fff;
+  outline-offset: -0.4rem;
+  box-shadow: inset 0 0 0 0.6rem rgba(0, 0, 0, 0.6);
+}
+
+.collection-list .card-collection__button {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  background-color: #fff;
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+
+.collection-list .card-collection__overlay:hover .card-collection__button,
+.collection-list .card-collection__overlay:focus-within .card-collection__button {
+  background-color: rgba(255, 255, 255, 0.85);
 }

@@ -32,6 +32,14 @@
   min-height: 1.6rem;
   margin: 0;
   word-break: break-word;
+  margin-bottom: 0;
+
+  font-size: 1.6rem;
+  letter-spacing: 0.05rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  max-width: 500px;
+  line-height: 1.6;
 }
 
 .accordion .svg-wrapper {
