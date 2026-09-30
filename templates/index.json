@@ -125,10 +125,10 @@
         "banner_header": "LOCK IN ... NO EXCUSES.",
         "banner_sub_header": "Performance starts with showing up. Explore IMPACKT fitness apparel, training essentials and gym gear built for the work behind every goal.",
         "button_label_1": "SHOP MEN",
-        "button_link_1": "shopify://collections/all-products",
+        "button_link_1": "shopify://collections/mens",
         "button_style_secondary_1": false,
         "button_label_2": "SHOP WOMEN",
-        "button_link_2": "shopify://collections/all-products",
+        "button_link_2": "shopify://collections/womens",
         "button_style_secondary_2": false
       }
     },
