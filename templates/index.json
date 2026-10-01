@@ -15,11 +15,11 @@
       "settings": {
         "color_scheme": "scheme-2",
         "background_image": "shopify://shop_images/Hero-image.jpg",
-        "image_overlay_opacity": 55,
+        "image_overlay_opacity": 65,
         "image_position": "center",
         "title": "THE IMPACKT BRAND",
         "title_alignment": "center",
-        "subtext": "Built on Trust. Driven by Purpose. Ready to Lock In",
+        "subtext": "NO EXCUSES. \nRAISED BY WOLVES. TRUST BREEDS LOYALTY.",
         "button_label_1": "SHOP APPAREL",
         "button_link_1": "shopify://collections/all-products",
         "button_style_secondary_1": false,
