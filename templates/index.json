@@ -15,7 +15,7 @@
       "settings": {
         "color_scheme": "scheme-2",
         "background_image": "shopify://shop_images/Hero-image.jpg",
-        "image_overlay_opacity": 85,
+        "image_overlay_opacity": 75,
         "image_position": "center",
         "title": "THE IMPACKT BRAND",
         "title_alignment": "center",
