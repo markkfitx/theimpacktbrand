@@ -8,14 +8,15 @@
 .promo-banner {
   --promo-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Light grey card palette matching the theme's light scheme, independent of
-     the section color scheme. Contrast on --promo-surface (#e4e4e4): ink 14.7:1,
-     body 9.9:1, border-hover 5:1, focus ring 14.7:1 (WCAG AA: text 4.5:1, UI 3:1). */
+  /* Raised dark card palette, lighter than the #1a1a1a page so cards read as
+     separate panels. Contrast on --promo-surface (#262626): ink 15:1, body 7.4:1. */
   --promo-ink-rgb: 255,255,255;
   --promo-ink: #ffffff;
   --promo-body-color: #ffffffad;
-  --promo-surface: #131313;
-  --promo-surface-hover: #131313ee;
+  --promo-surface: #262626;
+  --promo-surface-hover: #2e2e2e;
+  --promo-border: rgba(var(--promo-ink-rgb), 0.08);
+  --promo-border-hover: rgba(var(--promo-ink-rgb), 0.2);
   --promo-ring: rgba(var(--promo-ink-rgb), 0.12);
   --promo-focus: var(--promo-ink);
 
@@ -75,6 +76,7 @@
   isolation: isolate;
   color: var(--promo-ink);
   background: var(--promo-surface);
+  border: 0.1rem solid var(--promo-border);
   transition:
     transform 0.35s var(--promo-ease),
     border-color 0.35s ease,
@@ -142,6 +144,7 @@
   .promo-banner__link:hover .promo-banner__card {
     transform: translateY(-0.2rem);
     background: var(--promo-surface-hover);
+    border-color: var(--promo-border-hover);
   }
 }
 

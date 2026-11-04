@@ -7,6 +7,10 @@
   margin: 0;
 }
 
+.collection-list__logo {
+  filter: var(--logo-filter, none);
+}
+
 @media screen and (max-width: 749px) {
   .collection-list:not(.slider) {
     padding-left: 0;

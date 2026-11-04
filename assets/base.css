@@ -1797,7 +1797,7 @@ details[open] > .share-button__fallback {
 .field__input:-webkit-autofill ~ .field__button,
 .field__input:-webkit-autofill ~ .field__label,
 .customer .field input:-webkit-autofill ~ label {
-  color: rgb(0, 0, 0);
+  color: rgb(var(--color-foreground));
 }
 
 /* Text area */
@@ -2462,6 +2462,7 @@ input[type='checkbox'] {
 .header__heading-logo {
   height: auto;
   max-width: 100%;
+  filter: var(--logo-filter, none);
 }
 
 .header__heading-logo-wrapper {

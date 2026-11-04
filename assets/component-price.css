@@ -90,7 +90,7 @@
   font-size: inherit;
 }
 
-/* Green for the dark schemes (5.3:1 on #131313); darker green on the
+/* Green for the dark schemes (5.0:1 on #1a1a1a, 5.3:1 on #131313); darker green on the
    light schemes (7.1:1 on white, 5.6:1 on #e4e4e4) */
 .price--on-sale .price-item--sale {
   color: #1b9e4b;

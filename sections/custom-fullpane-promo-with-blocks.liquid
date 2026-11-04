@@ -1,4 +1,5 @@
 {{ 'section-custom-fullpane-with-blocks.css' | asset_url | stylesheet_tag }}
+{{ 'component-hero-button.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign overlay_opacity = section.settings.overlay_opacity | default: 0 | divided_by: 100.0
@@ -60,7 +61,7 @@
           {%- if section.settings.button_label_1 != blank -%}
             <a
               href="{{ section.settings.button_link_1 | default: '#' }}"
-              class="button{% if section.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+              class="button hero-button{% if section.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
             >
               {{ section.settings.button_label_1 | escape }}
             </a>
@@ -69,7 +70,7 @@
           {%- if section.settings.button_label_2 != blank -%}
             <a
               href="{{ section.settings.button_link_2 | default: '#' }}"
-              class="button{% if section.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+              class="button hero-button{% if section.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
             >
               {{ section.settings.button_label_2 | escape }}
             </a>
