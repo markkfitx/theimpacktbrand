@@ -88,6 +88,7 @@
           "type": "card",
           "settings": {
             "card_image": "shopify://shop_images/IMG_8987.jpg",
+            "card_link": "shopify://products/the-pack-signature-graphic-tee",
             "card_body_text": "Relaxed everyday tees with bold back graphics, detailed artwork and easygoing fits designed for training, layering and everyday wear.",
             "products": ""
           }
@@ -96,6 +97,7 @@
           "type": "card",
           "settings": {
             "card_image": "shopify://shop_images/Photoroom_20260628_033554.jpg",
+            "card_link": "shopify://products/raised-by-wolves-graphic-oversized-tee",
             "card_body_text": "Heavyweight oversized silhouettes with detailed artwork, dropped shoulders and a relaxed fit designed to stand out.",
             "products": ""
           }
@@ -104,6 +106,7 @@
           "type": "card",
           "settings": {
             "card_image": "shopify://shop_images/2C528379-DEC3-4368-8E90-DD4CC50DE2DE.jpg",
+            "card_link": "shopify://products/dyed-buy-not-dead-scrunch-shorts",
             "card_body_text": "Fitted tops and lightweight shorts designed for easy movement, flattering comfort and everyday versatility.",
             "products": ""
           }
