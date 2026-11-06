@@ -430,6 +430,17 @@
   z-index: 1;
 }
 
+/* The title link's ::after is the card's click target. .card__heading and the
+   outer .card__content are positioned, which shrinks that target to the title.
+   Collection cards have no separate controls on the image, so let the link
+   stretch to the card wrapper and cover the image. Overlay cards already
+   stretch their own link across the media. */
+.collection-card-wrapper:not(:has(.card-collection__overlay)) > .card > .card__content,
+.collection-card-wrapper:not(:has(.card-collection__overlay)) .card__heading {
+  position: static;
+  z-index: auto;
+}
+
 .card__heading a:after {
   outline-offset: 0.3rem;
 }
