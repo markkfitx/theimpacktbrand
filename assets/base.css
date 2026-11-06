@@ -795,7 +795,7 @@ summary::-webkit-details-marker {
   gap: 1rem;
   margin-bottom: 3rem;
   flex-wrap: wrap;
-  margin-top:125px;
+  margin-top:62px;
 }
 
 .title--primary {
@@ -812,6 +812,9 @@ summary::-webkit-details-marker {
   .title-wrapper--self-padded-mobile {
     padding-left: 0;
     padding-right: 0;
+  }
+  .title-wrapper-with-link{
+    margin-top:125px;
   }
 }
 
