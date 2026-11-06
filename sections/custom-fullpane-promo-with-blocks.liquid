@@ -83,7 +83,20 @@
     <div class="custom-fullpane__cards{% if section.settings.grid_orientation == "0" %} scroll-mobile{% endif %}">
       {% for block in section.blocks %}
         {%- if block.settings.card_image != blank -%}
-          <div class="CustomFullpane-card-wrapper">
+          {%- liquid
+            assign card_link = block.settings.card_link
+            if card_link == blank and block.settings.products != blank
+              assign card_link = block.settings.products.url
+            endif
+            assign card_image_alt = block.settings.card_image.alt
+            if block.settings.card_body_text != blank
+              assign card_image_alt = ''
+            endif
+          -%}
+          <div class="CustomFullpane-card-wrapper" {{ block.shopify_attributes }}>
+            {%- if card_link != blank -%}
+              <a href="{{ card_link }}" class="CustomFullpane-card__link">
+            {%- endif -%}
             <div class="CustomFullpane-card">
               {{
                 block.settings.card_image
@@ -91,11 +104,15 @@
                 | image_tag:
                   widths: '375, 550, 750, 1100, 1200',
                   sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
-                  loading: 'lazy'
+                  loading: 'lazy',
+                  alt: card_image_alt
               }}
             </div>
             {%- if block.settings.card_body_text != blank -%}
-                <p class="CustomFullpane-card-body">{{ block.settings.card_body_text | escape }}</p>
+              <p class="CustomFullpane-card-body">{{ block.settings.card_body_text | escape }}</p>
+            {%- endif -%}
+            {%- if card_link != blank -%}
+              </a>
             {%- endif -%}
           </div>
         {%- endif -%}
@@ -240,6 +257,12 @@
                     "type": "image_picker",
                     "id": "card_image",
                     "label": "Card image"
+                },
+                {
+                    "type": "url",
+                    "id": "card_link",
+                    "label": "Image link",
+                    "info": "Opens when the image is clicked. Choose a product, collection, or page. If empty, the product selected below is used."
                 },
                 {
                     "type": "text",
